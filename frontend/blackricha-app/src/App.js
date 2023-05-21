@@ -1,23 +1,20 @@
-import './App.css';
+import React from 'react';
+import HomePage from './pages/HomePage';
+import CartPage from './pages/CartPage';
+import UserProfilePage from './pages/UserProfilePage';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<HomePage/>} exact />
+        <Route path="/cart" element={<CartPage/>} />
+        <Route path="/userprofile" element={<UserProfilePage/>}></Route>
+        
+        {/* Other routes go here */}
+      </Routes>
+    </Router>
   );
 }
-
 export default App;
