@@ -1,0 +1,2 @@
+In this modified version, the userId parameter is accessed using req.query instead of req.params. 
+The userId will be sent as a query parameter in the URL, like /api/cart?userId=<user-id>.

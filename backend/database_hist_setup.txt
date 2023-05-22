@@ -1,0 +1,91 @@
+moatez@Employunity:~$ sudo -i -u postgres
+postgres@Employunity:~$ CREATE DATABASE black-richa-db
+CREATE: command not found
+postgres@Employunity:~$ psql
+psql (14.7 (Ubuntu 14.7-0ubuntu0.22.04.1))
+Type "help" for help.
+
+postgres=# CREATE DATABASE black-richa-db
+postgres-# CREATE USER black-richa-admin WITH ENCRYPTED PASSWORD '21280324';
+ERROR:  syntax error at or near "-"
+LINE 1: CREATE DATABASE black-richa-db
+                             ^
+postgres=# CREATE DATABASE black-richa-db
+CREATE USER black_richa_admin WITH ENCRYPTED PASSWORD '21280324';
+ERROR:  syntax error at or near "-"
+LINE 1: CREATE DATABASE black-richa-db
+                             ^
+postgres=# CREATE DATABASE black_richa_db;
+CREATE DATABASE
+postgres=# CREATE USER black_richa_admin WITH ENCRYPTED PASSWORD '21280324';
+CREATE ROLE
+postgres=# GRANT ALL PRIVILEGES ON DATABASE black_richa_db TO black_richa_admin ;
+GRANT
+postgres=# \c black_richa_db;
+You are now connected to database "black_richa_db" as user "postgres".
+black_richa_db=# CREATE TABLE users (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL,
+    password VARCHAR(255) NOT NULL
+);
+CREATE TABLE
+black_richa_db=# CREATE TABLE products (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    price DECIMAL(10, 2) NOT NULL,
+    description TEXT,
+    category_id INT NOT NULL,
+    created_at TIMESTAMP DEFAULT NOW(),
+    updated_at TIMESTAMP DEFAULT NOW(),
+    FOREIGN KEY (category_id) REFERENCES categories(id) ON DELETE CASCADE
+);
+ERROR:  relation "categories" does not exist
+black_richa_db=# CREATE TABLE categories (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    created_at TIMESTAMP DEFAULT NOW(),
+    updated_at TIMESTAMP DEFAULT NOW()
+);
+CREATE TABLE
+black_richa_db=# CREATE TABLE orders (
+    id SERIAL PRIMARY KEY,
+    user_id INT NOT NULL,
+    total_amount DECIMAL(10, 2) NOT NULL,
+    created_at TIMESTAMP DEFAULT NOW(),
+    updated_at TIMESTAMP DEFAULT NOW(),
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+);
+CREATE TABLE
+black_richa_db=# CREATE TABLE carts (
+  id SERIAL PRIMARY KEY,
+  quantity INTEGER NOT NULL,
+  created_at TIMESTAMP NOT NULL,
+  updated_at TIMESTAMP NOT NULL,
+  user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
+  product_id INTEGER REFERENCES products(id) ON DELETE CASCADE
+);
+CREATE TABLE
+black_richa_db=# INSERT INTO users (name, email, password) VALUES
+    ('John Doe', 'john@example.com', 'password123'),
+    ('Jane Smith', 'jane@example.com', 'password456');
+INSERT 0 2
+black_richa_db=# INSERT INTO products (name, price, description, category_id) VALUES
+    ('Product 1', 10.99, 'Description for Product 1', 1),
+    ('Product 2', 19.99, 'Description for Product 2', 1),
+    ('Product 3', 9.99, 'Description for Product 3', 2);
+ERROR:  insert or update on table "products" violates foreign key constraint "products_category_id_fkey"
+DETAIL:  Key (category_id)=(1) is not present in table "categories".
+black_richa_db=# INSERT INTO orders (user_id, total_amount) VALUES
+    (1, 30.99),
+    (2, 19.99);
+INSERT 0 2
+black_richa_db=# INSERT INTO categories (name) VALUES
+    ('Category 1'),
+    ('Category 2');
+INSERT 0 2
+black_richa_db=# INSERT INTO products (name, price, description, category_id) VALUES
+    ('Product 1', 10.99, 'Description for Product 1', 1),
+    ('Product 2', 19.99, 'Description for Product 2', 1),
+    ('Product 3', 9.99, 'Description for Product 3', 2);
+INSERT 0 3
