@@ -13,6 +13,9 @@ const orderRoutes = require('./routes/order.routes');
 const categoryRoutes = require('./routes/category.routes');
 const cartRoutes = require('./routes/cart.routes');
 
+app.use(express.urlencoded({ extended: false }));
+app.use(express.json());
+
 app.get('/', (req, res) => {
   res.send('Hello from ecommerce application back-end!');
 });

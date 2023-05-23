@@ -27,9 +27,13 @@ class UserController {
     const userData = req.body;
     try {
       const newUser = await UserService.createUser(userData);
-      res.status(201).json(newUser);
+      res.status(201).json({newUser});
     } catch (error) {
-      res.status(500).json({ error: error.message });
+      if (error.name === 'ValidationError') {
+        return res.status(400).json({ error: error.message });
+      } else {
+        res.status(500).json({ error: error.message });
+      }
     }
   }
 

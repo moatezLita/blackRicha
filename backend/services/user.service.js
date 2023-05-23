@@ -14,7 +14,7 @@ class UserService {
   async getUserById(userId) {
     try {
       // Logic to get a user by ID from the database
-      const user = await User.findById(userId);
+      const user = await User.findOne(userId);
       return user;
     } catch (error) {
       throw new Error('Failed to get user');
@@ -24,7 +24,9 @@ class UserService {
   async createUser(userData) {
     try {
       // Logic to create a new user in the database
-      const user = await User.create(userData);
+      console.log(`eds`);
+      const user = await User.build(userData);
+      
       return user;
     } catch (error) {
       throw new Error('Failed to create user');

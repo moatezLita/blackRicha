@@ -1,6 +1,15 @@
 const Cart = require('../models/cart.model');
 
 class CartService {
+  async getAllCarts() {
+    try {
+      const carts = await Cart.findAll();
+      return carts;
+    } catch (error) {
+      throw new Error('Failed to get all carts');
+    }
+  }
+
   async getCartByUserId(userId) {
     try {
       const cart = await Cart.findOne({ user: userId }).populate('products.product');

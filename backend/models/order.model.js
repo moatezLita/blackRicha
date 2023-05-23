@@ -9,7 +9,7 @@ const Order = sequelize.define('Order', {
     type: DataTypes.INTEGER,
     allowNull: false,
   },
-  totalPrice: {
+  totalprice: {
     type: DataTypes.FLOAT,
     allowNull: false,
   },

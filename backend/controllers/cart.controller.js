@@ -1,82 +1,55 @@
-const Cart = require ('../services/cart.service');
+const CartService = require('../services/cart.service');
 
-class CartService {
-  async getCartByUserId(userId) {
+class CartController {
+  async getAllCarts(req, res) {
     try {
-      const cart = await Cart.findOne({ user: userId }).populate('products.product');
-      return cart;
+      const carts = await CartService.getAllCarts();
+      res.json(carts);
     } catch (error) {
-      throw new Error('Failed to get cart by user ID');
+      res.status(500).json({ error: error.message });
+    }
+  }
+  async getCartByUserId(req, res) {
+    const { userId } = req.query;
+    try {
+      const cart = await CartService.getCartByUserId(userId);
+      res.json(cart);
+    } catch (error) {
+      res.status(500).json({ error: error.message });
     }
   }
 
-  async addToCart(userId, productId, quantity) {
+  async addToCart(req, res) {
+    const { userId } = req.params;
+    const { productId, quantity } = req.body;
     try {
-      let cart = await Cart.findOne({ user: userId });
-
-      if (!cart) {
-        // Create a new cart if it doesn't exist for the user
-        cart = await Cart.create({ user: userId, products: [] });
-      }
-
-      const productExists = cart.products.find((item) => item.product.toString() === productId);
-
-      if (productExists) {
-        // Update the quantity of an existing product in the cart
-        productExists.quantity += quantity;
-      } else {
-        // Add a new product to the cart
-        cart.products.push({ product: productId, quantity });
-      }
-
-      await cart.save();
-      return cart;
+      const cart = await CartService.addToCart(userId, productId, quantity);
+      res.json(cart);
     } catch (error) {
-      throw new Error('Failed to add to cart');
+      res.status(500).json({ error: error.message });
     }
   }
 
-  async removeFromCart(userId, productId) {
+  async removeFromCart(req, res) {
+    const { userId, productId } = req.params;
     try {
-      const cart = await Cart.findOne({ user: userId });
-
-      if (!cart) {
-        throw new Error('Cart not found');
-      }
-
-      // Remove the product from the cart
-      cart.products = cart.products.filter((item) => item.product.toString() !== productId);
-      
-      await cart.save();
-      return cart;
+      const cart = await CartService.removeFromCart(userId, productId);
+      res.json(cart);
     } catch (error) {
-      throw new Error('Failed to remove from cart');
+      res.status(500).json({ error: error.message });
     }
   }
 
-  async updateCartItemQuantity(userId, productId, quantity) {
+  async updateCartItemQuantity(req, res) {
+    const { userId, productId } = req.params;
+    const { quantity } = req.body;
     try {
-      const cart = await Cart.findOne({ user: userId });
-
-      if (!cart) {
-        throw new Error('Cart not found');
-      }
-
-      const product = cart.products.find((item) => item.product.toString() === productId);
-
-      if (!product) {
-        throw new Error('Product not found in cart');
-      }
-
-      // Update the quantity of the product in the cart
-      product.quantity = quantity;
-
-      await cart.save();
-      return cart;
+      const cart = await CartService.updateCartItemQuantity(userId, productId, quantity);
+      res.json(cart);
     } catch (error) {
-      throw new Error('Failed to update cart item quantity');
+      res.status(500).json({ error: error.message });
     }
   }
 }
 
-module.exports = new CartService();
+module.exports = new CartController();

@@ -3,7 +3,7 @@ const Category = require('../models/category.model');
 class CategoryService {
   async getAllCategories() {
     try {
-      const categories = await Category.find();
+      const categories = await Category.findAll();
       return categories;
     } catch (error) {
       throw new Error('Failed to get categories');
@@ -12,7 +12,7 @@ class CategoryService {
 
   async getCategoryById(categoryId) {
     try {
-      const category = await Category.findById(categoryId);
+      const category = await Category.findOne(categoryId);
       return category;
     } catch (error) {
       throw new Error('Failed to get category by ID');
