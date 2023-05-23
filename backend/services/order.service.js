@@ -1,3 +1,5 @@
+const { or } = require('sequelize');
+const { use } = require('../app');
 const Order = require('../models/order.model');
 
 class OrderService {
@@ -21,7 +23,8 @@ class OrderService {
 
   async createOrder(orderData) {
     try {
-      const order = await Order.create(orderData);
+      const order =  Order.build(orderData);
+      await order.save();
       return order;
     } catch (error) {
       throw new Error('Failed to create order');
@@ -30,10 +33,12 @@ class OrderService {
 
   async updateOrder(orderId, orderData) {
     try {
-      const order = await Order.findByIdAndUpdate(orderId, orderData, { new: true });
+      const order = await Order.findOne(orderId);
       if (!order) {
         throw new Error('Order not found');
       }
+      await order.update(orderData, { new: true })
+      await order.save();
       return order;
     } catch (error) {
       throw new Error('Failed to update order');
@@ -42,7 +47,7 @@ class OrderService {
 
   async deleteOrder(orderId) {
     try {
-      const order = await Order.findByIdAndDelete(orderId);
+      const order = await Order.findOne(orderId);
       if (!order) {
         throw new Error('Order not found');
       }

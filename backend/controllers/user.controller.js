@@ -11,9 +11,10 @@ class UserController {
   }
 
   async getUserById(req, res) {
-    const { userId } = req.params;
+    const { id:userId } = req.params;
     try {
-      const user = await UserService.getUserById(userId);
+      
+      const user = await UserService.getUserById({ where: { id: userId } });
       if (!user) {
         return res.status(404).json({ error: 'User not found' });
       }
@@ -38,10 +39,11 @@ class UserController {
   }
 
   async updateUser(req, res) {
-    const { userId } = req.params;
+    const {id:userId}  = req.params;
     const userData = req.body;
     try {
-      const updatedUser = await UserService.updateUser(userId, userData);
+      console.log({userId});
+      const updatedUser = await UserService.updateUser({ where: { id: userId } }, userData);
       if (!updatedUser) {
         return res.status(404).json({ error: 'User not found' });
       }
@@ -52,9 +54,9 @@ class UserController {
   }
 
   async deleteUser(req, res) {
-    const { userId } = req.params;
+    const { id:userId } = req.params;
     try {
-      const result = await UserService.deleteUser(userId);
+      const result = await UserService.deleteUser({ where: { id: userId } });
       if (result === 'User not found') {
         return res.status(404).json({ error: 'User not found' });
       }

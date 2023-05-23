@@ -25,7 +25,8 @@ class CartService {
 
       if (!cart) {
         // Create a new cart if it doesn't exist for the user
-        cart = await Cart.create({ user: userId, products: [] });
+        cart = await Cart.build({ user: userId, products: [] });
+        await cart.save();
       }
 
       const productExists = cart.products.find((item) => item.product.toString() === productId);

@@ -11,9 +11,9 @@ class CategoryController {
   }
 
   async getCategoryById(req, res) {
-    const { categoryId } = req.params;
+    const { id: categoryId } = req.params;
     try {
-      const category = await CategoryService.getCategoryById(categoryId);
+      const category = await CategoryService.getCategoryById({where : {id: categoryId}});
       if (!category) {
         return res.status(404).json({ error: 'Category not found' });
       }
@@ -34,10 +34,10 @@ class CategoryController {
   }
 
   async updateCategory(req, res) {
-    const { categoryId } = req.params;
+    const { id: categoryId } = req.params;
     const categoryData = req.body;
     try {
-      const updatedCategory = await CategoryService.updateCategory(categoryId, categoryData);
+      const updatedCategory = await CategoryService.updateCategory({where : {id: categoryId}}, categoryData);
       if (!updatedCategory) {
         return res.status(404).json({ error: 'Category not found' });
       }
@@ -48,9 +48,9 @@ class CategoryController {
   }
 
   async deleteCategory(req, res) {
-    const { categoryId } = req.params;
+    const { id: categoryId } = req.params;
     try {
-      const result = await CategoryService.deleteCategory(categoryId);
+      const result = await CategoryService.deleteCategory({where : {id: categoryId}});
       if (result === 'Category not found') {
         return res.status(404).json({ error: 'Category not found' });
       }

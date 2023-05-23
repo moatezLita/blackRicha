@@ -11,9 +11,9 @@ class ProductController {
   }
 
   async getProductById(req, res) {
-    const { productId } = req.params;
+    const { id:productId } = req.params;
     try {
-      const product = await ProductService.getProductById(productId);
+      const product = await ProductService.getProductById({ where: { id: productId } });
       if (!product) {
         return res.status(404).json({ error: 'Product not found' });
       }
@@ -34,10 +34,10 @@ class ProductController {
   }
 
   async updateProduct(req, res) {
-    const { productId } = req.params;
+    const {id: productId } = req.params;
     const productData = req.body;
     try {
-      const updatedProduct = await ProductService.updateProduct(productId, productData);
+      const updatedProduct = await ProductService.updateProduct({ where: { id: productId } }, productData);
       if (!updatedProduct) {
         return res.status(404).json({ error: 'Product not found' });
       }
@@ -48,9 +48,9 @@ class ProductController {
   }
 
   async deleteProduct(req, res) {
-    const { productId } = req.params;
+    const { id : productId } = req.params;
     try {
-      const result = await ProductService.deleteProduct(productId);
+      const result = await ProductService.deleteProduct({ where: { id: productId } });
       if (result === 'Product not found') {
         return res.status(404).json({ error: 'Product not found' });
       }

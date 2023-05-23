@@ -24,9 +24,10 @@ class UserService {
   async createUser(userData) {
     try {
       // Logic to create a new user in the database
-      console.log(`eds`);
-      const user = await User.build(userData);
       
+      // const user = await User.create({userData});
+      const user =  User.build(userData);
+      await user.save();
       return user;
     } catch (error) {
       throw new Error('Failed to create user');
@@ -36,11 +37,12 @@ class UserService {
   async updateUser(userId, userData) {
     try {
       // Logic to update a user in the database
-      const user = await User.findByPk(userId);
+      const user = await User.findOne(userId);
       if (!user) {
         throw new Error('User not found');
       }
       await user.update(userData);
+      await user.save();
       return user;
     } catch (error) {
       throw new Error('Failed to update user');
@@ -50,7 +52,7 @@ class UserService {
   async deleteUser(userId) {
     try {
       // Logic to delete a user from the database
-      const user = await User.findByPk(userId);
+      const user = await User.findOne(userId);
       if (!user) {
         throw new Error('User not found');
       }

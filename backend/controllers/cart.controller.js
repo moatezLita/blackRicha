@@ -10,9 +10,9 @@ class CartController {
     }
   }
   async getCartByUserId(req, res) {
-    const { userId } = req.query;
+    const { id : userId } = req.query;
     try {
-      const cart = await CartService.getCartByUserId(userId);
+      const cart = await CartService.getCartByUserId({where : {id:userId}});
       res.json(cart);
     } catch (error) {
       res.status(500).json({ error: error.message });

@@ -11,9 +11,9 @@ class OrderController {
   }
 
   async getOrderById(req, res) {
-    const { orderId } = req.params;
+    const { id : orderId } = req.params;
     try {
-      const order = await OrderService.getOrderById(orderId);
+      const order = await OrderService.getOrderById({where : {id: orderId}});
       if (!order) {
         return res.status(404).json({ error: 'Order not found' });
       }
@@ -34,10 +34,10 @@ class OrderController {
   }
 
   async updateOrder(req, res) {
-    const { orderId } = req.params;
+    const { id: orderId } = req.params;
     const orderData = req.body;
     try {
-      const updatedOrder = await OrderService.updateOrder(orderId, orderData);
+      const updatedOrder = await OrderService.updateOrder({where : {id: orderId}}, orderData);
       if (!updatedOrder) {
         return res.status(404).json({ error: 'Order not found' });
       }
@@ -48,9 +48,9 @@ class OrderController {
   }
 
   async deleteOrder(req, res) {
-    const { orderId } = req.params;
+    const { id: orderId } = req.params;
     try {
-      const result = await OrderService.deleteOrder(orderId);
+      const result = await OrderService.deleteOrder({where : {id: orderId}});
       if (result === 'Order not found') {
         return res.status(404).json({ error: 'Order not found' });
       }

@@ -21,7 +21,8 @@ class CategoryService {
 
   async createCategory(categoryData) {
     try {
-      const category = await Category.create(categoryData);
+      const category =  Category.build(categoryData);
+      await category.save();
       return category;
     } catch (error) {
       throw new Error('Failed to create category');
@@ -30,10 +31,12 @@ class CategoryService {
 
   async updateCategory(categoryId, categoryData) {
     try {
-      const category = await Category.findByIdAndUpdate(categoryId, categoryData, { new: true });
+      const category = await Category.findOne(categoryId );
       if (!category) {
         throw new Error('Category not found');
       }
+      await category.update(categoryData, { new: true })
+      await category.save();
       return category;
     } catch (error) {
       throw new Error('Failed to update category');
@@ -42,10 +45,11 @@ class CategoryService {
 
   async deleteCategory(categoryId) {
     try {
-      const category = await Category.findByIdAndDelete(categoryId);
+      const category = await Category.findOne(categoryId);
       if (!category) {
         throw new Error('Category not found');
       }
+      await category.destroy();
       return 'Category deleted successfully';
     } catch (error) {
       throw new Error('Failed to delete category');
