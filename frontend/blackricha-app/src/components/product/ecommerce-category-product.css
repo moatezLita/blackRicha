@@ -1,0 +1,68 @@
+/* styles.css */
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1rem;
+}
+
+.grid a {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  text-decoration: none;
+  color: inherit;
+}
+
+.aspect-h-1 {
+  height: 0;
+  padding-bottom: 100%; /* Maintain a 1:1 aspect ratio */
+  position: relative;
+}
+
+.aspect-w-1 {
+  width: 100%;
+}
+
+.aspect-h-1 img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.group:hover .aspect-h-1 img {
+  opacity: 0.75;
+}
+
+.text-sm {
+  font-size: 0.875rem; /* 14px */
+}
+
+.text-lg {
+  font-size: 1.25rem; /* 20px */
+}
+
+.mt-4 {
+  margin-top: 1rem;
+}
+
+.mt-1 {
+  margin-top: 0.25rem;
+}
+
+.font-medium {
+  font-weight: 500;
+}
+
+.text-gray-700 {
+  color: #4b5563;
+}
+
+.text-gray-900 {
+  color: #1a202c;
+}

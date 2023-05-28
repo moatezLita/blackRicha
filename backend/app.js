@@ -2,7 +2,9 @@ const express = require('express');
 const app = express();
 const sequelize = require('./sequelize');
 require('dotenv').config({ path: './backend/.env' });
+var cors = require('cors')
 
+app.use(cors()) // Use this after the variable declaration
 // Create Express app
 const port = process.env.PORT || 3001;
 

@@ -1,3 +1,6 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 .App {
   text-align: center;
 }
@@ -35,4 +38,15 @@
   to {
     transform: rotate(360deg);
   }
+}
+.carousel-container {
+  margin: 20px 0;
+}
+
+.hero-section-container {
+  margin: 40px 0;
+}
+
+.tab-container {
+  margin: 20px 0;
 }
