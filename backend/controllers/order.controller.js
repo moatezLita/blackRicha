@@ -1,62 +1,63 @@
 const OrderService = require('../services/order.service');
+const { CustomError } = require('../middleware/errorHandler');
 
 class OrderController {
-  async getAllOrders(req, res) {
+  async getAllOrders(req, res, next) {
     try {
       const orders = await OrderService.getAllOrders();
       res.json(orders);
     } catch (error) {
-      res.status(500).json({ error: error.message });
+      next(new CustomError('Failed to get all orders', 500));
     }
   }
 
-  async getOrderById(req, res) {
-    const { id : orderId } = req.params;
+  async getOrderById(req, res, next) {
+    const { id: orderId } = req.params;
     try {
-      const order = await OrderService.getOrderById({where : {id: orderId}});
+      const order = await OrderService.getOrderById({ where: { id: orderId } });
       if (!order) {
-        return res.status(404).json({ error: 'Order not found' });
+        return next(new CustomError('Order not found', 404));
       }
       res.json(order);
     } catch (error) {
-      res.status(500).json({ error: error.message });
+      next(new CustomError('Failed to get order by ID', 500));
     }
   }
 
-  async createOrder(req, res) {
+  async createOrder(req, res, next) {
     const orderData = req.body;
     try {
       const newOrder = await OrderService.createOrder(orderData);
       res.status(201).json(newOrder);
     } catch (error) {
-      res.status(500).json({ error: error.message });
+      next(new CustomError('Failed to create order', 500));
     }
   }
 
-  async updateOrder(req, res) {
+  async updateOrder(req, res, next) {
     const { id: orderId } = req.params;
     const orderData = req.body;
     try {
-      const updatedOrder = await OrderService.updateOrder({where : {id: orderId}}, orderData);
+      const updatedOrder = await OrderService.updateOrder({ where: { id: orderId } }, orderData);
       if (!updatedOrder) {
-        return res.status(404).json({ error: 'Order not found' });
+        return next(new CustomError('Order not found', 404));
       }
       res.json(updatedOrder);
     } catch (error) {
-      res.status(500).json({ error: error.message });
+      next(new CustomError('Failed to update order', 500));
     }
   }
 
-  async deleteOrder(req, res) {
+  async deleteOrder(req, res, next) {
     const { id: orderId } = req.params;
     try {
-      const result = await OrderService.deleteOrder({where : {id: orderId}});
+      const result = await OrderService.deleteOrder({ where: { id: orderId } });
       if (result === 'Order not found') {
-        return res.status(404).json({ error: 'Order not found' });
+        return next(new CustomError('Order not found', 404));
       }
       res.json({ message: 'Order deleted successfully' });
     } catch (error) {
-      res.status(500).json({ error: error.message });
+      next(new CustomError('Failed to delete order', 500));
     }
   }
 }

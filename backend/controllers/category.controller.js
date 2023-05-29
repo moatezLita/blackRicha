@@ -1,62 +1,63 @@
 const CategoryService = require('../services/category.service');
+const { CustomError } = require('../middleware/errorHandler');
 
 class CategoryController {
-  async getAllCategories(req, res) {
+  async getAllCategories(req, res, next) {
     try {
       const categories = await CategoryService.getAllCategories();
       res.json(categories);
     } catch (error) {
-      res.status(500).json({ error: error.message });
+      next(new CustomError('Failed to get all categories', 500));
     }
   }
 
-  async getCategoryById(req, res) {
+  async getCategoryById(req, res, next) {
     const { id: categoryId } = req.params;
     try {
-      const category = await CategoryService.getCategoryById({where : {id: categoryId}});
+      const category = await CategoryService.getCategoryById({ where: { id: categoryId } });
       if (!category) {
-        return res.status(404).json({ error: 'Category not found' });
+        return next(new CustomError('Category not found', 404));
       }
       res.json(category);
     } catch (error) {
-      res.status(500).json({ error: error.message });
+      next(new CustomError('Failed to get category by ID', 500));
     }
   }
 
-  async createCategory(req, res) {
+  async createCategory(req, res, next) {
     const categoryData = req.body;
     try {
       const newCategory = await CategoryService.createCategory(categoryData);
       res.status(201).json(newCategory);
     } catch (error) {
-      res.status(500).json({ error: error.message });
+      next(new CustomError('Failed to create category', 500));
     }
   }
 
-  async updateCategory(req, res) {
+  async updateCategory(req, res, next) {
     const { id: categoryId } = req.params;
     const categoryData = req.body;
     try {
-      const updatedCategory = await CategoryService.updateCategory({where : {id: categoryId}}, categoryData);
+      const updatedCategory = await CategoryService.updateCategory({ where: { id: categoryId } }, categoryData);
       if (!updatedCategory) {
-        return res.status(404).json({ error: 'Category not found' });
+        return next(new CustomError('Category not found', 404));
       }
       res.json(updatedCategory);
     } catch (error) {
-      res.status(500).json({ error: error.message });
+      next(new CustomError('Failed to update category', 500));
     }
   }
 
-  async deleteCategory(req, res) {
+  async deleteCategory(req, res, next) {
     const { id: categoryId } = req.params;
     try {
-      const result = await CategoryService.deleteCategory({where : {id: categoryId}});
+      const result = await CategoryService.deleteCategory({ where: { id: categoryId } });
       if (result === 'Category not found') {
-        return res.status(404).json({ error: 'Category not found' });
+        return next(new CustomError('Category not found', 404));
       }
       res.json({ message: 'Category deleted successfully' });
     } catch (error) {
-      res.status(500).json({ error: error.message });
+      next(new CustomError('Failed to delete category', 500));
     }
   }
 }

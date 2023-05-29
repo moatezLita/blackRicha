@@ -1,6 +1,51 @@
+const passport = require('../config/passportConfig');
 const User = require('../models/user.model');
 
 class UserService {
+  async findUserByEmail (email){
+    try {
+      const user = await User.findOne({  where: { email: email } } );
+      return user;
+    } catch (error) {
+      throw new Error('Failed to find user by email');
+    }
+  }
+  
+  async signup(userData) {
+    try {
+      // Create a new user using the User model
+      const newUser = new User.build(userData);
+
+      // Save the user to the database
+      await newUser.save();
+
+      // Generate JWT token for the user
+      const token = passport.generateToken(newUser);
+
+      return { user: newUser, token };
+    } catch (error) {
+      throw new Error('Failed to signup');
+    }
+  }
+
+  async login(username, password) {
+    try {
+      // Authenticate the user using Passport.js local strategy
+      const user = await passport.authenticate('local', { session: false })(username, password);
+
+      // If authentication fails, throw an error
+      if (!user) {
+        throw new Error('Invalid username or password');
+      }
+
+      // Generate JWT token for the user
+      const token = passport.generateToken(user);
+
+      return { user, token };
+    } catch (error) {
+      throw new Error('Failed to login');
+    }
+  }
   async getAllUsers() {
     try {
       // Logic to get all users from the database
