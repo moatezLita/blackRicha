@@ -25,8 +25,8 @@ const navigation = {
 
   categories: [
     {
-      id: 'women',
-      name: 'Women',
+      id: 'CADRE DE LIT',
+      name: 'CADRE DE LIT',
       featured: [
         {
           name: 'New Arrivals',
@@ -57,34 +57,13 @@ const navigation = {
             { name: 'Browse All', href: '#' },
           ],
         },
-        {
-          id: 'accessories',
-          name: 'Accessories',
-          items: [
-            { name: 'Watches', href: '#' },
-            { name: 'Wallets', href: '#' },
-            { name: 'Bags', href: '#' },
-            { name: 'Sunglasses', href: '#' },
-            { name: 'Hats', href: '#' },
-            { name: 'Belts', href: '#' },
-          ],
-        },
-        {
-          id: 'brands',
-          name: 'Brands',
-          items: [
-            { name: 'Full Nelson', href: '#' },
-            { name: 'My Way', href: '#' },
-            { name: 'Re-Arranged', href: '#' },
-            { name: 'Counterfeit', href: '#' },
-            { name: 'Significant Other', href: '#' },
-          ],
-        },
+        
+        
       ],
     },
     {
-      id: 'men',
-      name: 'Men',
+      id: 'LIT COFRE',
+      name: 'LIT COFRE',
       featured: [
         {
           name: 'New Arrivals',
@@ -114,18 +93,7 @@ const navigation = {
             { name: 'Browse All', href: '#' },
           ],
         },
-        {
-          id: 'accessories',
-          name: 'Accessories',
-          items: [
-            { name: 'Watches', href: '#' },
-            { name: 'Wallets', href: '#' },
-            { name: 'Bags', href: '#' },
-            { name: 'Sunglasses', href: '#' },
-            { name: 'Hats', href: '#' },
-            { name: 'Belts', href: '#' },
-          ],
-        },
+        
         {
           id: 'brands',
           name: 'Brands',
@@ -138,6 +106,32 @@ const navigation = {
         },
       ],
     },
+    {
+      id: 'LITERIES',
+      name: 'LITERIES',
+      featured: [
+        {
+          name: 'New Arrivals',
+          href: '#',
+          imageSrc: 'https://tailwindui.com/img/ecommerce-images/product-page-04-detail-product-shot-01.jpg',
+          imageAlt: 'Drawstring top with elastic loop closure and textured interior padding.',
+        },
+        
+      ],
+      sections: [
+        {
+          id: 'brands',
+          name: 'Brands',
+          items: [
+            { name: 'Re-Arranged', href: '#' },
+            { name: 'Counterfeit', href: '#' },
+            { name: 'Full Nelson', href: '#' },
+            { name: 'My Way', href: '#' },
+          ],
+        },
+      ],
+    }
+    
   ],
   pages: [
     { name: 'Company', href: '#' },
@@ -207,7 +201,7 @@ export default function StoreNavigation() {
               leaveFrom="translate-x-0"
               leaveTo="-translate-x-full"
             >
-              <Dialog.Panel className="relative flex w-full max-w-xs flex-col overflow-y-auto bg-white pb-12 shadow-xl">
+              <Dialog.Panel className="relative flex w-full max-w-xd flex-col overflow-y-auto bg-white pb-12 shadow-xl">
                 <div className="flex px-4 pb-2 pt-5">
                   <button
                     type="button"
@@ -328,9 +322,9 @@ export default function StoreNavigation() {
           Get free delivery on orders over $100
         </p>
 
-        <nav aria-label="Top" className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <nav aria-label="Top" className="mx-auto  max-w-7xl px-4 sm:px-6 lg:px-10">
           <div className="border-b border-gray-200">
-            <div className="flex h-16 items-center">
+            <div className="flex h-16 items-center">  
               <button
                 type="button"
                 className="rounded-md bg-white p-2 text-gray-400 lg:hidden"
@@ -341,7 +335,7 @@ export default function StoreNavigation() {
               </button>
 
               {/* Logo */}
-              <div className="ml-4 flex lg:ml-0">
+              <div className="ml-4 flex lg:ml-0 ">
                 <Link to ="/">
                   <span className="sr-only">Your Company</span>
                   <img
@@ -353,7 +347,7 @@ export default function StoreNavigation() {
               </div>
 
               {/* Flyout menus */}
-              <Popover.Group className="hidden lg:ml-8 lg:block lg:self-stretch">
+              <Popover.Group className="hidden lg:ml-8 lg:block lg:self-stretch ">
                 <div className="flex h-full space-x-8">
                   {navigation.categories.map((category) => (
                     <Popover key={category.name} className="flex">
@@ -381,7 +375,7 @@ export default function StoreNavigation() {
                             leaveFrom="opacity-100"
                             leaveTo="opacity-0"
                           >
-                            <Popover.Panel className="absolute inset-x-0 top-full text-sm text-gray-500">
+                            <Popover.Panel className="absolute inset-x-20  top-full text-sm text-gray-500 h-auto" >
                               {/* Presentational element used to render the bottom shadow, if we put the shadow on the actual panel it pokes out the top, so we use this shorter element to hide the top of the shadow */}
                               <div className="absolute inset-0 top-1/2 bg-white shadow" aria-hidden="true" />
 

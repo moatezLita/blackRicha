@@ -1,12 +1,13 @@
 import React from 'react';
-import SigninForm from '../components/SigninForm';
+import LoginForm from '../components/loginForm';
+
 
 
 const SigninPage =() =>{
 
     return(
         <div>
-            <SigninForm/>
+            <LoginForm/>
         </div>
     )
 }

@@ -1,5 +1,7 @@
 
 import StoreNavigation from './storeNavigation'
+import Navbar from './navbar'
+
 
 
 export default function Header() {
@@ -14,7 +16,8 @@ export default function Header() {
         left: 0,
         zIndex: 9999,
       }} >
-      <StoreNavigation />   
+        <Navbar/>
+      {/* <StoreNavigation />    */}
        </div>  
     
   );

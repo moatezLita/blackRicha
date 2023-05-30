@@ -11,7 +11,7 @@ import OrderPage from './pages/orderDetails';
 import ProductDetailsPage from './pages/productPage/ProductDetailsPage';
 import Header from './components/header/Header';
 import Footer from './components/common/Footer'
-import SigninPage from './pages/signinPage';
+import LoginPage from './pages/loginPage';
 import SignupPage from './pages/signupPage';
 
 
@@ -40,7 +40,7 @@ const App = () => {
         <Route path="/search" element= {<SearchPage/>}/>
 
         {/* test routes that i may change later */}
-        <Route path="/signin" element= {<SigninPage/>}/>
+        <Route path="/login" element= {<LoginPage/>}/>
         <Route path="/signup" element={<SignupPage/>}/>
         {/* use links instead of path */}
         
