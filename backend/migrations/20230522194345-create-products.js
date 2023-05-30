@@ -25,6 +25,10 @@ module.exports = {
         type: Sequelize.INTEGER,
         allowNull: false
       },
+      picture_path: {
+        type: Sequelize.STRING,
+        allowNull: true,
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
@@ -32,6 +36,16 @@ module.exports = {
       updatedAt: {
         allowNull: false,
         type: Sequelize.DATE
+      },
+      categoryId:{
+        allowNull: false,
+        type :Sequelize.INTEGER ,
+        references:{
+          model:'Categories' ,
+          key :'id'
+        } ,
+        onDelete:'CASCADE',
+        onUpdate:'CASCADE'
       }
     });
 
