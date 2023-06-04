@@ -1,5 +1,4 @@
 import React from 'react';
-import '../App.css'
 // import Header from '../components/common/Header';
 import ProductListing from '../components/home/productListing';
 import HeroSection from '../components/home/heroSection';
@@ -8,6 +7,8 @@ import CategotyPreview from '../components/home/categoryPreview';
 import PromoSection from '../components/home/promoSection';
 import BottomBanner from '../components/home/bottomBanner';
 import ProductCollection from '../components/home/productCollection';
+import CarouselEx from '../components/home/carousel';
+import ProductCollectionByCategory from '../components/product/productCollectionByCategory';
 
 // This is just an example. You'd fetch these from your API.
 
@@ -16,9 +17,8 @@ const HomePage = () => {
     return (
         <>
 
-
-            <div className="carousel-container">
-                <Carousel />
+            <div className="">
+                <CarouselEx/>
 
             </div>
             <div className="mt-10 mb-10">
@@ -29,6 +29,7 @@ const HomePage = () => {
                 <div>
                     <CategotyPreview />
                 </div>
+                
                 {/* <ProductListing /> */}
                 {/* <Tab /> */}
             </div>
@@ -36,27 +37,49 @@ const HomePage = () => {
                 <HeroSection />
                 <ProductGrid/>
             </div> */}
-            
             <div>
-                <ProductCollection />
+                <header className="text-center">
+                    <h2 className="text-xl font-bold text-gray-900 sm:text-3xl">
+                        Product Collection
+                    </h2>
 
+                    <p className="max-w-md mx-auto mt-4 text-gray-500">
+                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Itaque
+                        praesentium cumque iure dicta incidunt est ipsam, officia dolor fugit
+                        natus?
+                    </p>
+                </header>
+                <ProductCollectionByCategory categoryId={1} />
+            </div>
+            <div>
+                <header className="text-center">
+                    <h2 className="text-xl font-bold text-gray-900 sm:text-3xl">
+                        Product Collection
+                    </h2>
+
+                    <p className="max-w-md mx-auto mt-4 text-gray-500">
+                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Itaque
+                        praesentium cumque iure dicta incidunt est ipsam, officia dolor fugit
+                        natus?
+                    </p>
+                </header>
+                <ProductCollectionByCategory categoryId={3} />
             </div>
 
             <div className="text-center mb-3">
                 <h4>Our products</h4>
             </div>
-            <div className=" mb-8">
-                <ProductListing />
+            {/* <div className=" mb-8"> */}
+                {/* <ProductListing /> */}
                 {/* <Tab /> */}
-                <ProductListing />
-            </div>
+                {/* <ProductListing /> */}
+            {/* </div> */}
             {/* <div><Album/></div> */}
             <div className='   mt-20 mb-20' >
                 <PromoSection />
             </div>
             <div><BottomBanner /></div>
             {/* <div><Footer /></div> */}
-
         </>
     );
 }

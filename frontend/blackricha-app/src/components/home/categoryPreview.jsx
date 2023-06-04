@@ -3,23 +3,23 @@ import { getAllCategories } from '../../api/categoriesApi';
 import React, { useState, useEffect } from 'react';
 
 const CategoryPreview = () => {
-    const [categories, setCategories]= useState([])
-  useEffect(() => {
-    const fetchCategories = async () => {
-      try {
-        const categoriesData = await getAllCategories();
-        setCategories(categoriesData);
-      } catch (error) {
-        console.error('Error fetching categories:', error);
-      }
-    };
+  //   const [categories, setCategories]= useState([])
+  // useEffect(() => {
+  //   const fetchCategories = async () => {
+  //     try {
+  //       const categoriesData = await getAllCategories();
+  //       setCategories(categoriesData);
+  //     } catch (error) {
+  //       console.error('Error fetching categories:', error);
+  //     }
+  //   };
   
-    fetchCategories();
-  }, []);
+  //   fetchCategories();
+  // }, []);
   
-  if (!categories) {
-    return <div>Loading...</div>;
-  }
+  // if (!categories) {
+  //   return <div>Loading...</div>;
+  // }
   return (
     <div className="mx-auto py-5 px-4 w-full max-w-md sm:max-w-2xl lg:max-w-7xl">
         {/* {categories.map((category)=>

@@ -18,321 +18,221 @@
     }
   }
 */
+
+
+import React, { useState } from 'react'
+import { useEffect } from 'react';
+import { HeartIcon, ShoppingBagIcon } from '@heroicons/react/24/outline';
 import { getProductById } from '../../api/productsApi';
-import { useParams } from "react-router-dom";
-import { useState, useEffect } from 'react';
+import { useParams  } from 'react-router-dom';
 
 
+const ProductDetails = () => {
+const   { id } = useParams();
+  const [product, setProduct] = useState([]);
+  // const [mainPicture, setMainPicture] = useState(0)
+
+  useEffect(() => {
+      const fetchProduct = async () => {
+      try {
+          const productData = await getProductById(id);
+          setProduct(productData);
+
+      } catch (error) {
+          console.error('Error fetching product:', error);
+      }
+      };
+
+      fetchProduct();
+  }, [id]);
+
+  if (!product) {
+      return <div>Loading...</div>;
+  }
+  // const product = {
+  //   name: "Glass Teapot Master",
+  //   price: 199,
+  //   rating: 4.4,
+  //   reviews: 96,
+  //   hrefReviews: "#link",
+  //   description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias, id tenetur consectetur, rem vel repudiandae, obcaecati autem corporis maxime laborum debitis ullam. Similique nisi, porro perspiciatis vel ipsam aliquam repudiandae. Facilis dolorem incidunt nobis quaerat exercitationem quos eaque ducimus aut possimus, aperiam, enim nulla provident! Ad necessitatibus atque pariatur, iste dignissimos ex.",
+  //   features: [
+  //     { name: 'Materials', details:'Bamboo, Glass' },
+  //     { name: 'Teapot', details:'7"L x 4.5"W x 4.5"H' },
+  //     { name: 'Capacity', details:'650 ml.' },
+  //     { name: 'Cleaning', details:'Hand Wash' }
+  //   ],
+  //   colors: [
+  //     { name: 'Black', class: 'bg-black' },
+  //     { name: 'White', class: 'bg-white' },
+  //     { name: 'Blue', class: 'bg-sky-400' },
+  //   ],
+  //   sizes: [
+  //     { name: 'Size 1', inStock: true },
+  //     { name: 'Size 2', inStock: true },
+  //     { name: 'Size 3', inStock: false }
+  //   ],
+  //   pictures: [
+  //     { src: "https://fancytailwind.com/static/teapot1-e0cd61cf4337f086df22de4c2f646db0.webp", alt:"Teapot model"  },
+  //     { src: "https://fancytailwind.com/static/teapot2-9482ecf0cb04a9cbeacd01c7c869c970.webp", alt:"Teapot to pour water"  },
+  //     { src: "https://fancytailwind.com/static/teapot3-0596668cb1f92d4f0463e37d3ee69b36.webp", alt:"Teapot for breakfast"  },
+  //     { src: "https://fancytailwind.com/static/teapot4-73239d591549fa281e07e14a5e9939fb.webp", alt:"Teapot on warming machine"  },
+  //   ]
+  // }
 
   
-  
-export default function ProductDetails() {
-    const { id } = useParams();
-    const [product, setProduct] = useState([]);
 
-    useEffect(() => {
-        const fetchProduct = async () => {
-        try {
-            const productData = await getProductById(id);
-            setProduct(productData);
+  const starsNumber = Math.floor(product.rating)
+  const isHalfStar = !Number.isInteger(product.rating)
+  const emptyStars = 5 - Math.ceil(product.rating)
 
-        } catch (error) {
-            console.error('Error fetching product:', error);
-        }
-        };
 
-        fetchProduct();
-    }, [id]);
-
-    if (!product) {
-        return <div>Loading...</div>;
-    }
-    
   return (
-    
+    <div className="mx-auto px-4 w-full max-w-7xl bg-white text-gray-700">
+      <div className="flex flex-col lg:flex-row">
 
-<section>
-  <div className="relative mx-auto max-w-screen-xl px-4 py-8">
-    <div className="grid grid-cols-1 items-start gap-8 md:grid-cols-2">
-      <div className="grid grid-cols-2 gap-4 md:grid-cols-1">
-        <img
-          alt="Les Paul"
-          src="https://images.unsplash.com/photo-1456948927036-ad533e53865c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
-          className="aspect-square w-full rounded-xl object-cover"
-        />
-
-        <div className="grid grid-cols-2 gap-4 lg:mt-4">
-          <img
-            alt="Les Paul"
-            src="https://images.unsplash.com/photo-1456948927036-ad533e53865c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
-            className="aspect-square w-full rounded-xl object-cover"
-          />
-
-          <img
-            alt="Les Paul"
-            src="https://images.unsplash.com/photo-1456948927036-ad533e53865c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
-            className="aspect-square w-full rounded-xl object-cover"
-          />
-
-          <img
-            alt="Les Paul"
-            src="https://images.unsplash.com/photo-1456948927036-ad533e53865c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
-            className="aspect-square w-full rounded-xl object-cover"
-          />
-
-          <img
-            alt="Les Paul"
-            src="https://images.unsplash.com/photo-1456948927036-ad533e53865c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
-            className="aspect-square w-full rounded-xl object-cover"
-          />
-        </div>
-      </div>
-
-      <div className="sticky top-0">
-        <strong
-          className="rounded-full border border-blue-600 bg-gray-100 px-3 py-0.5 text-xs font-medium tracking-wide text-blue-600"
-        >
-          Pre Order
-        </strong>
-
-        <div className=" product-name mt-8 flex justify-between">
-          <div className="max-w-[35ch] space-y-2">
-            <h1 className=" text-xl font-bold sm:text-2xl">
-              {product.name}
-            </h1>
-            {/* note, i can add a note */}
-            <p className="text-sm">Highest Rated Product</p>
-
-            <div className="-ms-0.5 flex">
-              <svg
-                className="h-5 w-5 text-yellow-400"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 20 20"
-                fill="currentColor"
-              >
-                <path
-                  d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
-                />
-              </svg>
-
-              <svg
-                className="h-5 w-5 text-yellow-400"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 20 20"
-                fill="currentColor"
-              >
-                <path
-                  d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
-                />
-              </svg>
-
-              <svg
-                className="h-5 w-5 text-yellow-400"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 20 20"
-                fill="currentColor"
-              >
-                <path
-                  d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
-                />
-              </svg>
-
-              <svg
-                className="h-5 w-5 text-yellow-400"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 20 20"
-                fill="currentColor"
-              >
-                <path
-                  d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
-                />
-              </svg>
-
-              <svg
-                className="h-5 w-5 text-gray-200"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 20 20"
-                fill="currentColor"
-              >
-                <path
-                  d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
-                />
-              </svg>
-            </div>
-          </div>
-          {/* price */}
-          <div>
-          <p className="  text-lg font-bold">{product.price}  €</p>
-          </div>
-        </div>
-
-        <div className="mt-4">
-          <div className="prose max-w-none">
-            <p>
-              {product.description} : tawla w kresi w denya mad3ouka sahby seys rouhek
-            </p>
-          </div>
-
-          <button className="mt-2 text-sm font-medium underline">Read More</button>
-        </div>
-
-        <form className="mt-8">
-          <fieldset>
-            <legend className="mb-1 text-sm font-medium">Color</legend>
-
-            <div className="flex flex-wrap gap-1">
-              <label htmlFor="color_tt" className="cursor-pointer">
-                <input
-                  type="radio"
-                  name="color"
-                  id="color_tt"
-                  className="peer sr-only"
-                />
-
-                <span
-                  className="group inline-block rounded-full border px-3 py-1 text-xs font-medium peer-checked:bg-black peer-checked:text-white"
-                >
-                  Texas Tea
-                </span>
-              </label>
-
-              <label htmlFor="color_fr" className="cursor-pointer">
-                <input
-                  type="radio"
-                  name="color"
-                  id="color_fr"
-                  className="peer sr-only"
-                />
-
-                <span
-                  className="group inline-block rounded-full border px-3 py-1 text-xs font-medium peer-checked:bg-black peer-checked:text-white"
-                >
-                  Fiesta Red
-                </span>
-              </label>
-
-              <label htmlFor="color_cb" className="cursor-pointer">
-                <input
-                  type="radio"
-                  name="color"
-                  id="color_cb"
-                  className="peer sr-only"
-                />
-
-                <span
-                  className="group inline-block rounded-full border px-3 py-1 text-xs font-medium peer-checked:bg-black peer-checked:text-white"
-                >
-                  Cobalt Blue
-                </span>
-              </label>
-            </div>
-          </fieldset>
-
-          <fieldset className="mt-4">
-            <legend className="mb-1 text-sm font-medium">Size</legend>
-
-            <div className="flex flex-wrap gap-1">
-              <label htmlFor="size_xs" className="cursor-pointer">
-                <input
-                  type="radio"
-                  name="size"
-                  id="size_xs"
-                  className="peer sr-only"
-                />
-
-                <span
-                  className="group inline-flex h-8 w-8 items-center justify-center rounded-full border text-xs font-medium peer-checked:bg-black peer-checked:text-white"
-                >
-                  XS
-                </span>
-              </label>
-
-              <label htmlFor="size_s" className="cursor-pointer">
-                <input
-                  type="radio"
-                  name="size"
-                  id="size_s"
-                  className="peer sr-only"
-                />
-
-                <span
-                  className="group inline-flex h-8 w-8 items-center justify-center rounded-full border text-xs font-medium peer-checked:bg-black peer-checked:text-white"
-                >
-                  S
-                </span>
-              </label>
-
-              <label htmlFor="size_m" className="cursor-pointer">
-                <input
-                  type="radio"
-                  name="size"
-                  id="size_m"
-                  className="peer sr-only"
-                />
-
-                <span
-                  className="group inline-flex h-8 w-8 items-center justify-center rounded-full border text-xs font-medium peer-checked:bg-black peer-checked:text-white"
-                >
-                  M
-                </span>
-              </label>
-
-              <label htmlFor="size_l" className="cursor-pointer">
-                <input
-                  type="radio"
-                  name="size"
-                  id="size_l"
-                  className="peer sr-only"
-                />
-
-                <span
-                  className="group inline-flex h-8 w-8 items-center justify-center rounded-full border text-xs font-medium peer-checked:bg-black peer-checked:text-white"
-                >
-                  L
-                </span>
-              </label>
-
-              <label htmlFor="size_xl" className="cursor-pointer">
-                <input
-                  type="radio"
-                  name="size"
-                  id="size_xl"
-                  className="peer sr-only"
-                />
-
-                <span
-                  className="group inline-flex h-8 w-8 items-center justify-center rounded-full border text-xs font-medium peer-checked:bg-black peer-checked:text-white"
-                >
-                  XL
-                </span>
-              </label>
-            </div>
-          </fieldset>
-
-          <div className="mt-8 flex gap-4">
-            <div>
-              <label htmlFor="quantity" className="sr-only">Qty</label>
-
-              <input
-                type="number"
-                id="quantity"
-                min="1"
-                value="1"
-                className="w-12 rounded border-gray-200 py-3 text-center text-xs [-moz-appearance:_textfield] [&::-webkit-inner-spin-button]:m-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:m-0 [&::-webkit-outer-spin-button]:appearance-none"
-              />
-            </div>
-
-            <button
-              type="submit"
-              className="block rounded bg-green-600 px-5 py-3 text-xs font-medium text-white hover:bg-green-500"
-            >
-              Add to Cart
+        {/* :PICTURES CONTAINER */}
+        <div className="py-8 w-full lg:w-1/2 flex flex-col items-center">
+          {/* ::Like Button */}
+          <span className="self-start ml-10">
+            <button className="text-gray-300 hover:text-red-500">
+              <HeartIcon className="w-10 h-10" />
             </button>
+          </span>
+          {/* ::Main Picture */}
+          <div className="w-auto h-56 sm:h-72 lg:h-full max-h-96 overflow-hidden">
+            {/* <img src = {product.picture_path}></img> */}
+            <img src="C:/Users/ambalitaiem/Desktop/blackRicha/shared/IMG2" alt="" />
+            {/* <img src={product.pictures[mainPicture].src} alt={product.pictures[mainPicture].alt} className="object-contain w-full h-full" /> */}
           </div>
-        </form>
+          {/* ::Gallery */}
+          <div className="mt-6 mx-auto">
+            <ul className="grid grid-flow-col auto-cols-fr gap-4">
+              {/* {product.pictures
+                .slice(0,4) // Here you can manage the number of pictures displayed
+                .map((picture, index) => (
+                <li key={picture.alt} className={`col-span-1 p-1 w-16 rounded border-2 ${index === mainPicture ? "border-yellow-600" : "border-transparent"}`}>
+                  <button type="button" className="block h-full rounded overflow-hidden" onClick={() => setMainPicture(index)}>
+                    <img src={picture.src} alt={picture.alt} className="object-contain" />
+                  </button>
+                </li>
+              ))
+              } */}
+            </ul>
+          </div>
+        </div>
+
+
+
+        {/* :PRODUCT DETAILS */}
+        <div className="lg:py-8 w-full lg:w-1/2 flex flex-col lg:border-l-2 border-gray-200">
+
+          {/* ::Description Container */}
+          <div className="order-3 lg:order-1 pb-5 sm:px-6 lg:border-b-2 border-gray-200">
+            {/* :::Name */}
+            <h1 className="hidden lg:block text-4xl text-gray-700 font-light tracking-wide">{product.name}</h1>
+            {/* :::Description */}
+            <p className="mt-10 text-base text-gray-500">{product.description}</p>
+            {/* :::Features */}
+            <ul className="my-5 flex flex-col space-y-2">
+              {/* {product.features.map(feature => (
+                <li key={feature.name} className="inline-flex items-center space-x-2 text-gray-500">
+                  <span className="w-1.5 h-1.5 rounded-full bg-yellow-600" />
+                  <span className="text-sm font-semibold">{feature.name}:</span>
+                  <span className="text-sm font-normal">{feature.details}</span>
+                </li>
+              ))
+              } */}
+              <span className="w-1.5 h-1.5 rounded-full bg-yellow-600" />
+                  <span className="text-sm font-semibold">meow</span>
+                  <span className="text-sm font-normal">Kess</span>
+            </ul>
+          </div>
+
+          {/* ::Customization Container */}
+          <div className="order-1 lg:order-2 py-8 sm:px-6 border-b-2 border-gray-200">
+              {/* :::Name */}
+            <h1 className="mb-5 block lg:hidden text-3xl sm:text-4xl text-gray-700 font-light tracking-wide">{product.name}</h1>
+            <div className="flex flex-col sm:flex-row items-center space-y-4 sm:space-y-0 sm:space-x-6">
+              {/* :::Quantity */}
+              <label htmlFor="quantity" className="sr-only">Select the quantity</label>
+              <input type="number" defaultValue="1" min="1" className="form-input py-1 pl-2 w-20 rounded border-2 border-gray-300 bg-gray-100 focus:border-yellow-600 focus:ring-0" />
+              {/* :::Color */}
+              <label htmlFor="color" className="sr-only">Select your color</label>
+              <select name="color" id="color" className="form-select py-1 pl-2 w-full max-w-xs rounded border-2 border-gray-300 bg-gray-100 text-gray-500 focus:border-yellow-600 focus:ring-0">
+                <option value="">Color</option>
+                {/* {product.colors.map(color => ( */}
+                  {/* <option value={color.name}>{color.name}</option> */}
+                {/* ))} */}
+                <option >hhhhhhhh</option>                
+              </select>
+              {/* :::Size */}
+              <label htmlFor="size" className="sr-only">Select your size</label>
+              <select name="size" id="size" className="form-select py-1 pl-2 w-full max-w-xs rounded border-2 border-gray-300 bg-gray-100 text-gray-500 focus:border-yellow-600 focus:ring-0">
+                <option value="">Size</option>
+                {/* {product.sizes.map(size => (
+                  <option value={size.name}>{size.name}</option>
+                ))
+                } */}
+                <option> 16 </option>
+              </select>
+            </div>
+          </div>
+
+          {/* ::Actions Container */} 
+          <div className="order-2 lg:order-3 pt-8 sm:px-6 flex flex-wrap lg:flex-nowrap justify-around items-center border-b-2 lg:border-none border-gray-200">
+            {/* :::Price */}
+            <span className="m-2.5 text-4xl text-gray-500 font-extrabold">
+              <span className="font-normal">$</span>
+              {product.price}
+            </span>
+            {/* :::Add to cart button */}
+            <button type="button" className="m-2.5 py-1.5 px-5 inline-flex items-center rounded-md bg-yellow-500 text-base text-white font-semibold uppercase whitespace-nowrap hover:bg-yellow-600">
+              <ShoppingBagIcon className="mr-3 w-6 h-6" />
+              Add to cart
+            </button>
+            {/* :::Reviews */}
+            <div className="m-2.5 flex items-center">
+              {/* ::::rating stars */}
+              <div className="flex items-center space-x-1">
+                {/* full stars */}
+                {/* {[...Array(starsNumber)].map((star, index) =>(
+                  <span key={index} className="flex-shrink-0">
+                    <svg className="w-4 h-4 text-yellow-500 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 .587l3.668 7.568 8.332 1.151-6.064 5.828 1.48 8.279-7.416-3.967-7.417 3.967 1.481-8.279-6.064-5.828 8.332-1.151z"/></svg>
+                  </span>
+                ))
+                } */}
+                {/* half star */}
+                {/* {isHalfStar &&
+                  <span className="flex-shrink-0">
+                    <svg className="w-4 h-4 text-yellow-500 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 5.173l2.335 4.817 5.305.732-3.861 3.71.942 5.27-4.721-2.524v-12.005zm0-4.586l-3.668 7.568-8.332 1.151 6.064 5.828-1.48 8.279 7.416-3.967 7.416 3.966-1.48-8.279 6.064-5.827-8.332-1.15-3.668-7.569z"/></svg>
+                  </span>
+                } */}
+                {/* empty stars */}
+                {/* {[...Array(emptyStars)].map((star, index) =>(
+                  <span key={index} className="flex-shrink-0">
+                    <svg className="w-4 h-4 text-yellow-500 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                      <path d="M12 5.173l2.335 4.817 5.305.732-3.861 3.71.942 5.27-4.721-2.524-4.721 2.525.942-5.27-3.861-3.71 5.305-.733 2.335-4.817zm0-4.586l-3.668 7.568-8.332 1.151 6.064 5.828-1.48 8.279 7.416-3.967 7.416 3.966-1.48-8.279 6.064-5.827-8.332-1.15-3.668-7.569z"/>
+                    </svg>
+                  </span>
+                ))
+                } */}
+              </div>
+              {/* ::::all reviews */}
+              <a href={product.hrefReviews} className="ml-2 text-sm text-sky-400 font-medium tracking-wide hover:text-sky-500 hover:underline">{`${product.reviews} reviews`}</a>
+            </div>
+          </div>
+
+        </div>
+
       </div>
     </div>
-  </div>
-</section>
   )
 }
+
+export default ProductDetails;
+
+
+
+  
+  

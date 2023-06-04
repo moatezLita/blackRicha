@@ -60,6 +60,19 @@ class ProductController {
       next(new CustomError('Failed to delete product', 500));
     }
   }
-}
 
+
+  async  getProductsByCategoryId(req, res, next) {
+    const {categoryId: categoryId } = req.params;
+    try {
+      const products = await ProductService.getProductsByCategoryId({ where: { CategoryId : categoryId } });
+      if (products.length === 0) {
+        return next(new CustomError('No products found for the given category', 404));
+      }
+      res.json(products);
+    } catch (error) {
+      next(new CustomError('Failed to get products by category ID', 500));
+    }
+  }
+}
 module.exports = new ProductController();

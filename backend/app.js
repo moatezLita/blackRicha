@@ -20,6 +20,7 @@ const orderRoutes = require('./routes/order.routes');
 const categoryRoutes = require('./routes/category.routes');
 const cartRoutes = require('./routes/cart.routes');
 const authRoutes = require('./routes/auth.routes');
+const searchRoutes = require ('./routes/search.routes');
 
 
 app.use(helmet());
@@ -47,6 +48,7 @@ app.use('/api/products', productRoutes);
 app.use('/api/orders', orderRoutes);
 app.use('/api/categories', categoryRoutes);
 app.use('/api/cart', cartRoutes);
+app.use('/api/search', searchRoutes);
 
 // Start the server
 app.listen(port, () => {

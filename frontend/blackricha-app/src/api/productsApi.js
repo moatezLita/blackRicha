@@ -2,6 +2,19 @@ import axios from 'axios';
 
 const BASE_URL = 'http://localhost:3001/api'; // Replace with your backend API base URL
 
+
+//search api 
+export const searchProducts = async (searchTerm) => {
+  try {
+    const response = await axios.get(`${BASE_URL}/search?term=${encodeURIComponent(searchTerm)}`);
+    return response.data;
+  } catch (error) {
+      console.error('Error searching for products:', error.message);
+      throw new Error('Failed to search for products');
+   }
+};
+
+
 // Fetch all products
 export const getProducts = async () => {
   try {
@@ -59,5 +72,17 @@ export const deleteProduct = async (id) => {
     // Handle error
     console.error(`Error deleting product with ID ${id}:`, error);
     throw new Error(`Failed to delete product with ID ${id}`);
+  }
+};
+
+//get broduct buy category id
+export const getProductsByCategoryId = async (categoryId) => {
+  try {
+    const response = await axios.get(`${BASE_URL}/products/category/${categoryId}`);
+    return response.data;
+  } catch (error) {
+    // Handle error
+    console.error(`Error fetching products by category ID ${categoryId}:`, error);
+    throw new Error(`Failed to fetch products by category ID ${categoryId}`);
   }
 };

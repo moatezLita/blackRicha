@@ -13,6 +13,7 @@ import Header from './components/header/Header';
 import Footer from './components/common/Footer'
 import LoginPage from './pages/loginPage';
 import SignupPage from './pages/signupPage';
+import CategoryPage from './pages/CategoryPage';
 
 
 
@@ -21,23 +22,24 @@ const App = () => {
   return (
     <>
     <div>
+
+        <Header />
       
-        <Header  />
-      
-        
-      
-    <div>
       {/* i added the router to the index.js */}
     {/* <Router  */}
+    <main>
+    {/* <Router> */}
       <Routes>
         <Route path="/" element={<HomePage/>} exact />
         <Route path="/cart" element={<CartPage/>} />
         <Route path="/userprofile/:id" element={<UserProfilePage/>}/>
         <Route path="/products" element={<ProductListPage/>} />
         {/* <Route path="/search" element={<searchPage/>} /> */}
-        <Route path="/product/:id" element={<ProductDetailsPage/>}/>
+        <Route path="/products/:id" element={<ProductDetailsPage/>}/>
         <Route path="/order" element = {<OrderPage/>}></Route>
         <Route path="/search" element= {<SearchPage/>}/>
+        <Route path="/category/:categoryId" element={<CategoryPage/>}/>
+
 
         {/* test routes that i may change later */}
         <Route path="/login" element= {<LoginPage/>}/>
@@ -47,15 +49,13 @@ const App = () => {
         {/* Other routes go here */}
       </Routes>
     {/* </Router> */}
+    </main>
     
-    
-    </div>
-    <div>
       <footer>
       <Footer />
       </footer>
     </div>
-    </div></>
+    </>
   );
 }
 export default App;

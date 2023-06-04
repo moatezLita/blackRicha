@@ -1,11 +1,16 @@
 import { Link } from "react-router-dom";
 import ShoppingCart from '../shoppingCart/ShoppingCart';
-import { useState } from 'react'
+import React, { useEffect, useState } from 'react';
+import SearchBar from "../search/searchBar";
+
+import './header.css'
+import useScrollHeader from "./showHeaderScroll";
 
 
-const Navbar = () => {
+const Navbar = ({getProducts}) => {
     const [showCart, setShowCart] = useState(false);
     const [isOpen, setIsOpen] = useState(false);
+    const showHeader = useScrollHeader();
 
     const toggleMenu = () => {
         setIsOpen(!isOpen);
@@ -14,9 +19,17 @@ const Navbar = () => {
     const handleCartClick = () => {
         setShowCart(!showCart);
     };
+    // const products = [
+    //     { id: 1, name: 'DJI Phantom' },
+    //     { id: 2, name: 'GoPro Hero8 Black' },
+    //     { id: 3, name: 'Canon EOS R5' }
+    //    ];
     return (
         // <!-- component -->
-        <div className="bg-white">
+        <div className="bg-white " >
+        <div className={`bg-white  header ${showHeader ? '' : 'hidden'}`} >
+
+
             <div className="border py-3 px-6">
                 <div className="flex justify-between">
                     <div className="flex items-center">
@@ -26,15 +39,16 @@ const Navbar = () => {
                         <span className="ml-2 font-semibold text-[#252C32]">What a Market</span>
                     </div>
 
-                    <div className="ml-6 flex flex-1 gap-x-3">
-                        <div className="flex cursor-pointer select-none items-center gap-x-2 rounded-md border bg-[#4094F7] py-2 px-4 text-white hover:bg-blue-500">
+                    <div className="justify-center ml-6 flex flex-1 gap-x-3">
+                        {/* <div className="flex cursor-pointer select-none items-center gap-x-2 rounded-md border bg-[#4094F7] py-2 px-4 text-white hover:bg-blue-500">
                             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
                             </svg>
                             <span className="text-sm font-medium">Categories</span>
-                        </div>
+                        </div> */}
 
-                        <input type="text" className="w-full rounded-md border border-[#DDE2E4] px-3 py-2 text-sm" value="DJI phantom" />
+                        {/* <input type="text" className="w-full rounded-md border border-[#DDE2E4] px-3 py-2 text-sm" value="DJI phantom" /> */}
+                        <SearchBar getProducts={getProducts}/>
                     </div>
 
                     <div className="ml-2 flex">
@@ -124,6 +138,7 @@ const Navbar = () => {
                     {/* <span className="cursor-pointer rounded-sm py-1 px-2 text-sm font-medium hover:bg-gray-100">frf</span> */}
                 </div>
             </div>
+        </div>
         </div>
     )
 }

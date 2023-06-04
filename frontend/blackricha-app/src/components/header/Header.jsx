@@ -1,5 +1,4 @@
 
-import StoreNavigation from './storeNavigation'
 import Navbar from './navbar'
 
 
@@ -15,9 +14,11 @@ export default function Header() {
         // right:"100%",
         left: 0,
         zIndex: 9999,
+        marginBottom:140,
       }} >
+
+     
         <Navbar/>
-      {/* <StoreNavigation />    */}
        </div>  
     
   );

@@ -1,6 +1,20 @@
 const Product = require('../models/product.model');
-
+const { Op } = require('sequelize');
 class ProductService {
+
+  async searchProducts(searchTerm) {
+    try {
+      console.log('Searching for:', searchTerm);
+      const products = await Product.findAll({
+        where: { name: { [Op.iLike]: `%${searchTerm}%` } },
+      });
+      console.log('Found products:', products.length);
+      return products;
+    } catch (error) {
+      throw new Error('Failed to get products');
+    }
+  }
+  
   async getAllProducts() {
     try {
       const products = await Product.findAll();
@@ -56,6 +70,15 @@ class ProductService {
       throw new Error('Failed to delete product');
     }
   }
-}
 
+
+async  getProductsByCategoryId(categoryId) {
+  try {
+    const products = await Product.findAll( categoryId )
+    return products;
+  } catch (error) {
+    throw new Error('Failed to get products by category ID');
+  }
+}
+}
 module.exports = new ProductService();
