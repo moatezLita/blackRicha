@@ -1,5 +1,5 @@
 import React from 'react';
-
+import { useState } from 'react';
 import'./App.css';
 import HomePage from './pages/HomePage';
 import CartPage from './pages/CartPage';
@@ -18,7 +18,7 @@ import CategoryPage from './pages/CategoryPage';
 
 
 const App = () => {
-  
+  // const [isLoggedIn, setIsLoggedIn] = useState(false);
   return (
     <>
     <div>
@@ -42,7 +42,7 @@ const App = () => {
 
 
         {/* test routes that i may change later */}
-        <Route path="/login" element= {<LoginPage/>}/>
+        <Route path="/login" element= {<LoginPage />}/>
         <Route path="/signup" element={<SignupPage/>}/>
         {/* use links instead of path */}
         

@@ -6,12 +6,30 @@ import SearchBar from "../search/searchBar";
 import './header.css'
 import useScrollHeader from "./showHeaderScroll";
 
+import { useContext } from 'react';
+import { AuthContext } from "../../utils/authContext";
+
+
 
 const Navbar = ({getProducts}) => {
+    //logout, and isAuth features 
+    const { isAuthenticated, logout } = useContext(AuthContext);
+    const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+
     const [showCart, setShowCart] = useState(false);
     const [isOpen, setIsOpen] = useState(false);
     const showHeader = useScrollHeader();
 
+    const toggleDropdown = () => {
+        setIsDropdownOpen(!isDropdownOpen);
+      };
+
+    const handleLogout = () => {
+        logout();
+        setIsDropdownOpen(false);
+        // Perform any necessary cleanup or redirection
+        // ...
+      };
     const toggleMenu = () => {
         setIsOpen(!isOpen);
     };
@@ -77,12 +95,33 @@ const Navbar = ({getProducts}) => {
                             </div>
                             <span className="text-sm font-medium">Cart {showCart && <ShoppingCart />}</span>
                         </div>
-
-                        <div className="ml-2 flex cursor-pointer items-center gap-x-1 rounded-md border py-2 px-4 hover:bg-gray-100">
-                            <Link to="/login">
-                                <span className="text-sm font-medium">Login</span>
-                            </Link>
-                        </div>
+                        
+                        {isAuthenticated() ? (
+              <div className="dropdown">
+                <button onClick={toggleDropdown} className="dropdown-toggle">
+                 <span>eds</span>
+                </button>
+                {isDropdownOpen  && (
+                  <ul className="dropdown-menu">
+                    <li>
+                      <Link to="/profile">Profile</Link>
+                    </li>
+                    <li>
+                      <button onClick={handleLogout}>
+                        
+                        Logout
+                      </button>
+                    </li>
+                  </ul>
+                )}
+              </div>
+            ) : (
+        <div className="ml-2 flex cursor-pointer items-center gap-x-1 rounded-md border py-2 px-4 hover:bg-gray-100">
+          <Link to="/login">
+            <span className="text-sm font-medium">Login</span>
+          </Link>
+        </div>
+      )}
                     </div>
                 </div>
 

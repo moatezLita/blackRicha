@@ -8,14 +8,14 @@ import { useContext } from 'react';
 
 
 
-const LoginForm = () => {
+const LoginForm = ({setIsAuthenticated}) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
     
 
   
-    const { login } = useContext(AuthContext);
+    const { login,logout , isAuthenticated} = useContext(AuthContext);
     const {token}= useContext(AuthContext);
     const navigate = useNavigate();
   
@@ -25,20 +25,35 @@ const LoginForm = () => {
   
       try {
         await login(email, password);
+        // await logout ()
         console.log(token);
 
         navigate(-1);
         // Login successful, perform any necessary actions
         // For example, you can navigate to a different page or update the component state
         // after successful login
+
         setError('');
+        setIsAuthenticated(true);
+        // localStorage.setItem('token', token);
 
       } catch (error) {
         setError('Failed to log in. Please check your credentials.');
       }
     };
 
-//     const handleLogin = async (e) => {
+
+
+// if (isAuthenticated) {
+    
+//     return (
+//       <div>
+//         <p>You are already logged in.</p>
+//         {/* Render any other components or messages for logged-in users */}
+//       </div>
+//     );
+//   }
+  //     const handleLogin = async (e) => {
 //         e.preventDefault();
       
 //         try {
@@ -57,8 +72,6 @@ const LoginForm = () => {
 //           console.error(error);
 //         }
 //       };
-
-
   return (
     <div class="mt-20 mb-20 w-full max-w-sm mx-auto overflow-hidden bg-white rounded-lg shadow-md dark:bg-gray-800">
     <div class="px-6 py-4">

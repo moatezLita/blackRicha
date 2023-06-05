@@ -8,7 +8,9 @@ const AuthContext = createContext();
 const AuthProvider = ({ children }) => {
     // State to hold the token
     const [token, setToken] = useState(null);
-  
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+    const expiryTime = new Date().getTime() + 3600000;
     // Login function
     const handleLogin = async (email, password) => {
       try {
@@ -21,7 +23,12 @@ const AuthProvider = ({ children }) => {
         // console.log(response);
         // Assuming the response contains a token
         const token = response.token;
-        setToken(token);
+        const tokenData= {token: token,
+        expiresAt: expiryTime,
+      };
+        // setToken(token);
+        localStorage.setItem('token', JSON.stringify(tokenData));
+        setIsLoggedIn(true);
       } catch (error) {
         throw new Error('Failed to log in');
       }
@@ -29,12 +36,31 @@ const AuthProvider = ({ children }) => {
   
     // Logout function
     const handleLogout = () => {
-      setToken(null);
+        // if (isAuthenticated()) {
+            // Clear the token or perform any necessary cleanup
+            // setToken(null);
+            localStorage.removeItem('token');
+            setIsLoggedIn(false);
+        //   }
     };
   
     // Check if the user is authenticated
     const isAuthenticated = () => {
-      return token !== null;
+        const tokenDataString = localStorage.getItem('token');
+  if (tokenDataString) {
+    const tokenData = JSON.parse(tokenDataString);
+    const currentTime = new Date().getTime();
+
+    if (currentTime > tokenData.expiresAt) {
+      // Token has expired, remove it from local storage
+      localStorage.removeItem('token');
+      return false;
+    } else {
+      // Token is still valid
+      return true;
+    }
+  }
+      return localStorage.getItem('token') !== null;        
     };
   
     // Provide the context values to the components
