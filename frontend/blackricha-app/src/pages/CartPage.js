@@ -1,5 +1,6 @@
 import React from 'react';
 import ShoppingCart from '../components/shoppingCart/ShoppingCart';
+import Cart from '../components/shoppingCart/cart';
 
 // This is just an example. You'd fetch these from your API or local storage.
 // const cartItems = [{
@@ -14,7 +15,8 @@ import ShoppingCart from '../components/shoppingCart/ShoppingCart';
 const CartPage = () => {
     return (
         <>
-            <ShoppingCart />
+        <Cart/>
+            {/* <ShoppingCart /> */}
         </>
     );
 }

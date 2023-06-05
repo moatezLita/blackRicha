@@ -9,6 +9,7 @@ import BottomBanner from '../components/home/bottomBanner';
 import ProductCollection from '../components/home/productCollection';
 import CarouselEx from '../components/home/carousel';
 import ProductCollectionByCategory from '../components/product/productCollectionByCategory';
+import Album from '../components/home/album';
 
 // This is just an example. You'd fetch these from your API.
 
@@ -74,7 +75,7 @@ const HomePage = () => {
                 {/* <Tab /> */}
                 {/* <ProductListing /> */}
             {/* </div> */}
-            {/* <div><Album/></div> */}
+            <div><Album/></div>
             <div className='   mt-20 mb-20' >
                 <PromoSection />
             </div>

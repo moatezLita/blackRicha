@@ -7,29 +7,30 @@ import './header.css'
 import useScrollHeader from "./showHeaderScroll";
 
 import { useContext } from 'react';
-import { AuthContext } from "../../utils/authContext";
+import { AuthContext } from "../../context/authContext";
+import DropdownMenu from "./dropdownMenu";
 
 
 
 const Navbar = ({getProducts}) => {
     //logout, and isAuth features 
     const { isAuthenticated, logout } = useContext(AuthContext);
-    const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+    // const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
     const [showCart, setShowCart] = useState(false);
     const [isOpen, setIsOpen] = useState(false);
     const showHeader = useScrollHeader();
 
-    const toggleDropdown = () => {
-        setIsDropdownOpen(!isDropdownOpen);
-      };
+    // const toggleDropdown = () => {
+    //     setIsDropdownOpen(!isDropdownOpen);
+    //   };
 
-    const handleLogout = () => {
-        logout();
-        setIsDropdownOpen(false);
-        // Perform any necessary cleanup or redirection
-        // ...
-      };
+    // const handleLogout = () => {
+    //     logout();
+    //     setIsDropdownOpen(false);
+    //     // Perform any necessary cleanup or redirection
+    //     // ...
+    //   };
     const toggleMenu = () => {
         setIsOpen(!isOpen);
     };
@@ -85,7 +86,7 @@ const Navbar = ({getProducts}) => {
                             <span className="text-sm font-medium">Favorites</span>
                         </div>
                         {/* handle cart click */}
-                        <div className="flex cursor-pointer items-center gap-x-1 rounded-md py-2 px-4 hover:bg-gray-100" onClick={handleCartClick}>
+                        <div onClick={handleCartClick}className="flex cursor-pointer items-center gap-x-1 rounded-md py-2 px-4 hover:bg-gray-100" >
 
                             <div className="relative">
                                 <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-gray-500" viewBox="0 0 20 20" fill="currentColor">
@@ -97,24 +98,26 @@ const Navbar = ({getProducts}) => {
                         </div>
                         
                         {isAuthenticated() ? (
-              <div className="dropdown">
-                <button onClick={toggleDropdown} className="dropdown-toggle">
-                 <span>eds</span>
-                </button>
-                {isDropdownOpen  && (
-                  <ul className="dropdown-menu">
-                    <li>
-                      <Link to="/profile">Profile</Link>
-                    </li>
-                    <li>
-                      <button onClick={handleLogout}>
+
+                            <DropdownMenu/>
+            //   <div className="dropdown">
+            //     <button onClick={toggleDropdown} className="dropdown-toggle">
+            //      <span>eds</span>
+            //     </button>
+            //     {isDropdownOpen  && (
+            //       <ul className="dropdown-menu">
+            //         <li>
+            //           <Link to="/profile">Profile</Link>
+            //         </li>
+            //         <li>
+            //           <button onClick={handleLogout}>
                         
-                        Logout
-                      </button>
-                    </li>
-                  </ul>
-                )}
-              </div>
+            //             Logout
+            //           </button>
+            //         </li>
+            //       </ul>
+            //     )}
+            //   </div>
             ) : (
         <div className="ml-2 flex cursor-pointer items-center gap-x-1 rounded-md border py-2 px-4 hover:bg-gray-100">
           <Link to="/login">

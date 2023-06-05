@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 // import { login } from '../api/authApi';
 import { useNavigate } from 'react-router-dom';
-import { AuthContext } from '../utils/authContext';
+import { AuthContext } from '../context/authContext';
 import { useContext } from 'react';
 
 

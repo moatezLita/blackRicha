@@ -57,10 +57,10 @@ const AuthProvider = ({ children }) => {
       return false;
     } else {
       // Token is still valid
-      return true;
+      return tokenDataString !== null;   
     }
   }
-      return localStorage.getItem('token') !== null;        
+      return tokenDataString !== null;        
     };
   
     // Provide the context values to the components

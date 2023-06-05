@@ -2,6 +2,19 @@ const OrderService = require('../services/order.service');
 const { CustomError } = require('../middleware/errorHandler');
 
 class OrderController {
+
+  async getOrdersByUserId(req, res, next) {
+    const { userId: userId } = req.params;
+    try {
+      const order = await OrderService.getOrdersByUserId({ where: { UserId: userId } });
+      if (!order) {
+        return next(new CustomError('Order not found', 404));
+      }
+      res.json(order);
+    } catch (error) {
+      next(new CustomError('Failed to get order by ID', 500));
+    }
+  }
   async getAllOrders(req, res, next) {
     try {
       const orders = await OrderService.getAllOrders();

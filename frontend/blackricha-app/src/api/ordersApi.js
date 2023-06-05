@@ -3,6 +3,17 @@ import axios from 'axios';
 const BASE_URL = 'http://localhost:3001/api'; // Replace with your backend API base URL
 
 // Fetch all orders
+export const getOrdersByUserId = async (UserId) => {
+  try {
+    const response = await axios.get(`${BASE_URL}/orders/user/${UserId}`);
+    return response.data;
+  } catch (error) {
+    // Handle error
+    console.error(`Error fetching order with userID ${UserId}:`, error);
+    throw new Error(`Failed to fetch order with ID ${UserId}`);
+  }
+};
+
 export const getAllOrders = async () => {
   try {
     const response = await axios.get(`${BASE_URL}/orders`);

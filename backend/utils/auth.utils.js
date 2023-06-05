@@ -9,14 +9,14 @@ const generateToken = (user) => {
   };
 
   const options = {
-    expiresIn: '1d', // Token expiration time
+    expiresIn: '1h', // Token expiration time
   };
 
   return jwt.sign(payload, secretKey, options);
 };
 
 const generateResetToken = () => {
-  const token = crypto.randomBytes(20).toString('hex');
+  const token = crypto.randomBytes(32).toString('hex');
   return token;
 };
 

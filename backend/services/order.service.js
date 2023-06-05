@@ -3,6 +3,18 @@ const { use } = require('../app');
 const Order = require('../models/order.model');
 
 class OrderService {
+
+  async getOrdersByUserId (userId) {
+    try {
+      // Fetch orders from the database based on the userId
+      const orders = await Order.findAll( userId ); // Assuming your Order model has a 'userId' field
+  
+      return orders;
+    } catch (error) {
+      // Handle any errors
+      throw new Error('Failed to get orders by userId');
+    }
+  }
   async getAllOrders() {
     try {
       const orders = await Order.findAll();
@@ -11,6 +23,7 @@ class OrderService {
       throw new Error('Failed to get orders');
     }
   }
+
 
   async getOrderById(orderId) {
     try {

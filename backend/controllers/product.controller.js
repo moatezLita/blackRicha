@@ -2,6 +2,20 @@ const ProductService = require('../services/product.service');
 const { CustomError } = require('../middleware/errorHandler');
 
 class ProductController {
+  
+  async  getProductsByCategoryId(req, res, next) {
+    const {categoryId: categoryId } = req.params;
+    try {
+      const products = await ProductService.getProductsByCategoryId({ where: { CategoryId : categoryId } });
+      if (products.length === 0) {
+        return next(new CustomError('No products found for the given category', 404));
+      }
+      res.json(products);
+    } catch (error) {
+      next(new CustomError('Failed to get products by category ID', 500));
+    }
+  }
+  
   async getAllProducts(req, res, next) {
     try {
       const products = await ProductService.getAllProducts();
@@ -62,17 +76,6 @@ class ProductController {
   }
 
 
-  async  getProductsByCategoryId(req, res, next) {
-    const {categoryId: categoryId } = req.params;
-    try {
-      const products = await ProductService.getProductsByCategoryId({ where: { CategoryId : categoryId } });
-      if (products.length === 0) {
-        return next(new CustomError('No products found for the given category', 404));
-      }
-      res.json(products);
-    } catch (error) {
-      next(new CustomError('Failed to get products by category ID', 500));
-    }
-  }
+  
 }
 module.exports = new ProductController();

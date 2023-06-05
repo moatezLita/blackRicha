@@ -15,6 +15,15 @@ class ProductService {
     }
   }
   
+  async  getProductsByCategoryId(categoryId) {
+  try {
+    const products = await Product.findAll( categoryId )
+    return products;
+  } catch (error) {
+    throw new Error('Failed to get products by category ID');
+  }
+}
+  
   async getAllProducts() {
     try {
       const products = await Product.findAll();
@@ -72,13 +81,6 @@ class ProductService {
   }
 
 
-async  getProductsByCategoryId(categoryId) {
-  try {
-    const products = await Product.findAll( categoryId )
-    return products;
-  } catch (error) {
-    throw new Error('Failed to get products by category ID');
-  }
-}
+
 }
 module.exports = new ProductService();
