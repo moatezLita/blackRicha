@@ -13,7 +13,7 @@ export default function Header() {
         top: "100%",
         // right:"100%",
         left: 0,
-        zIndex: 9999,
+        zIndex: 999,
         marginBottom:140,
       }} >
 

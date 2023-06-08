@@ -10,6 +10,14 @@ const User = sequelize.define('User', {
     allowNull: false,
     unique: true,
   },
+  firstName: {
+    type: String,
+    required: true
+  },
+  lastName: {
+    type: String,
+    required: true
+  },
   email: {
     type: DataTypes.STRING,
     allowNull: false,
@@ -19,6 +27,23 @@ const User = sequelize.define('User', {
     type: DataTypes.STRING,
     allowNull: false,
   },
+  phone: {
+    type: String,
+    required: true,
+  },
+  address: {
+    type: String,
+    required: true,
+  },
+  city: {
+    type: String,
+    required: true,
+  },
+  zipCode: {
+    type: String,
+    required: true,
+  },
+
 });
 
 User.prototype.comparePassword = async function (enteredPassword) {

@@ -9,9 +9,13 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      quantity: {
-        type: Sequelize.INTEGER,
-        allowNull: false
+      products: {
+        type: Sequelize.ARRAY(Sequelize.INTEGER),
+        allowNull: false,
+      },
+      quantities: {
+        type: Sequelize.ARRAY(Sequelize.INTEGER),
+        allowNull: false,
       },
       createdAt: {
         allowNull: false,

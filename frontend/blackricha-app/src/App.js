@@ -16,6 +16,7 @@ import SignupPage from './pages/signupPage';
 import CategoryPage from './pages/CategoryPage';
 import { useContext } from 'react';
 import { AuthContext } from './context/authContext';
+import CheckoutPage from './pages/CheckoutPage';
 
 
 const App = () => {
@@ -65,12 +66,12 @@ const App = () => {
               <UserProfilePage />
             </PrivateRoute>
           }
-        />
-
+        /> 
+        
         <Route path="/order" element = {<OrderPage/>}></Route>
         <Route path="/search" element= {<SearchPage/>}/>
         <Route path="/category/:categoryId" element={<CategoryPage/>}/>
-
+<Route path="/checkout/*" element= {<CheckoutPage/>}></Route>
 
         {/* test routes that i may change later */}
         <Route path="/login" element= {<LoginPage />}/>

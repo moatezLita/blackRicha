@@ -5,8 +5,13 @@ const User = require('./user.model');
 const Product = require('./product.model');
 
 const Cart = sequelize.define('Cart', {
-  quantity: {
-    type: DataTypes.INTEGER,
+  
+  products: {
+    type: DataTypes.ARRAY(DataTypes.INTEGER),
+    allowNull: false,
+  },
+  quantities: {
+    type: DataTypes.ARRAY(DataTypes.INTEGER),
     allowNull: false,
   },
 });

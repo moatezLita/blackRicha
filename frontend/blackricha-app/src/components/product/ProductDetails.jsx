@@ -20,17 +20,22 @@
 */
 
 
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import { useEffect } from 'react';
 import { HeartIcon, ShoppingBagIcon } from '@heroicons/react/24/outline';
 import { getProductById } from '../../api/productsApi';
 import { useParams  } from 'react-router-dom';
+import { ShoppingCartContext } from '../../context/CartContext';
+
 
 
 const ProductDetails = () => {
 const   { id } = useParams();
   const [product, setProduct] = useState([]);
   // const [mainPicture, setMainPicture] = useState(0)
+  const [quantity, setQuantity] = useState(1);
+
+  const { addItemToCart } = useContext(ShoppingCartContext);
 
   useEffect(() => {
       const fetchProduct = async () => {
@@ -45,6 +50,15 @@ const   { id } = useParams();
 
       fetchProduct();
   }, [id]);
+
+  const handleAddToCart = (itemId,itemName,itemDescription, itemPrice,itemQuantity,) => {
+    addItemToCart({ id: itemId, 
+      description:itemDescription, 
+      name: itemName, 
+      price: itemPrice,
+      quantity:itemQuantity})
+  };
+
 
   if (!product) {
       return <div>Loading...</div>;
@@ -130,7 +144,7 @@ const   { id } = useParams();
           {/* ::Description Container */}
           <div className="order-3 lg:order-1 pb-5 sm:px-6 lg:border-b-2 border-gray-200">
             {/* :::Name */}
-            <h1 className="hidden lg:block text-4xl text-gray-700 font-light tracking-wide">{product.name}</h1>
+            <h1 className=" lg:block text-4xl text-gray-700 font-light tracking-wide">{product.name}</h1>
             {/* :::Description */}
             <p className="mt-10 text-base text-gray-500">{product.description}</p>
             {/* :::Features */}
@@ -156,7 +170,11 @@ const   { id } = useParams();
             <div className="flex flex-col sm:flex-row items-center space-y-4 sm:space-y-0 sm:space-x-6">
               {/* :::Quantity */}
               <label htmlFor="quantity" className="sr-only">Select the quantity</label>
-              <input type="number" defaultValue="1" min="1" className="form-input py-1 pl-2 w-20 rounded border-2 border-gray-300 bg-gray-100 focus:border-yellow-600 focus:ring-0" />
+              <input type="number" 
+              value={quantity}
+              min="1"
+              onChange={(e) => setQuantity(e.target.value)}
+              className="form-input py-1 pl-2 w-20 rounded border-2 border-gray-300 bg-gray-100 focus:border-yellow-600 focus:ring-0" />
               {/* :::Color */}
               <label htmlFor="color" className="sr-only">Select your color</label>
               <select name="color" id="color" className="form-select py-1 pl-2 w-full max-w-xs rounded border-2 border-gray-300 bg-gray-100 text-gray-500 focus:border-yellow-600 focus:ring-0">
@@ -187,7 +205,13 @@ const   { id } = useParams();
               {product.price}
             </span>
             {/* :::Add to cart button */}
-            <button type="button" className="m-2.5 py-1.5 px-5 inline-flex items-center rounded-md bg-yellow-500 text-base text-white font-semibold uppercase whitespace-nowrap hover:bg-yellow-600">
+            <button onClick={() =>   addItemToCart ({ id: product.id, 
+              description:product.description, 
+              name: product.name, 
+              price: product.price, 
+              quantity: quantity })} 
+              
+              className="m-2.5 py-1.5 px-5 inline-flex items-center rounded-md bg-yellow-500 text-base text-white font-semibold uppercase whitespace-nowrap hover:bg-yellow-600">
               <ShoppingBagIcon className="mr-3 w-6 h-6" />
               Add to cart
             </button>

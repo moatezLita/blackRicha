@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom';
 import { getProducts, getProductsByCategoryId } from '../../api/productsApi';
 import React, { useState, useEffect } from 'react';
+import { Button } from '@mui/material';
+import ModalCart from '../modalCart';
 
 
 
@@ -9,6 +11,16 @@ import React, { useState, useEffect } from 'react';
 
 function ProductCollection({ categoryId }) {
     const [products, setProducts] = useState([]);
+const [isModalOpen, setIsModalOpen] = useState(false);
+
+
+const handleButtonClick = () => {
+    setIsModalOpen(true);
+  };
+// const handleAddToCart = () => {
+//     setIsModalOpen(true);
+//   };
+
 
     useEffect(() => {
         const fetchProducts = async () => {
@@ -33,6 +45,7 @@ function ProductCollection({ categoryId }) {
             <div className="max-w-screen-xl px-4 py-8 mx-auto sm:px-6 sm:py-12 lg:px-8">
                 <ul className="grid gap-4 mt-8 sm:grid-cols-2 lg:grid-cols-4">
                     {products.map((product) => (
+                        <div>
                         <Link to = {`/products/${product.id}`}>
                         <li key={product.id} className="flex">
                             <a href={product.href} className="block overflow-hidden group flex-grow">
@@ -55,6 +68,29 @@ function ProductCollection({ categoryId }) {
                             </a>
                         </li>
                         </Link>
+                        
+                        <button 
+                        onClick={handleButtonClick}
+                        
+                        type="button" 
+                        className="group relative inline-block text-sm font-medium text-indigo-600 focus:outline-none focus:ring active:text-indigo-500">
+                                                      
+                                                      <span
+    className="absolute inset-0 translate-x-0.5 translate-y-0.5 bg-indigo-600 transition-transform group-hover:translate-y-0 group-hover:translate-x-0"
+  ></span>
+
+  <span className="relative block border border-current bg-white px-8 py-3">
+CHOISIR LES OPTIONS
+  </span>
+                            
+                            
+                        </button>
+                        {isModalOpen && (
+        <ModalCart onClose={() => setIsModalOpen(false)}>
+          {/* Modal content */}
+        </ModalCart>
+      )}
+                        </div>
                     ))}
                 </ul>
 

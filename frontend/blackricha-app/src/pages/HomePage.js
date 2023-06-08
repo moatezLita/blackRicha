@@ -75,7 +75,7 @@ const HomePage = () => {
                 {/* <Tab /> */}
                 {/* <ProductListing /> */}
             {/* </div> */}
-            <div><Album/></div>
+            {/* <div><Album categoryId={4}/></div> */}
             <div className='   mt-20 mb-20' >
                 <PromoSection />
             </div>
