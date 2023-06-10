@@ -1,6 +1,6 @@
 // auth/AuthContext.js
 import { createContext, useState } from 'react';
-import { login } from '../api/authApi';
+import { login, register } from '../api/authApi';
 
 
 const AuthContext = createContext();
@@ -12,12 +12,36 @@ const AuthProvider = ({ children }) => {
 
     const expiryTime = new Date().getTime() + 3600000;
     // Login function
+    const handleSignup = async (username,email,password)=>{
+      try{
+    const credential = {
+          username: username,
+          email: email,
+          password: password,
+        };  
+        const response = await register(credential);
+        const token = response.token;
+        const tokenData= {token: token,
+        expiresAt: expiryTime,
+      };
+        // setToken(token);
+        localStorage.setItem('token', JSON.stringify(tokenData));
+        setIsLoggedIn(true);
+
+
+}
+catch(error){
+  throw new Error('Failed to log in');
+}
+
+    }
     const handleLogin = async (email, password) => {
       try {
         const credential = {
           email: email,
           password: password,
         };
+        
   
         const response = await login(credential); // Use the login function from authApi.js
         // console.log(response);
@@ -67,6 +91,7 @@ const AuthProvider = ({ children }) => {
     const authContextValues = {
       token,
       login: handleLogin,
+      signup: handleSignup,
       logout: handleLogout,
       isAuthenticated: isAuthenticated,
     };

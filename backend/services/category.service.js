@@ -9,6 +9,15 @@ class CategoryService {
       throw new Error('Failed to get categories');
     }
   }
+  
+  async getCategoryByName(categoryName) {
+    try {
+      const category = await Category.findOne(categoryName);
+      return category;
+    } catch (error) {
+      throw new Error('Failed to get category by ID');
+    }
+  }
 
   async getCategoryById(categoryId) {
     try {

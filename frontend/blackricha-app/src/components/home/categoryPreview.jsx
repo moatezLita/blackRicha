@@ -1,4 +1,5 @@
 
+import { Link } from 'react-router-dom';
 import { getAllCategories } from '../../api/categoriesApi';
 import React, { useState, useEffect } from 'react';
 
@@ -35,28 +36,22 @@ const CategoryPreview = () => {
 
         {/* :CATEGORY 1 -> LARGEST, LEFT */}
         <div className="order-1 lg:row-span-2 col-span-2 relative shadow rounded-md overflow-hidden bg-pink-100 filter hover:shadow-lg hover:brightness-125">
-          <a href="#link" className="pt-8 pb-20 px-5 block w-full h-full">
-            {/* ::Background Picture */}
+          <Link to="/category/1" className="pt-8 pb-20 px-5 block w-full h-full">
             <div>
-              {/* :::picture */}
               <img src="https://fancytailwind.com/static/model-woman2-ee6e3c8ec2648417a86c813d9acd0ac3.jpg" alt="" className="absolute inset-0 w-full h-full object-cover object-center" />
-              {/* :::overlay */}
               <div className="absolute inset-0 w-full h-full bg-gradient-to-t from-gray-600 opacity-70" />
             </div>
-            {/* ::Category Infos */}
             <div className="relative h-full flex flex-col items-start text-white">
-              {/* :::name */}
               
               <h3 className="text-3xl font-playfair tracking-wider leading-relaxed antialiased">
-                <span className="block">women</span>
-                <span className="block">Collection</span>
+                <span className="block">Cadre de</span>
+                <span className="block">Lit</span>
               </h3>
-              {/* :::collection */}
-              <p className="mt-4 text-base font-medium font-serif">Summer 2022</p>
-              {/* :::badge tag */}
+              {/* <p className="mt-4 text-base font-medium font-serif">Summer 2022</p>
               <span className="mt-4 inline-flex justify-center items-center py-1 px-3 border-none rounded bg-white bg-opacity-30 text-xs text-white font-semibold">Popular</span>
+             */}
             </div>
-          </a>
+          </Link>
         </div>
 
 

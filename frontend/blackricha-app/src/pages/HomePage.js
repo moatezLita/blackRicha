@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 // import Header from '../components/common/Header';
 import ProductListing from '../components/home/productListing';
 import HeroSection from '../components/home/heroSection';
@@ -11,10 +11,17 @@ import CarouselEx from '../components/home/carousel';
 import ProductCollectionByCategory from '../components/product/productCollectionByCategory';
 import Album from '../components/home/album';
 
+
 // This is just an example. You'd fetch these from your API.
 
 
 const HomePage = () => {
+    const [filters, setFilters] = useState({
+        priceTo: '',
+        priceFrom:'',
+        sortBy: '',
+      });
+    
     return (
         <>
 
@@ -50,7 +57,7 @@ const HomePage = () => {
                         natus?
                     </p>
                 </header>
-                <ProductCollectionByCategory categoryId={1} />
+                <ProductCollectionByCategory categoryId={1} filters={filters} />
             </div>
             <div>
                 <header className="text-center">
@@ -64,7 +71,7 @@ const HomePage = () => {
                         natus?
                     </p>
                 </header>
-                <ProductCollectionByCategory categoryId={3} />
+                <ProductCollectionByCategory categoryId={3} filters={filters}/>
             </div>
 
             <div className="text-center mb-3">

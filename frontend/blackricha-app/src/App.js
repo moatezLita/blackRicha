@@ -17,8 +17,8 @@ import CategoryPage from './pages/CategoryPage';
 import { useContext } from 'react';
 import { AuthContext } from './context/authContext';
 import CheckoutPage from './pages/CheckoutPage';
-
-
+import ErrorNotFound from './pages/specificPages/ErrorNotFound'
+import ContactUs from './pages/specificPages/ContactUs';
 const App = () => {
   // const Navigate = useNavigate();
   const { isAuthenticated} = useContext(AuthContext);
@@ -70,15 +70,20 @@ const App = () => {
         
         <Route path="/order" element = {<OrderPage/>}></Route>
         <Route path="/search" element= {<SearchPage/>}/>
-        <Route path="/category/:categoryId" element={<CategoryPage/>}/>
+        <Route path="/category/:categoryId" element={<CategoryPage/>} />
 <Route path="/checkout/*" element= {<CheckoutPage/>}></Route>
 
         {/* test routes that i may change later */}
         <Route path="/login" element= {<LoginPage />}/>
         <Route path="/signup" element={<SignupPage/>}/>
-        {/* use links instead of path */}
         
-        {/* Other routes go here */}
+        {/* Other routes goes here */}
+
+        <Route path="/contact" element={<ContactUs/>}          />
+
+        
+        <Route path="*" element={<ErrorNotFound/>} />
+
       </Routes>
     {/* </Router> */}
     </main>

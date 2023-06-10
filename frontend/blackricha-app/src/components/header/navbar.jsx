@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useMatch } from "react-router-dom";
 import ShoppingCart from '../shoppingCart/ShoppingCart';
 import React, { useEffect, useState } from 'react';
 import SearchBar from "../search/searchBar";
@@ -13,6 +13,9 @@ import DropdownMenu from "./dropdownMenu";
 
 
 const Navbar = ({getProducts}) => {
+
+    const match = useMatch ('/category/:id');
+    const showButton = !!match;
     //logout, and isAuth features 
     const { isAuthenticated, logout } = useContext(AuthContext);
     // const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -140,14 +143,14 @@ const Navbar = ({getProducts}) => {
                         <Link to="/">
                         <span className="cursor-pointer rounded-sm py-1 px-2 text-sm font-medium hover:bg-gray-100">Acceuil</span>
                         </Link>
-                        <Link to='/'>
-                        <span className="cursor-pointer rounded-sm py-1 px-2 text-sm font-medium hover:bg-gray-100">Best seller</span>
+                        
+                        <Link to='/category/3' relative="cadre-de-lit" >
+                        <span className="cursor-pointer rounded-sm py-1 px-2 text-sm font-medium hover:bg-gray-100">
+                            CADRE DE LIT</span>
                         </Link>
                         <Link to='/category/products'>
-                        <span className="cursor-pointer rounded-sm py-1 px-2 text-sm font-medium hover:bg-gray-100">CADRE DE LIT</span>
-                        </Link>
-                        <Link to='/category/products'>
-                        <span className="cursor-pointer rounded-sm py-1 px-2 text-sm font-medium hover:bg-gray-100">LIT COFFRE</span>
+                        <span className="cursor-pointer rounded-sm py-1 px-2 text-sm font-medium hover:bg-gray-100">
+                            LIT COFFRE</span>
                         </Link>
                         <div className="relative inline-block">
                             <span

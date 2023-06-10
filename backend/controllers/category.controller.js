@@ -10,7 +10,18 @@ class CategoryController {
       next(new CustomError('Failed to get all categories', 500));
     }
   }
-
+  async getCategoryByName (req, res, next) {
+    const { name: categoryName} = req.params;
+    try {
+      const category = await CategoryService.getCategoryById({ where: { name: categoryName } });
+      if (!category) {
+        return next(new CustomError('Category not found', 404));
+      }
+      res.json(category);
+    } catch (error) {
+      next(new CustomError('Failed to get category by ID', 500));
+    }
+  }
   async getCategoryById(req, res, next) {
     const { id: categoryId } = req.params;
     try {

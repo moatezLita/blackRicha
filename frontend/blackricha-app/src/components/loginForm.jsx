@@ -99,9 +99,11 @@ const LoginForm = ({setIsAuthenticated}) => {
             </div>
 
             <div class="flex items-center justify-between mt-4">
-                <a href="#" class="text-sm text-gray-600 dark:text-gray-200 hover:text-gray-500">Mot de passe oublié</a>
+                <Link to="/forget-password" class="text-sm text-gray-600 dark:text-gray-200 hover:text-gray-500">Mot de passe oublié</Link>
 
-                <button type='submit' class="px-6 py-2 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-500 rounded-lg hover:bg-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50">
+                <button 
+                type='submit' 
+                class="px-6 py-2 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-500 rounded-lg hover:bg-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50">
                    Connexion
                 </button>
             </div>

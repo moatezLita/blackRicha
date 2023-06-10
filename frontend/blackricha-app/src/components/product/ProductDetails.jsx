@@ -29,8 +29,8 @@ import { ShoppingCartContext } from '../../context/CartContext';
 
 
 
-const ProductDetails = () => {
-const   { id } = useParams();
+const ProductDetails = ({id}) => {
+// const   { id } = useParams();
   const [product, setProduct] = useState([]);
   // const [mainPicture, setMainPicture] = useState(0)
   const [quantity, setQuantity] = useState(1);

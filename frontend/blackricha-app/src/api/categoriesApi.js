@@ -13,7 +13,16 @@ export const getAllCategories = async () => {
     throw new Error('Failed to fetch categories');
   }
 };
-
+export const getCategoryByName = async (name) => {
+  try {
+    const response = await axios.get(`${BASE_URL}/categories/name/${name}`);
+    return response.data;
+  } catch (error) {
+    // Handle error
+    console.error(`Error fetching category with ID ${name}:`, error);
+    throw new Error(`Failed to fetch category with ID ${name}`);
+  }
+};
 // Fetch a category by ID
 export const getCategoryById = async (id) => {
   try {
