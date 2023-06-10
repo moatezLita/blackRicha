@@ -18,6 +18,11 @@ const User = sequelize.define('User', {
     type: String,
     required: true
   },
+  role: {
+    type: DataTypes.STRING,
+    allowNull: false,
+    defaultValue: 'user',
+  },
   email: {
     type: DataTypes.STRING,
     allowNull: false,

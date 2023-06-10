@@ -2,14 +2,20 @@ const Skeleton =()=>{
 
 
     return(
-        <div className="flex flex-col m-8 rounded shadow-md w-60 sm:w-80 animate-pulse h-96">
-	<div className="h-48 rounded-t dark:bg-gray-700"></div>
-	<div className="flex-1 px-4 py-8 space-y-4 sm:p-8 dark:bg-gray-900">
-		<div className="w-full h-6 rounded dark:bg-gray-700"></div>
-		<div className="w-full h-6 rounded dark:bg-gray-700"></div>
-		<div className="w-3/4 h-6 rounded dark:bg-gray-700"></div>
-	</div>
-</div>
+<section class="bg-white dark:bg-gray-900">
+    <div class="block overflow-hidden group flex-grow">
+
+  
+                <div class="w-full h-64 bg-gray-300 rounded-lg dark:bg-gray-600"></div>
+                
+                <h1 class="w-56 h-2 mt-4 bg-gray-200 rounded-lg dark:bg-gray-700"></h1>
+                <p class="w-24 h-2 mt-4 bg-gray-200 rounded-lg dark:bg-gray-700"></p>
+           
+
+            
+        
+    </div>
+</section>
     )
 }
 

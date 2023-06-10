@@ -26,7 +26,7 @@ const SignupForm = ({setIsAuthenticated}) => {
           // await logout ()
           console.log(token);
   
-          navigate(-1);
+          navigate("/");
           // Login successful, perform any necessary actions
           // For example, you can navigate to a different page or update the component state
           // after successful login
@@ -79,8 +79,8 @@ const SignupForm = ({setIsAuthenticated}) => {
                 aria-label="Password" />
             </div>
 
-            <div class="flex items-center justify-between mt-4">
-                <Link to="/forget-password" class="text-sm text-gray-600 dark:text-gray-200 hover:text-gray-500">Mot de passe oublié</Link>
+            <div class="flex  items-center justify-between mt-4">
+                <Link to="/forget-password" class=" underline text-sm text-gray-600 dark:text-gray-200 hover:text-gray-500">Mot de passe oublié</Link>
 
                 <button 
                 type='submit'
@@ -92,8 +92,9 @@ const SignupForm = ({setIsAuthenticated}) => {
     </div>
 
     <div class="flex items-center justify-center py-4 text-center bg-gray-50 dark:bg-gray-700">
+        <Link to='/login'>
         <span class="text-sm text-gray-600 dark:text-gray-200">Avez-vous déjà un compte ? </span>
-
+</Link>
         <Link to="/signup" class="mx-2 text-sm font-bold text-blue-500 dark:text-blue-400 hover:underline">Connexion</Link>
     </div>
 </div>

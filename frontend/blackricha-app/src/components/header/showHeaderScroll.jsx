@@ -10,7 +10,7 @@ const useScrollHeader = () => {
       const currentScrollPos = window.pageYOffset;
       if (prevScrollPos > currentScrollPos) {
         setShowHeader(true);
-      } else if (prevScrollPos < currentScrollPos && currentScrollPos > 360) {
+      } else if (prevScrollPos < currentScrollPos && currentScrollPos > 140) {
         setShowHeader(false);
       }
       prevScrollPos = currentScrollPos;
