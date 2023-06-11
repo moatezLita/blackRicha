@@ -17,7 +17,7 @@ module.exports = {
       },
       description :{
         allowNull: true,
-        type: sequelize.TEXT
+        type: Sequelize.TEXT
       },
       createdAt: {
         allowNull: false,

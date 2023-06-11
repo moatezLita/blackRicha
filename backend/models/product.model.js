@@ -19,6 +19,10 @@ const Product = sequelize.define('Product', {
     type: DataTypes.INTEGER,
     allowNull: false,
   },
+  size: {
+    type: DataTypes.STRING,
+    allowNull: true
+  },
   picture_path: {
     type: DataTypes.STRING,
     allowNull: true, // or set it to false if picture_path is required

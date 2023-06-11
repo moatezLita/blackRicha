@@ -1,23 +1,23 @@
 {
-  "development": {
+  "production": {
     "username": "black_richa_admin",
-    "password": "21280324",
+    "password": "blackAdmin2023*",
     "database": "black_richa_db",
-    "host": "20.216.180.115",
+    "host": "localhost",
     "dialect": "postgres"
   },
   "test": {
     "username": "black_richa_admin",
-    "password": "21280324",
+    "password": "blackAdmin2023*",
     "database": "black_richa_db",
-    "host": "20.216.180.115",
+    "host": "localhost",
     "dialect": "postgres"
   },
-  "production": {
+  "development": {
     "username": "black_richa_admin",
-    "password": "21280324",
+    "password": "blackAdmin2023*",
     "database": "black_richa_db",
-    "host": "20.216.180.115",
+    "host": "localhost",
     "dialect": "postgres"
   }
 }
