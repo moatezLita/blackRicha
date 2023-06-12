@@ -1,23 +1,32 @@
 'use strict';
 
-const sequelize = require("../sequelize");
-
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('Categories', {
+    await queryInterface.createTable('Sommiers', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      name: {
+      size: {
         type: Sequelize.STRING,
         allowNull: false
       },
-      description :{
-        allowNull: true,
-        type: Sequelize.TEXT
+      
+      price: {
+        type: Sequelize.FLOAT,
+        allowNull: false
+      },
+      categoryId:{
+        allowNull: false,
+        type :Sequelize.INTEGER ,
+        references:{
+          model:'Categories' ,
+          key :'id'
+        } ,
+        onDelete:'CASCADE',
+        onUpdate:'CASCADE'
       },
       createdAt: {
         allowNull: false,
@@ -27,6 +36,7 @@ module.exports = {
         allowNull: false,
         type: Sequelize.DATE
       }
+      
     });
 
     // Add any additional associations or constraints here
@@ -34,6 +44,6 @@ module.exports = {
   },
 
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('Categories');
+    await queryInterface.dropTable('Sommiers');
   }
 };

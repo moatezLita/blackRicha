@@ -36,7 +36,7 @@ const SignupForm = ({setIsAuthenticated}) => {
           // localStorage.setItem('token', token);
   
         } catch (error) {
-          setError('Failed to log in. Please check your credentials.');
+          setError('Failed Sign up in.');
         }
       };
 
