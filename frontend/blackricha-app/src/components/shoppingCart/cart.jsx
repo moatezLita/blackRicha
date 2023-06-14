@@ -19,8 +19,8 @@ export default function Cart() {
     const { setTotalPrice } = useContext(CheckoutContext);
 
     
-    const shippingPrice = 4.99;
-    const Total = (getCartTotalPrice() + shippingPrice).toFixed(2)
+    const tax = 4.99;
+    const Total = (getCartTotalPrice() + tax).toFixed(2)
     // setTotalPrice(Total);
 
     
@@ -56,8 +56,8 @@ export default function Cart() {
     
             return (
               <div>
-        //         <p>buy somethin.</p>
-        //         {/* Render any other components or messages for logged-in users */}
+                 <p>buy something.</p>
+                {/* Render any other components or messages for logged-in users */}
               </div>
             );
           }
@@ -123,15 +123,15 @@ export default function Cart() {
                             <p class="text-gray-700">€{getCartTotalPrice()} </p>
                         </div>
                         <div class="flex justify-between">
-                            <p class="text-gray-700">Shipping</p>
-                            <p class="text-gray-700">${shippingPrice.toFixed(2)}</p>
+                            <p class="text-gray-700">tax</p>
+                            <p class="text-gray-700">${tax.toFixed(2)}</p>
                         </div>
                         <hr class="my-4" />
                         <div class="flex justify-between">
                             <p class="text-lg font-bold">Total</p>
                             <div class="">
                                 <p class="mb-1 text-lg font-bold">${Total}</p>
-                                <p class="text-sm text-gray-700">including VAT</p>
+                                <p class="text-sm text-gray-700">including TVA</p>
                             </div>
                         </div>
                         <Link to ="/checkout">

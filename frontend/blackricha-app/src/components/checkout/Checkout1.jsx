@@ -19,7 +19,6 @@ export default function Checkout1 () {
 
     const { cartItems ,getCartTotalPrice} = useContext(ShoppingCartContext);
     const { setContactInfo,setDeliveryInfo } = useContext(CheckoutContext);
-    const [formValid, setFormValid] = useState(false);
 
     
     // const {userData}=useContext(UserContext)

@@ -16,7 +16,7 @@ const{userData}= useContext(UserContext);
 
 const handleProfileClick = () => {
   if (userData && userData.userId) {
-    navigate(`/userprofile`);
+    navigate(`/account`);
     setIsDropdownOpen(false);
   }
 };

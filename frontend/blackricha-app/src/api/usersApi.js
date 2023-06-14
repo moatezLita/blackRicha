@@ -2,10 +2,18 @@ import axios from 'axios';
 
 const BASE_URL = 'http://localhost:3001/api'; // Replace with your backend API base URL
 
+const tokenString = localStorage.getItem('token');
+const tokenObject = JSON.parse(tokenString);
+const token = tokenObject.token;
+
+const headers= {
+  Authorization: token,
+}
+
 // Fetch all users
 export const getUsers = async () => {
   try {
-    const response = await axios.get(`${BASE_URL}/users`);
+    const response = await axios.get(`${BASE_URL}/users`,{headers: headers,  });;
     return response.data;
   } catch (error) {
     // Handle error
@@ -17,7 +25,7 @@ export const getUsers = async () => {
 // Fetch a single user by ID
 export const getUserById = async (id) => {
   try {
-    const response = await axios.get(`${BASE_URL}/users/${id}`);
+    const response = await axios.get(`${BASE_URL}/users/${id}`,{headers: headers,  });
     return response.data;
   } catch (error) {
     // Handle error
@@ -29,7 +37,7 @@ export const getUserById = async (id) => {
 // Create a new user
 export const createUser = async (userData) => {
   try {
-    const response = await axios.post(`${BASE_URL}/users`, userData);
+    const response = await axios.post(`${BASE_URL}/users`, userData,{headers: headers,  });
     return response.data;
   } catch (error) {
     // Handle error
@@ -41,7 +49,7 @@ export const createUser = async (userData) => {
 // Update an existing user
 export const updateUser = async (id, userData) => {
   try {
-    const response = await axios.put(`${BASE_URL}/users/${id}`, userData);
+    const response = await axios.put(`${BASE_URL}/users/${id}`, userData,{headers: headers,  });
     return response.data;
   } catch (error) {
     // Handle error
@@ -53,7 +61,7 @@ export const updateUser = async (id, userData) => {
 // Delete a user by ID
 export const deleteUser = async (id) => {
   try {
-    const response = await axios.delete(`${BASE_URL}/users/${id}`);
+    const response = await axios.delete(`${BASE_URL}/users/${id}`,{headers: headers,  });
     return response.data;
   } catch (error) {
     // Handle error

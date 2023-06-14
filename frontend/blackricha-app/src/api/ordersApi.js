@@ -2,10 +2,17 @@ import axios from 'axios';
 
 const BASE_URL = 'http://localhost:3001/api'; // Replace with your backend API base URL
 
+const tokenString = localStorage.getItem('token');
+const tokenObject = JSON.parse(tokenString);
+const token = tokenObject.token;
+
+const headers= {
+  Authorization: token,
+}
 // Fetch all orders
 export const getOrdersByUserId = async (UserId) => {
   try {
-    const response = await axios.get(`${BASE_URL}/orders/user/${UserId}`);
+    const response = await axios.get(`${BASE_URL}/orders/user/${UserId}`,{headers: headers,  });
     return response.data;
   } catch (error) {
     // Handle error
@@ -16,7 +23,7 @@ export const getOrdersByUserId = async (UserId) => {
 
 export const getAllOrders = async () => {
   try {
-    const response = await axios.get(`${BASE_URL}/orders`);
+    const response = await axios.get(`${BASE_URL}/orders`,{headers: headers,  });
     return response.data;
   } catch (error) {
     // Handle error
@@ -28,7 +35,7 @@ export const getAllOrders = async () => {
 // Fetch an order by ID
 export const getOrderById = async (id) => {
   try {
-    const response = await axios.get(`${BASE_URL}/orders/${id}`);
+    const response = await axios.get(`${BASE_URL}/orders/${id}`,{headers: headers,  });
     return response.data;
   } catch (error) {
     // Handle error
@@ -40,7 +47,7 @@ export const getOrderById = async (id) => {
 // Create a new order
 export const createOrder = async (orderData) => {
   try {
-    const response = await axios.post(`${BASE_URL}/orders`, orderData);
+    const response = await axios.post(`${BASE_URL}/orders`, orderData,{headers: headers,  });
     return response.data;
   } catch (error) {
     // Handle error
@@ -52,7 +59,7 @@ export const createOrder = async (orderData) => {
 // Update an existing order
 export const updateOrder = async (id, orderData) => {
   try {
-    const response = await axios.put(`${BASE_URL}/orders/${id}`, orderData);
+    const response = await axios.put(`${BASE_URL}/orders/${id}`, orderData,{headers: headers,  });
     return response.data;
   } catch (error) {
     // Handle error
@@ -64,7 +71,7 @@ export const updateOrder = async (id, orderData) => {
 // Delete an order by ID
 export const deleteOrder = async (id) => {
   try {
-    const response = await axios.delete(`${BASE_URL}/orders/${id}`);
+    const response = await axios.delete(`${BASE_URL}/orders/${id}`,{headers: headers,  });
     return response.data;
   } catch (error) {
     // Handle error

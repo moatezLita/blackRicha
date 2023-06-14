@@ -1,16 +1,21 @@
 import CheckoutCart from "./CheckoutCart"
 import { CheckoutContext } from "../../context/CheckoutContext";
 import { useContext, useState } from 'react';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import PersonalInfoCheckout from "./personalInfoCheckout";
 
 
 export default function Checkout2() {
 
 
-    const { state, contactInfo, deliveryInfo,setDeliveryInfo, totalPrice } = useContext(CheckoutContext);
+    const { state, contactInfo, deliveryInfo,setDeliveryInfo,setTotalPrice, totalPrice } = useContext(CheckoutContext);
 
     const [selectedOption, setSelectedOption] = useState('Shipped');
+    const navigate = useNavigate();
+
+    const shippingPrice = 10
+    const Total = (parseFloat(totalPrice) + shippingPrice)
+
 
   const handleOptionChange = (event) => {
     setSelectedOption(event.target.value);}
@@ -21,9 +26,9 @@ export default function Checkout2() {
           ...deliveryInfo,
           deliveryMethod: selectedOption,
         };
-    
+        setTotalPrice (Total)
         setDeliveryInfo(updatedDeliveryInfo);
-    
+        navigate ("/checkout/payment");
         // localStorage.setItem('deliveryInfo', JSON.stringify(updatedDeliveryInfo));
       };
 
@@ -99,7 +104,8 @@ export default function Checkout2() {
                                             id="Shipped"
                                             className="peer hidden [&:checked_+_label_svg]:block"
                                             checked={selectedOption === 'Shipped'}
-                                            onChange={handleOptionChange}                                        />
+                                            onChange={handleOptionChange}     
+                                            required                                   />
 
                                         <label
                                             htmlFor="Shipped"
@@ -125,7 +131,7 @@ export default function Checkout2() {
 
                                             </div>
 
-                                            <p className="mt-1 text-gray-900">Free</p>
+                                            <p className="mt-1 text-gray-900">{shippingPrice}</p>
                                         </label>
                                     </div>
 
@@ -138,6 +144,7 @@ export default function Checkout2() {
                                             className="peer hidden [&:checked_+_label_svg]:block"
                                             checked={selectedOption === 'PickedUp'}
                                             onChange={handleOptionChange}
+                                            required
                                         />
 
                                         <label
@@ -168,7 +175,6 @@ export default function Checkout2() {
                                 </fieldset>
                             </div>
                             <div className="mt-12">
-                                <Link to="/checkout/payment">
                                 <button
                                     onClick={handleNextButtonClick}
                                     type="submit"
@@ -176,7 +182,6 @@ export default function Checkout2() {
                                 >
                                     Pay Now
                                 </button>
-                                </Link>
                             </div>
 
                         </div>
