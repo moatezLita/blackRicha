@@ -46,7 +46,8 @@ const App = () => {
     {/* <Router> */}
       <Routes>
         <Route path="/" element={<HomePage/>} exact />
-        <Route path="/cart" element={<CartPage/>} />
+        <Route path="/cart" element={
+        <PrivateRoute><CartPage/></PrivateRoute>} />
         
         <Route path="/products" element={<ProductListPage/>} />
         {/* <Route path="/search" element={<searchPage/>} /> */}
@@ -60,7 +61,7 @@ const App = () => {
         </Route> */}
 
         <Route
-          path="/userprofile"
+          path="/account"
           element={
             <PrivateRoute>
               <UserProfilePage />
@@ -68,10 +69,19 @@ const App = () => {
           }
         /> 
         
-        <Route path="/order" element = {<OrderPage/>}></Route>
-        <Route path="/search" element= {<SearchPage/>}/>
+        <Route path="/order" 
+        element = 
+          {<PrivateRoute>
+              <OrderPage/>  
+            </PrivateRoute>}/>
+
+
+        {/* <Route path="/search" element= {<SearchPage/>}/> */}
         <Route path="/category/:categoryId" element={<CategoryPage/>} />
-<Route path="/checkout/*" element= {<CheckoutPage/>}></Route>
+<Route path="/checkout/*" element= {
+  <PrivateRoute>
+    <CheckoutPage/>
+  </PrivateRoute>}/>
 
         {/* test routes that i may change later */}
         <Route path="/login" element= {<LoginPage />}/>

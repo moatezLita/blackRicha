@@ -1,11 +1,12 @@
 import { updateUser } from "../../api/usersApi";
 import { ShoppingCartContext } from "../../context/CartContext";
-import { useContext, useState } from 'react';
+import { useContext, useState,useEffect } from 'react';
 import { UserContext } from '../../context/userContext';
 import CheckoutCart from "./CheckoutCart";
 import Breadcrumb from "../breadcrumb";
 import { CheckoutContext } from "../../context/CheckoutContext";
 import { Link } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 
 {/*
   Heads up! 👋
@@ -18,6 +19,7 @@ export default function Checkout1 () {
 
     const { cartItems ,getCartTotalPrice} = useContext(ShoppingCartContext);
     const { setContactInfo,setDeliveryInfo } = useContext(CheckoutContext);
+    const [formValid, setFormValid] = useState(false);
 
     
     // const {userData}=useContext(UserContext)
@@ -26,7 +28,7 @@ export default function Checkout1 () {
     // const shippingPrice = 4.99;
     const { userData } = useContext(UserContext);
     const id = userData && userData.userId;
-  console.log(id)
+  // console.log(id)
     const [formData, setFormData] = useState({
         firstName: '',
         lastName: '',
@@ -34,7 +36,7 @@ export default function Checkout1 () {
         phone: '',
         address: '',
         city: '',
-        zipCode: ''
+        zipCode: '',
       }); 
       
     const handleInputChange = (e) => {
@@ -63,20 +65,18 @@ export default function Checkout1 () {
         setDeliveryInfo(deliveryData);
 
       }
+
+
+      const navigate = useNavigate();
+
     const handleSubmit = async (e) => {
         e.preventDefault();
       
         try {
-          // Make the API request using Axios
-        //   const response = await axios.post('/api/endpoint', formData);
-
-        await updateUser(id, { contactData, deliveryData });
-        // setContactInfo(contactData);
-        // setDeliveryInfo(deliveryData);
-        // console.log('User updated successfully:', response);
-          // Handle the response
-          // ...
           
+        
+        await updateUser(id, { contactData, deliveryData });
+        navigate ("/checkout/delivery");
           // Reset the form
           setFormData({
             firstName: '',
@@ -94,7 +94,13 @@ export default function Checkout1 () {
           // ...
         }
       };
+
       
+    //   useEffect(() => {
+    //     // Check if all required fields are filled
+    //     const isFormValid = Object.values(formData).every((field) => field.trim() !== '');
+    //     setFormValid(isFormValid);
+    //   }, [formData]);
     return (
         
 <div>
@@ -156,7 +162,7 @@ export default function Checkout1 () {
       </div>
     </div> */}
 
-    <div className="bg-white py-12 md:py-24">
+    <div className="bg-white py-12 md:py-2">
       <div className="mx-auto max-w-lg px-4 lg:px-8">
         <form onSubmit={handleSubmit} className="grid grid-cols-6 gap-4">
           <div className="col-span-3">
@@ -337,7 +343,6 @@ export default function Checkout1 () {
           </fieldset>
 
           <div className="col-span-6">
-            <Link to="/checkout/delivery"> 
             <button
               onClick={setDataToLocal}
               type="submit"
@@ -345,7 +350,6 @@ export default function Checkout1 () {
             >
               Pay Now
             </button>
-            </Link>
           </div>
         </form>
       </div>

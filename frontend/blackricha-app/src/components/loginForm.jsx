@@ -28,7 +28,7 @@ const LoginForm = ({setIsAuthenticated}) => {
         // await logout ()
         console.log(token);
 
-        navigate("/");
+        navigate(-1);
         // Login successful, perform any necessary actions
         // For example, you can navigate to a different page or update the component state
         // after successful login

@@ -16,13 +16,13 @@ const CheckoutCart = () => {
     return(
             <div >
 
-            <div className="bg-gray-50 py-12 md:py-24">
+            <div className="bg-gray-50 py-12 md:py-6 rounded-xl">
                 <div className="mx-auto max-w-lg space-y-8 px-4 lg:px-8">
-                    <div className="flex items-center gap-4">
+                    {/* <div className="flex items-center gap-4">
                         <span className="h-10 w-10 rounded-full bg-blue-700"></span>
 
                         <h2 className="font-medium text-gray-900">BambooYou</h2>
-                    </div>
+                    </div> */}
 
                     <div>
                         <p className="text-2xl font-medium tracking-tight text-gray-900">
@@ -55,6 +55,8 @@ const CheckoutCart = () => {
                                                 <div>
                                                     <dt className="inline">Color:</dt>
                                                     <dd className="inline">White</dd>
+                                                    <dd className="text-3xl	">{item.price} </dd>
+
                                                 </div>
                                             </dl>
                                         </div>

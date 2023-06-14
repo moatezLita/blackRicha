@@ -124,6 +124,7 @@ addItemToCart({
 
                                     <div className="flex">
                                       <button
+                                      onClick={()=>handleRemoveFromCart(product.id)}
                                         type="button"
                                         className="font-medium text-indigo-600 hover:text-indigo-500"
                                       >

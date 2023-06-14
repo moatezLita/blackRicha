@@ -29,7 +29,7 @@ const CheckoutPage = () => {
         
         { label: 'Information', path: "/checkout" },
   { label: 'Delivery', path: "/checkout/delivery"},
-  { label: 'Payment', path: "checkout/payment" },
+  { label: 'Payment', path: "/checkout/payment" },
     ];
 
     return (
