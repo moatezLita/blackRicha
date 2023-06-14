@@ -3,11 +3,16 @@ import axios from 'axios';
 const BASE_URL = 'http://localhost:3001/api'; // Replace with your backend API base URL
 
 const tokenString = localStorage.getItem('token');
-const tokenObject = JSON.parse(tokenString);
-const token = tokenObject.token;
 
-const headers= {
-  Authorization: token,
+let headers = {};
+
+if (tokenString) {
+  const tokenObject = JSON.parse(tokenString);
+  const token = tokenObject.token;
+
+  headers = {
+    Authorization: token,
+  };
 }
 
 // Fetch all users

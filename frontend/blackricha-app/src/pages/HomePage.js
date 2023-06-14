@@ -45,7 +45,7 @@ const HomePage = () => {
                 <HeroSection />
                 <ProductGrid/>
             </div> */}
-            <div>
+            <div className='mt-10'>
                 <header className="text-center">
                     <h2 className="text-xl font-bold text-gray-900 sm:text-3xl">
                         Product Collection
@@ -73,9 +73,23 @@ const HomePage = () => {
                 </header>
                 <ProductCollectionByCategory categoryId={3} filters={filters}/>
             </div>
+            <div>
+                <header className="text-center">
+                    <h2 className="text-xl font-bold text-gray-900 sm:text-3xl">
+                        Product Collection
+                    </h2>
+
+                    <p className="max-w-md mx-auto mt-4 text-gray-500">
+                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Itaque
+                        praesentium cumque iure dicta incidunt est ipsam, officia dolor fugit
+                        natus?
+                    </p>
+                </header>
+                <ProductCollectionByCategory categoryId={3} filters={filters}/>
+            </div>
 
             <div className="text-center mb-3">
-                <h4>Our products</h4>
+                {/* <h4>Our products</h4> */}
             </div>
             {/* <div className=" mb-8"> */}
                 {/* <ProductListing /> */}
@@ -84,7 +98,7 @@ const HomePage = () => {
             {/* </div> */}
             {/* <div><Album categoryId={4}/></div> */}
             <div className='   mt-20 mb-20' >
-                <PromoSection />
+                {/* <PromoSection /> */}
             </div>
             <div><BottomBanner /></div>
             {/* <div><Footer /></div> */}
