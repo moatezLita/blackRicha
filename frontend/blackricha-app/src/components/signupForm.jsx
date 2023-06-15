@@ -44,7 +44,7 @@ const SignupForm = ({setIsAuthenticated}) => {
     <div class="mt-20 mb-20 w-full max-w-sm mx-auto overflow-hidden bg-white rounded-lg shadow-md dark:bg-gray-800">
     <div class="px-6 py-4">
         <div class="flex justify-center mx-auto">
-            <img class="w-auto h-7 sm:h-8" src="https://merakiui.com/images/logo.svg" alt=""></img>
+            <img class="w-auto h-7 sm:h-8" src="/images/logo/logo.png" alt=""></img>
         </div>
 
         <h3 class="mt-6 text-xl font-medium text-center text-gray-600 dark:text-gray-200">Bienvenue de retour ! </h3>
@@ -92,10 +92,9 @@ const SignupForm = ({setIsAuthenticated}) => {
     </div>
 
     <div class="flex items-center justify-center py-4 text-center bg-gray-50 dark:bg-gray-700">
-        <Link to='/login'>
         <span class="text-sm text-gray-600 dark:text-gray-200">Avez-vous déjà un compte ? </span>
-</Link>
-        <Link to="/signup" class="mx-2 text-sm font-bold text-blue-500 dark:text-blue-400 hover:underline">Connexion</Link>
+
+        <Link to="/login" class="mx-2 text-sm font-bold text-blue-500 dark:text-blue-400 hover:underline">Connexion</Link>
     </div>
 </div>
   )}

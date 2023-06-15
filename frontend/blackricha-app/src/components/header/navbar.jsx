@@ -81,7 +81,7 @@ const Navbar = ({getProducts}) => {
                                 <path d="M4 3a2 2 0 100 4h12a2 2 0 100-4H4z" />
                                 <path fill-rule="evenodd" d="M3 8h14v7a2 2 0 01-2 2H5a2 2 0 01-2-2V8zm5 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z" clip-rule="evenodd" />
                             </svg>
-                            <span className="text-sm font-medium">Orders</span>
+                            <span className="text-sm font-medium">Commandes</span>
                         </div>
 
                         {/* <div className="flex cursor-pointer items-center gap-x-1 rounded-md py-2 px-4 hover:bg-gray-100">
@@ -99,7 +99,7 @@ const Navbar = ({getProducts}) => {
                                 </svg>
                                 {/* <span className="absolute -top-2 -right-2 flex h-4 w-4 items-center justify-center rounded-full bg-red-500 p-2 text-xs text-white"></span> */}
                             </div>
-                            <span className="text-sm font-medium">Cart {showCart && <ShoppingCart />}</span>
+                            <span className="text-sm font-medium">Panier {showCart && <ShoppingCart />}</span>
                         </div>
                         
                         {isAuthenticated() ? (
@@ -126,7 +126,7 @@ const Navbar = ({getProducts}) => {
             ) : (
         <div className="ml-2 flex cursor-pointer items-center gap-x-1 rounded-md border py-2 px-4 hover:bg-gray-100">
           <Link to="/login">
-            <span className="text-sm font-medium">Login</span>
+            <span className="text-sm font-medium">Connexion</span>
           </Link>
         </div>
       )}
@@ -178,7 +178,7 @@ const Navbar = ({getProducts}) => {
                             )}
                         </div>        
                         <Link to='/category/products'>
-                        <span className="cursor-pointer rounded-sm py-1 px-2 text-sm font-medium hover:bg-gray-100">ACCESSOIRES</span>
+                        <span className="cursor-pointer rounded-sm py-1 px-2 text-sm font-medium hover:bg-gray-100">CHEVETS</span>
                         </Link>
                     </div>
 

@@ -76,7 +76,7 @@ const LoginForm = ({setIsAuthenticated}) => {
     <div class="mt-20 mb-20 w-full max-w-sm mx-auto overflow-hidden bg-white rounded-lg shadow-md dark:bg-gray-800">
     <div class="px-6 py-4">
         <div class="flex justify-center mx-auto">
-            <img class="w-auto h-7 sm:h-8" src="https://merakiui.com/images/logo.svg" alt=""></img>
+            <img class="w-auto h-7 sm:h-8" src="/images/logo/logo.png" alt=""></img>
         </div>
 
         <h3 class="mt-6 text-xl font-medium text-center text-gray-600 dark:text-gray-200">Bienvenue de retour ! </h3>
@@ -88,14 +88,14 @@ const LoginForm = ({setIsAuthenticated}) => {
                 <input type="email"
   value={email}
   onChange={(e) => setEmail(e.target.value)}
-  class="block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-500 bg-white border rounded-lg dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-opacity-40 focus:outline-none focus:ring focus:ring-blue-300"  placeholder="Email Address" aria-label="Email Address" />
+  class="block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-500 bg-white border rounded-lg dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-opacity-40 focus:outline-none focus:ring focus:ring-blue-300"  placeholder="Adresse e-mail" aria-label="Email Address" />
             </div>
 
             <div class="w-full mt-4">
                 <input   type="password"
   value={password}
   onChange={(e) => setPassword(e.target.value)}
-  class="block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-500 bg-white border rounded-lg dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-opacity-40 focus:outline-none focus:ring focus:ring-blue-300"  placeholder="Password" aria-label="Password" />
+  class="block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-500 bg-white border rounded-lg dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-opacity-40 focus:outline-none focus:ring focus:ring-blue-300"  placeholder="mot de passe" aria-label="Password" />
             </div>
 
             <div class="flex items-center justify-between mt-4">
