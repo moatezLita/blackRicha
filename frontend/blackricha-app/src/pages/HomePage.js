@@ -25,7 +25,7 @@ const HomePage = () => {
     return (
         <>
 
-            <div className="">
+            <div className="mt-20">
                 <CarouselEx/>
 
             </div>

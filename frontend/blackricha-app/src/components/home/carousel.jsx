@@ -3,18 +3,20 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from 'react-responsive-carousel';
 export default function CarouselExt() {
     return (
-        <div class="carousel-wrapper">
+        <div className="">
+        <div className="carousel-wrapper mt-10">
             <Carousel infiniteLoop useKeyboardArrows autoPlay>
                 <div>
-                    <img src="https://picsum.photos/id/47/600/90" />
+                    <img src="/images/litcloute/108A4391.jpg" />
                 </div>
                 <div>
-                    <img src="https://picsum.photos/id/47/600/40" />
+                    <img src="/images/litcloute/108A4470.jpg" />
                 </div>
                 <div>
-                    <img src="https://picsum.photos/id/47/600/40" />
+                    <img src="/images/litcloute/108A4468.jpg" />
                 </div>
             </Carousel>
+        </div>
         </div>
     );
 }
