@@ -8,7 +8,6 @@ const ProductDetailsPage = () => {
 
   return (
     <div>
-      <h1>Product Page</h1>
       <div>
         <ProductDetails id={id }/>
       </div>

@@ -36,6 +36,7 @@ function ProductCollection({ categoryId, filters  }) {
         const fetchProducts = async () => {
             try {
                 const productsData = await getProductsByCategoryId(categoryId);
+                console.log(productsData);
                 setProducts(productsData);
             } catch (error) {
                 console.error('Error fetching products:', error);
@@ -84,7 +85,7 @@ function ProductCollection({ categoryId, filters  }) {
                                 <li key={product.id} className="flex">
                                     <a href={product.href} className="block overflow-hidden group flex-grow">
                                         <img
-                                            src="C:/Users/ambalitaiem/Desktop/blackRicha/frontend/blackricha-app/src/img/img1.jpg"
+                                            src={product.picture_path}
                                             alt=""
                                             className="h-[300px] w-full object-cover transition duration-500 group-hover:scale-105 "
                                         />

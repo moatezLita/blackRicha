@@ -1,43 +1,54 @@
-'use strict';
+const { Sequelize } = require('sequelize');
+const config = require('../config/config.json');
 
-const fs = require('fs');
-const path = require('path');
-const Sequelize = require('sequelize');
-const process = require('process');
-const basename = path.basename(__filename);
-const env = process.env.NODE_ENV || 'development';
-const config = require(__dirname + '/../config/config.json')[env];
-const db = {};
-
-let sequelize;
-if (config.use_env_variable) {
-  sequelize = new Sequelize(process.env[config.use_env_variable], config);
-} else {
-  sequelize = new Sequelize(config.database, config.username, config.password, config);
-}
-
-fs
-  .readdirSync(__dirname)
-  .filter(file => {
-    return (
-      file.indexOf('.') !== 0 &&
-      file !== basename &&
-      file.slice(-3) === '.js' &&
-      file.indexOf('.test.js') === -1
-    );
-  })
-  .forEach(file => {
-    const model = require(path.join(__dirname, file))(sequelize, Sequelize.DataTypes);
-    db[model.name] = model;
-  });
-
-Object.keys(db).forEach(modelName => {
-  if (db[modelName].associate) {
-    db[modelName].associate(db);
+const sequelize = new Sequelize(
+  config.development.database,
+  config.development.username,
+  config.development.password,
+  {
+    host: config.development.host,
+    dialect: config.development.dialect,
   }
-});
+);
 
-db.sequelize = sequelize;
-db.Sequelize = Sequelize;
+const User = require('./user.model');
+const Product = require('./product.model');
+const Category = require('./category.model');
+const Cart = require('./cart.model');
+const Order = require('./order.model');
 
-module.exports = db;
+// Define associations
+Category.hasMany(Product, { foreignKey: 'categoryId' });
+Product.belongsTo(Category, { foreignKey: 'categoryId' });
+
+User.hasMany(Cart, { foreignKey: 'userId' });
+Cart.belongsTo(User, { foreignKey: 'userId' });
+
+Product.hasMany(Cart, { foreignKey: 'productId' });
+Cart.belongsTo(Product, { foreignKey: 'productId' });
+
+User.hasMany(Order, { foreignKey: 'userId' });
+Order.belongsTo(User, { foreignKey: 'userId' });
+
+Product.hasMany(Order, { foreignKey: 'productId' });
+Order.belongsTo(Product, { foreignKey: 'productId' });
+
+const initModels = async () => {
+  try {
+    await sequelize.sync({ force: true }); // `force: true` will drop the tables if they already exist
+    console.log('Database & tables created!');
+  } catch (error) {
+    console.error('Error creating database & tables:', error);
+  }
+};
+
+initModels();
+
+module.exports = {
+  sequelize,
+  User,
+  Product,
+  Category,
+  Cart,
+  Order,
+};

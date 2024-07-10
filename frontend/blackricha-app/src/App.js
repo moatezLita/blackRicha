@@ -19,6 +19,8 @@ import { AuthContext } from './context/authContext';
 import CheckoutPage from './pages/CheckoutPage';
 import ErrorNotFound from './pages/specificPages/ErrorNotFound'
 import ContactUs from './pages/specificPages/ContactUs';
+import ProfileComponent from './components/profile/profile.jsx';
+import SecutityComponent from './components/profile/security.jsx';
 const App = () => {
   // const Navigate = useNavigate();
   const { isAuthenticated} = useContext(AuthContext);
@@ -59,22 +61,39 @@ const App = () => {
         {/* <Route path="/userprofile" element={<PrivateWrapper />}>
         <Route path="/userprofile/:id" element={<UserProfilePage />} />
         </Route> */}
+            <Route path="account" element={
+              <PrivateRoute>
+                <UserProfilePage />
+              </PrivateRoute>} >
 
-        <Route
-          path="/account"
-          element={
-            <PrivateRoute>
-              <UserProfilePage />
-            </PrivateRoute>
-          }
-        /> 
-        
-        <Route path="/order" 
+
+              <Route
+                path="/account"
+                element={
+                  <PrivateRoute>
+                    <ProfileComponent />
+                  </PrivateRoute>
+                }
+              />
+              <Route
+                path="/account/security"
+                element={
+                  <PrivateRoute>
+                    <SecutityComponent />
+                  </PrivateRoute>
+                }
+              />
+
+              <Route path="/account/orders" 
         element = 
           {<PrivateRoute>
               <OrderPage/>  
             </PrivateRoute>}/>
 
+            </Route>
+
+        
+        
 
         {/* <Route path="/search" element= {<SearchPage/>}/> */}
         <Route path="/category/:categoryId" element={<CategoryPage/>} />

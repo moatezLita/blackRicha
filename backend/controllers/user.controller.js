@@ -15,9 +15,9 @@ class UserController {
     const { id: userId } = req.params;
     try {
       const user = await UserService.getUserById({ where: { id: userId } });
-      if (!user) {
-        return next(new CustomError('User not found', 404));
-      }
+      // if (!user) {
+      //   return next(new CustomError('User not found', 404));
+      // }
       res.json(user);
     } catch (error) {
       next(new CustomError('Failed to get user by ID', 500));
@@ -43,9 +43,9 @@ class UserController {
     const userData = req.body;
     try {
       const updatedUser = await UserService.updateUser({ where: { id: userId } }, userData);
-      if (!updatedUser) {
-        return next(new CustomError('User not found', 404));
-      }
+      // if (!updatedUser) {
+      //   return next(new CustomError('User not found', 404));
+      // }
       res.json(updatedUser);
     } catch (error) {
       next(new CustomError('Failed to update user', 500));
@@ -56,9 +56,9 @@ class UserController {
     const { id: userId } = req.params;
     try {
       const result = await UserService.deleteUser({ where: { id: userId } });
-      if (result === 'User not found') {
-        return next(new CustomError('User not found', 404));
-      }
+      // if (result === 'User not found') {
+      //   return next(new CustomError('User not found', 404));
+      // }
       res.json({ message: 'User deleted successfully' });
     } catch (error) {
       next(new CustomError('Failed to delete user', 500));

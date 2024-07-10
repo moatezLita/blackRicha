@@ -3,21 +3,21 @@
     "username": "black_richa_admin",
     "password": "blackAdmin2023*",
     "database": "black_richa_db",
-    "host": "localhost",
+    "host": "151.80.56.68",
     "dialect": "postgres"
   },
   "test": {
     "username": "black_richa_admin",
     "password": "blackAdmin2023*",
     "database": "black_richa_db",
-    "host": "localhost",
+    "host": "151.80.56.68",
     "dialect": "postgres"
   },
   "development": {
     "username": "black_richa_admin",
     "password": "blackAdmin2023*",
     "database": "black_richa_db",
-    "host": "localhost",
+    "host": "151.80.56.68",
     "dialect": "postgres"
   }
 }

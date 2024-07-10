@@ -4,15 +4,15 @@ const { CustomError } = require('../middleware/errorHandler');
 class OrderController {
 
   async getOrdersByUserId(req, res, next) {
-    const { userId: userId } = req.params;
+    const { userId} = req.params;
     try {
-      const order = await OrderService.getOrdersByUserId({ where: { UserId: userId } });
-      if (!order) {
-        return next(new CustomError('Order not found', 404));
-      }
+      const order = await OrderService.getOrdersByUserId(userId);
+      // if (!order) {
+      //   return next(new CustomError('Order not found', 404));
+      // }
       res.json(order);
     } catch (error) {
-      next(new CustomError('Failed to get order by ID', 500));
+      next(new CustomError('Failed to get order by userID', 500));
     }
   }
   async getAllOrders(req, res, next) {
@@ -28,9 +28,9 @@ class OrderController {
     const { id: orderId } = req.params;
     try {
       const order = await OrderService.getOrderById({ where: { id: orderId } });
-      if (!order) {
-        return next(new CustomError('Order not found', 404));
-      }
+      // if (!order) {
+      //   return next(new CustomError('Order not found', 404));
+      // }
       res.json(order);
     } catch (error) {
       next(new CustomError('Failed to get order by ID', 500));
@@ -52,9 +52,9 @@ class OrderController {
     const orderData = req.body;
     try {
       const updatedOrder = await OrderService.updateOrder({ where: { id: orderId } }, orderData);
-      if (!updatedOrder) {
-        return next(new CustomError('Order not found', 404));
-      }
+      // if (!updatedOrder) {
+      //   return next(new CustomError('Order not found', 404));
+      // }
       res.json(updatedOrder);
     } catch (error) {
       next(new CustomError('Failed to update order', 500));
@@ -65,9 +65,9 @@ class OrderController {
     const { id: orderId } = req.params;
     try {
       const result = await OrderService.deleteOrder({ where: { id: orderId } });
-      if (result === 'Order not found') {
-        return next(new CustomError('Order not found', 404));
-      }
+      // if (result === 'Order not found') {
+      //   return next(new CustomError('Order not found', 404));
+      // }
       res.json({ message: 'Order deleted successfully' });
     } catch (error) {
       next(new CustomError('Failed to delete order', 500));

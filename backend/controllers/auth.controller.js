@@ -39,6 +39,7 @@ class AuthController {
         const token = generateToken(newUser);
         res.json({ token });
       } catch (error) {
+        console.log(error);
         res.status(500).json({ error: error.message });
       }
     })(req, res, next);

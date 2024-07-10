@@ -1,4 +1,4 @@
-const { or } = require('sequelize');
+const { or, where } = require('sequelize');
 const { use } = require('../app');
 const Order = require('../models/order.model');
 
@@ -7,11 +7,13 @@ class OrderService {
   async getOrdersByUserId (userId) {
     try {
       // Fetch orders from the database based on the userId
-      const orders = await Order.findAll( userId ); // Assuming your Order model has a 'userId' field
+      const orders = await Order.findAll( {
+         where : {userId}  
+    } ); // Assuming your Order model has a 'userId' field
   
       return orders;
     } catch (error) {
-      // Handle any errors
+      console.log(error);
       throw new Error('Failed to get orders by userId');
     }
   }

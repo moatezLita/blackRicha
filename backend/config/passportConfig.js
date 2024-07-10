@@ -4,7 +4,7 @@ const { Strategy: LocalStrategy } = require('passport-local');
 const jwt = require('jsonwebtoken');
 const User = require('../models/user.model'); // Replace with your User model
 
-const secretKey = process.env.SECRET_KEY;
+const secretKey = 'i9ZxB3jekK/6N9JE9JCPH3QaX/9TTEOSMlR6VZ3SPpM';
 
 // JWT Strategy
 passport.use(

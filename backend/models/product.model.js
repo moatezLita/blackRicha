@@ -1,4 +1,3 @@
-// models/product.js
 const { DataTypes } = require('sequelize');
 const sequelize = require('../sequelize');
 
@@ -25,7 +24,7 @@ const Product = sequelize.define('Product', {
   },
   picture_path: {
     type: DataTypes.STRING,
-    allowNull: true, // or set it to false if picture_path is required
+    allowNull: true,
   },
 });
 

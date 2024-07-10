@@ -38,14 +38,14 @@ const CategoryPreview = () => {
         <div className="order-1 lg:row-span-2 col-span-2 relative shadow rounded-md overflow-hidden bg-pink-100 filter hover:shadow-lg hover:brightness-125">
           <Link to="/category/1" className="pt-8 pb-20 px-5 block w-full h-full">
             <div>
-              <img src="/images/tokyo/108A4592.jpg" alt="lit coffre" className="absolute inset-0 w-full h-full object-cover object-center" />
+              <img src="https://www.exist.com.tn/img/milieu.jpg" alt="lit coffre" className="absolute inset-0 w-full h-full object-cover object-center" />
               <div className="absolute inset-0 w-full h-full bg-gradient-to-t from-gray-600 opacity-70" />
             </div>
             <div className="relative h-full flex flex-col items-start text-white">
               
               <h3 className="text-3xl font-playfair tracking-wider leading-relaxed antialiased">
-                <span className="block text-gray-600">Lit</span>
-                <span className="block text-gray-600">Coffre</span>
+                <span className="block text-white">Men's</span>
+                <span className="block text-white">clothes</span>
               </h3>
               {/* <p className="mt-4 text-base font-medium font-serif">Summer 2022</p>
               <span className="mt-4 inline-flex justify-center items-center py-1 px-3 border-none rounded bg-white bg-opacity-30 text-xs text-white font-semibold">Popular</span>
@@ -62,7 +62,7 @@ const CategoryPreview = () => {
             {/* ::Background Picture */}
             <div>
               {/* :::picture */}
-              <img src="/images/matelas/108A4635.jpg" alt="matelas" className="absolute inset-0 w-full h-full object-cover object-center" />
+              <img src="https://row.gymshark.com/_next/image?url=https%3A%2F%2Fimages.ctfassets.net%2Fwl6q2in9o7k3%2F18RVdH6SI8wkA4Gz0hF1Ja%2F44b495d495307ba069a278b0a2d35cb4%2Frun-club.jpg&w=1664&q=85" alt="matelas" className="absolute inset-0 w-full h-full object-cover object-center" />
               {/* :::overlay */}
               <div className="absolute inset-0 w-full h-full bg-gradient-to-t from-gray-600 opacity-70" />
             </div>
@@ -71,7 +71,7 @@ const CategoryPreview = () => {
               {/* :::description */}
               {/* <p className="text-sm font-light">To have that <br /> "je ne sais quoi"</p> */}
               {/* :::name */}
-              <h3 className="text-2xl font-playfair tracking-wide leading-relaxed antialiased">Matelas</h3>
+              <h3 className="text-2xl font-playfair tracking-wide leading-relaxed antialiased">Gym</h3>
             </div>
           </a>
         </div>
@@ -79,21 +79,21 @@ const CategoryPreview = () => {
 
 
         {/* :CATEGORY 3 -> LARGE, CENTER BOTTOM*/}
-        <div className="order-4 lg:order-3 lg:row-span-1 col-span-full sm:col-span-1 lg:col-span-2 relative shadow rounded-md overflow-hidden bg-pink-400 filter hover:shadow-lg hover:brightness-125">
+        <div className="order-4 lg:order-3 lg:row-span-1 col-span-full sm:col-span-1 lg:col-span-2 relative shadow rounded-md overflow-hidden  filter hover:shadow-lg hover:brightness-125">
           <a href="#link" className="py-5 px-5 block w-full h-full">
             {/* ::Background Picture */}
             <div>
               {/* :::picture */}
-              <img src="/images/bella/108A4607.jpg" alt="cadre de lit" className="absolute top-0 right-0 w-full lg:w-auto h-full object-cover lg:object-contain object-center" />
+              <img src="https://www.decathlon.tn/img/cms/solde%20hiver%202024/Banner-Desktop-Meuble.jpg" alt="cadre de lit" className="absolute top-0 right-0 w-full lg:w-auto h-full object-cover lg:object-contain object-center" />
               {/* :::overlay */}
-              <div className="absolute inset-0 w-full h-full bg-gradient-to-r from-pink-400 lg:via-pink-300" />
+              {/* <div className="absolute inset-0 w-full h-full bg-gradient-to-r from-pink-300 lg:via-pink-100" /> */}
             </div>
             {/* ::Category Infos */}
             <div className="relative h-full flex flex-col justify-between items-start text-white">
               {/* :::badge tag */}
               <span className="inline-flex justify-center items-center py-1 px-3 border-none rounded bg-white bg-opacity-30 text-xs text-white font-semibold">Trendy</span>
               {/* :::name */}
-              <h3 className="mt-16 text-2xl font-playfair tracking-wide leading-relaxed antialiased">Cadre de Lit</h3>
+              <h3 className="mt-16 text-2xl font-playfair tracking-wide leading-relaxed antialiased">Accessories</h3>
             </div>
           </a>
         </div>
@@ -106,13 +106,13 @@ const CategoryPreview = () => {
         <div class="order-4 lg:order-4 lg:row-span-1 col-span-full sm:col-span-1 relative shadow rounded-md overflow-hidden bg-gray-500 filter hover:shadow-lg hover:brightness-125">
             <a href="#link" class="py-5 px-5 block w-full h-full">
             <div>
-                <img src="/images/chevets/108A4482.JPG" alt="chevets" class="absolute inset-0 w-full h-full object-cover object-center"/>            <div class="absolute inset-0 w-full h-full bg-gradient-to-r from-black via-transparent opacity-70">
+                <img src="https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/c8294970-6e75-49cc-8334-dc15bb827a57/pegasus-easyon-blueprint-mens-road-running-shoes-gfqzHD.png" alt="chevets" class="absolute inset-0 w-full h-full object-cover object-center"/>            <div class="absolute inset-0 w-full h-full bg-gradient-to-r from-black via-transparent opacity-70">
 
             </div>
             </div>
             <div class="relative h-full flex flex-col justify-between items-start space-y-16 text-white">
                 <span class="inline-flex justify-center items-center py-1 px-3 border-none rounded bg-white bg-opacity-30 text-xs text-white font-semibold">New</span>
-                <h3 class="text-2xl font-playfare tracking-wide leading-relaxed antialiased">Chevets</h3>
+                <h3 class="text-2xl font-playfare tracking-wide leading-relaxed antialiased">Running</h3>
                 </div>
                 </a>
         </div>
@@ -124,7 +124,7 @@ const CategoryPreview = () => {
             {/* ::Background Picture */}
             <div>
               {/* :::picture */}
-              <img src="/images/prestige/108A4488.jpg" alt="" className="absolute inset-0 w-full h-full object-cover object-center" />
+              <img src="https://xcdn.next.co.uk/Common/Items/Default/Default/ItemImages/Search/676/537510.jpg?im=Resize,width=350" alt="" className="absolute inset-0 w-full h-full object-cover object-center" />
               {/* :::overlay */}
               <div className="absolute inset-0 w-full h-full bg-gradient-to-r from-blue-700 opacity-50" />
             </div>
@@ -134,8 +134,8 @@ const CategoryPreview = () => {
               <span className="inline-flex justify-center items-center py-1 px-3 border-none rounded bg-white bg-opacity-30 text-xs text-white font-semibold">Popular</span>
               {/* :::name */}
               <h3 className="text-3xl font-playfair tracking-wider leading-relaxed antialiased">
-                <span className="block">Lit</span>
-                <span className="block">Coffre</span>
+                <span className="block">women's</span>
+                <span className="block">clothes</span>
               </h3>
             </div>
           </a>

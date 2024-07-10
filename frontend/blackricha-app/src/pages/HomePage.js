@@ -25,10 +25,10 @@ const HomePage = () => {
     return (
         <>
 
-            <div className="mt-20">
+            {/* <div className="mt-20">
                 <CarouselEx/>
 
-            </div>
+            </div> */}
             <div className="mt-10 mb-10">
                 <h2 className="text-2xl font-bold text-center mb-4">Découvrez de nouveaux produits</h2>
                 <p className="text-gray-600 text-center">Explorez notre dernière collection et trouvez quelque chose que vous allez adorer.</p>
@@ -48,25 +48,21 @@ const HomePage = () => {
             <div className='mt-10'>
                 <header className="text-center">
                     <h2 className="text-xl font-bold text-gray-900 sm:text-3xl">
-                        Cadre de lit
+                        t-shirt pour homme
                     </h2>
 
-                    <p className="max-w-md mx-auto mt-4 text-gray-500">
-                    Découvrez notre collection de cadres de lit 
-                    haut de gamme pour créer une chambre à coucher élégante et confortable. 
-                    </p>
+                    
                 </header>
-                <ProductCollectionByCategory categoryId={1} filters={filters} />
+                <ProductCollectionByCategory categoryId={2} filters={filters} />
             </div>
             <div>
                 <header className="text-center">
                     <h2 className="text-xl font-bold text-gray-900 sm:text-3xl">
-                        Lit coffre
+                        Colletion pour Femmes
                     </h2>
 
                     <p className="max-w-md mx-auto mt-4 text-gray-500">
-                    Confort et rangement réunis pour une chambre pratique et stylée.
-                     Découvrez notre sélection pour maximiser l'espace de votre chambre avec élégance.
+                    
                     </p>
                 </header>
                 <ProductCollectionByCategory categoryId={3} filters={filters}/>
@@ -74,31 +70,21 @@ const HomePage = () => {
             <div>
                 <header className="text-center">
                     <h2 className="text-xl font-bold text-gray-900 sm:text-3xl">
-                        Matelas
+                        Accessoires
                     </h2>
 
-                    <p className="max-w-md mx-auto mt-4 text-gray-500">
+                    {/* <p className="max-w-md mx-auto mt-4 text-gray-500">
                     Expérience de sommeil exceptionnelle garantie avec nos matelas haut de gamme.
                      Choisissez le confort parfait pour des nuits reposantes.
-                    </p>
+                    </p> */}
                 </header>
-                <ProductCollectionByCategory categoryId={3} filters={filters}/>
+                <ProductCollectionByCategory categoryId={6} filters={filters}/>
             </div>
 
-            <div className="text-center mb-3">
-                {/* <h4>Our products</h4> */}
-            </div>
-            {/* <div className=" mb-8"> */}
-                {/* <ProductListing /> */}
-                {/* <Tab /> */}
-                {/* <ProductListing /> */}
-            {/* </div> */}
-            {/* <div><Album categoryId={4}/></div> */}
-            <div className='   mt-20 mb-20' >
-                {/* <PromoSection /> */}
-            </div>
+            
+         
             <div><BottomBanner /></div>
-            {/* <div><Footer /></div> */}
+           
         </>
     );
 }

@@ -14,8 +14,8 @@
                         <path d="M7.33333 28.0002C9.17428 28.0002 10.6667 26.5078 10.6667 24.6668C10.6667 22.8259 9.17428 21.3335 7.33333 21.3335C5.49238 21.3335 4 22.8259 4 24.6668C4 26.5078 5.49238 28.0002 7.33333 28.0002Z" stroke="#4B5563" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                         <path d="M24.6667 28.0002C26.5077 28.0002 28 26.5078 28 24.6668C28 22.8259 26.5077 21.3335 24.6667 21.3335C22.8258 21.3335 21.3334 22.8259 21.3334 24.6668C21.3334 26.5078 22.8258 28.0002 24.6667 28.0002Z" stroke="#4B5563" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                     </svg>
-                    <h3 className=" text-xl leading-5 font-semibold text-gray-800 lg:mt-10 mt-8 ">Livraiso</h3>
-                    <p className=" text-base leading-6 font-normal text-gray-600 mt-4 lg:w-full md:w-9/12 w-full">Nous proposons une livraison rapide et fiable dans plusieurs villes à travers la France</p>
+                    <h3 className=" text-xl leading-5 font-semibold text-gray-800 lg:mt-10 mt-8 ">Livraison</h3>
+                    <p className=" text-base leading-6 font-normal text-gray-600 mt-4 lg:w-full md:w-9/12 w-full">Nous proposons une livraison rapide et fiable dans plusieurs villes à travers la Tunisie</p>
                 </div>
 
                 {/* customer Grid Card */}
@@ -26,7 +26,7 @@
                     </svg>
                     <h3 className=" text-xl leading-5 font-semibold text-gray-800 lg:mt-10 mt-8 ">Customer Care</h3>
                     <p className=" text-base leading-6 font-normal text-gray-600 mt-4 lg:w-full md:w-9/12 w-full">
-                        Our customer care is available 24/7 at <span className=" font-semibold cursor-pointer">0664954078</span> and <span className=" font-semibold cursor-pointer">Blackricha.contact@gmail.com</span>
+                        Our customer care is available 24/7 at <span className=" font-semibold cursor-pointer">+216 90 318 391</span> and <span className=" font-semibold cursor-pointer">moatezaminesabri@gmail.com</span>
                     </p>
                 </div>
 

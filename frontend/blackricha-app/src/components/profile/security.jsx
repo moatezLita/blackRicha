@@ -10,7 +10,7 @@ import SideBar from './sideBar';
 // import { PaperClipIcon } from '@heroicons/react/20/solid'
 
 
-export default function ProfileComponent() {
+export default function SecutityComponent() {
 
 
   const [user, setuser] = useState([]);
@@ -25,12 +25,9 @@ export default function ProfileComponent() {
 
   const [formData, setFormData] = useState({
     username: '',
-    firstName: '',
-    lastName: '',
-    phone: '',
-    address: '',
-    city: '',
-    zipCode: ''
+    email: '',
+    password: '',
+    
   });
   // const role = userData&& userData.role;
   // console.log(id);
@@ -55,15 +52,12 @@ export default function ProfileComponent() {
     const fetchuser = async () => {
       try {
         const userData = await getUserById(id);
-        console.log(userData);
+        // console.log(userData);
         setFormData({
-          username: userData.username,
-          firstName: userData.firstName,
-          lastName: userData.lastName,
-          phone: userData.phone,
-          address: userData.address,
-          city: userData.city,
-          zipCode: userData.zipCode
+            email: userData.email,
+            newEmail: '',
+            password: userData.password,
+            newPassword: ''
         });
         // setuser(userData);
       } catch (error) {
@@ -169,117 +163,68 @@ export default function ProfileComponent() {
           <form onSubmit={handleSubmit}>
 
             <div className='mt-8 flex flex-col gap-4 items-center px-6'>
-            <div className='self-start w-full flex flex-col gap-3  '>
-                  <label className='self-start  block text-base font-medium text-dark dark:text-white'>
-                    Usernname
-                  </label>
-                  <input
-                    type='text'
-                    name='username'
-                    value={formData.username}
-                    onChange={handleChange}
-                    placeholder='Username'
-                    className='w-full bg-transparent rounded-md border border-primary py-[10px] px-5 text-dark-5 outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-gray-2 disabled:border-gray-2'
-                  />
-                </div>
               <div className='flex gap-4 w-full'>
                 <div className='flex flex-col gap-3 basis-1/2 '>
-                  <label className='self-start  block text-base font-medium text-dark dark:text-white'>
-                    First Name
+                <label className='self-start block text-base font-medium text-dark dark:text-white'>
+                    Email
                   </label>
                   <input
                     type='text'
-                    name='firstName'
-                    value={formData.firstName}
+                    name='email'
+                    value={formData.email}
                     onChange={handleChange}
-                    placeholder='First name'
+                    placeholder='Current email'
                     className='w-full bg-transparent rounded-md border border-primary py-[10px] px-5 text-dark-5 outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-gray-2 disabled:border-gray-2'
                   />
                 </div>
 
-
                 <div className='flex flex-col gap-3 basis-1/2 '>
-                  <label className='self-start  block text-base font-medium text-dark dark:text-white'>
-                    Last Name
+                  <label className='self-start block text-base font-medium text-dark dark:text-white'>
+                    New Email
                   </label>
                   <input
                     type='text'
-                    name='lastName'
-                    value={formData.lastName}
+                    name='newEmail'
+                    value={formData.newEmail}
                     onChange={handleChange}
-                    placeholder='Last name'
+                    placeholder='New email'
                     className='w-full bg-transparent rounded-md border border-primary py-[10px] px-5 text-dark-5 outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-gray-2 disabled:border-gray-2'
                   />
                 </div>
               </div>
-              <div className='flex gap-4 w-full'>
 
+              <div className='flex gap-4 w-full mt-12'>
                 <div className='flex flex-col gap-3 basis-1/2 '>
-                  <label className='self-start  block text-base font-medium text-dark dark:text-white'>
-                    Phone
+                  <label className='self-start block text-base font-medium text-dark dark:text-white'>
+                    Password
                   </label>
                   <input
-                    type='text'
-                    name='phone'
-                    value={formData.phone}
+                    type='password'
+                    name='password'
+                    // value={formData.password}
                     onChange={handleChange}
-                    placeholder='+216 00 000 000'
+                    placeholder='Current password'
                     className='w-full bg-transparent rounded-md border border-primary py-[10px] px-5 text-dark-5 outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-gray-2 disabled:border-gray-2'
                   />
                 </div>
-
-
-
-
-                <div className='flex flex-col gap-3  basis-1/2'>
-                  <label className='self-start  block text-base font-medium text-dark dark:text-white'>
-                    Adresse
-                  </label>
-                  <input
-                    type='text'
-                    name='adress'
-                    value={formData.address}
-                    onChange={handleChange}
-                    placeholder='adress'
-                    className='w-full bg-transparent rounded-md border border-primary py-[10px] px-5 text-dark-5 outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-gray-2 disabled:border-gray-2'
-                  />
-                </div>
-
-              </div>
-              <div className='flex gap-4 w-full'>
 
                 <div className='flex flex-col gap-3 basis-1/2'>
-                  <label className='self-start  block text-base font-medium text-dark dark:text-white'>
-                    City
+                  <label className='self-start block text-base font-medium text-dark dark:text-white'>
+                    New Password
                   </label>
                   <input
-                    type='text'
-                    name='city'
-                    value={formData.city}
+                    type='password'
+                    name='newPassword'
+                    value={formData.newPassword}
                     onChange={handleChange}
-                    placeholder='city'
+                    placeholder='New password'
                     className='w-full bg-transparent rounded-md border border-primary py-[10px] px-5 text-dark-5 outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-gray-2 disabled:border-gray-2'
                   />
                 </div>
-
-
-                <div className='flex flex-col gap-3 basis-1/2'>
-                  <label className='self-start  block text-base font-medium text-dark dark:text-white'>
-                    Zip Code
-                  </label>
-                  <input
-                    type='text'
-                    name='zipCode'
-                    value={formData.zipCode}
-                    onChange={handleChange}
-                    placeholder='2097'
-                    className='w-full bg-transparent rounded-md border border-primary py-[10px] px-5 text-dark-5 outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-gray-2 disabled:border-gray-2'
-                  />
-                </div>
-
               </div>
+              
               <button
-                className="block w-48 select-none rounded-lg bg-gradient-to-tr from-gray-900 to-gray-800 py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-white shadow-md shadow-gray-900/10 transition-all hover:shadow-lg hover:shadow-gray-900/20 active:opacity-[0.85] disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+                className="mt-12 block w-48 select-none rounded-lg bg-gradient-to-tr from-gray-900 to-gray-800 py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-white shadow-md shadow-gray-900/10 transition-all hover:shadow-lg hover:shadow-gray-900/20 active:opacity-[0.85] disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
                 type="submit">
                 Save
               </button>

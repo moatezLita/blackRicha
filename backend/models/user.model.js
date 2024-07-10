@@ -1,26 +1,24 @@
-// models/user.js
 const { DataTypes } = require('sequelize');
 const sequelize = require('../sequelize');
 const bcrypt = require('bcrypt');
 
-
 const User = sequelize.define('User', {
   username: {
     type: DataTypes.STRING,
-    allowNull: false,
-    unique: true,
+    // allowNull: false,
+    // unique: true,
   },
   firstName: {
-    type: String,
-    required: true
+    type: DataTypes.STRING,
+    // allowNull: false,
   },
   lastName: {
-    type: String,
-    required: true
+    type: DataTypes.STRING,
+    // allowNull: false,
   },
   role: {
     type: DataTypes.STRING,
-    allowNull: false,
+    // allowNull: false,
     defaultValue: 'user',
   },
   email: {
@@ -33,22 +31,21 @@ const User = sequelize.define('User', {
     allowNull: false,
   },
   phone: {
-    type: String,
-    required: true,
+    type: DataTypes.STRING,
+    // allowNull: false,
   },
   address: {
-    type: String,
-    required: true,
+    type: DataTypes.STRING,
+    // allowNull: false,
   },
   city: {
-    type: String,
-    required: true,
+    type: DataTypes.STRING,
+    // allowNull: false,
   },
   zipCode: {
-    type: String,
-    required: true,
+    type: DataTypes.STRING,
+    // allowNull: false,
   },
-
 });
 
 User.prototype.comparePassword = async function (enteredPassword) {

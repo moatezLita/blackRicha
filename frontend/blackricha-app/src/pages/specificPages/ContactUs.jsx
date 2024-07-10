@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { ChevronDownIcon } from '@heroicons/react/20/solid'
+// import { ChevronDownIcon } from '@heroicons/react/20/solid'
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
@@ -103,10 +103,10 @@ export default function ContactUs() {
                   <option>Fr</option>
                   
                 </select>
-                <ChevronDownIcon
+                {/* <ChevronDownIcon
                   className="pointer-events-none absolute right-3 top-0 h-full w-5 text-gray-400"
                   aria-hidden="true"
-                />
+                /> */}
               </div>
               <input
                 type="tel"

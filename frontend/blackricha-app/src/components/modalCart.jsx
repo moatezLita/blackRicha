@@ -3,7 +3,7 @@ import Cart from './shoppingCart/cart'
 import ProductDetails from './product/ProductDetails'
 import { Fragment, useRef } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
-import { ExclamationTriangleIcon } from '@heroicons/react/24/outline'
+// import { ExclamationTriangleIcon } from '@heroicons/react/24/outline'
 import { useParams  } from 'react-router-dom';
 
 
@@ -43,8 +43,8 @@ export default function ModalCart({ SetOpen }) {
           <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
         </Transition.Child>
 
-        <div className="inset-10 mt-20 fixed inset-0 z-50 overflow-y-auto">
-          <div className="flex items-end justify-center p-6 text-center items-center justify-center p-20">
+        <div className=" mt-20 fixed inset-0 z-50 overflow-y-auto">
+          <div className="flex  justify-center p-6 text-center items-center j">
 <div className='border-10 rounded-lg shadow-lg relative flex flex-col w-full bg-white '>
 
             <Transition.Child

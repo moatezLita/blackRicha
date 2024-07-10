@@ -3,13 +3,13 @@ const { CustomError } = require('../middleware/errorHandler');
 
 class ProductController {
   
-  async  getProductsByCategoryId(req, res, next) {
-    const {categoryId: categoryId } = req.params;
+  async getProductsByCategoryId(req, res, next) {
+    const { categoryId } = req.params;
     try {
-      const products = await ProductService.getProductsByCategoryId({ where: { CategoryId : categoryId } });
-      if (products.length === 0) {
-        return next(new CustomError('No products found for the given category', 404));
-      }
+      const products = await ProductService.getProductsByCategoryId(categoryId);
+      // if (products.length === 0) {
+      //   return next(new CustomError('No products found for the given category', 404));
+      // }
       res.json(products);
     } catch (error) {
       next(new CustomError('Failed to get products by category ID', 500));
@@ -29,9 +29,9 @@ class ProductController {
     const { id: productId } = req.params;
     try {
       const product = await ProductService.getProductById({ where: { id: productId } });
-      if (!product) {
-        return next(new CustomError('Product not found', 404));
-      }
+      // if (!product) {
+      //   return next(new CustomError('Product not found', 404));
+      // }
       res.json(product);
     } catch (error) {
       next(new CustomError('Failed to get product by ID', 500));
@@ -53,9 +53,9 @@ class ProductController {
     const productData = req.body;
     try {
       const updatedProduct = await ProductService.updateProduct({ where: { id: productId } }, productData);
-      if (!updatedProduct) {
-        return next(new CustomError('Product not found', 404));
-      }
+      // if (!updatedProduct) {
+      //   return next(new CustomError('Product not found', 404));
+      // }
       res.json(updatedProduct);
     } catch (error) {
       next(new CustomError('Failed to update product', 500));
@@ -66,9 +66,9 @@ class ProductController {
     const { id: productId } = req.params;
     try {
       const result = await ProductService.deleteProduct({ where: { id: productId } });
-      if (result === 'Product not found') {
-        return next(new CustomError('Product not found', 404));
-      }
+      // if (result === 'Product not found') {
+      //   return next(new CustomError('Product not found', 404));
+      // }
       res.json({ message: 'Product deleted successfully' });
     } catch (error) {
       next(new CustomError('Failed to delete product', 500));

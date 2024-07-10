@@ -1,11 +1,9 @@
-// models/cart.js
 const { DataTypes } = require('sequelize');
 const sequelize = require('../sequelize');
-const User = require('./user.model');
-const Product = require('./product.model');
+// const User = require('./user');
+// const Product = require('./product');
 
 const Cart = sequelize.define('Cart', {
-  
   products: {
     type: DataTypes.ARRAY(DataTypes.INTEGER),
     allowNull: false,
@@ -16,10 +14,10 @@ const Cart = sequelize.define('Cart', {
   },
 });
 
-User.hasMany(Cart);
-Cart.belongsTo(User);
+// User.hasMany(Cart, { foreignKey: 'userId' });
+// Cart.belongsTo(User, { foreignKey: 'userId' });
 
-Product.hasMany(Cart);
-Cart.belongsTo(Product);
+// Product.hasMany(Cart, { foreignKey: 'productId' });
+// Cart.belongsTo(Product, { foreignKey: 'productId' });
 
 module.exports = Cart;

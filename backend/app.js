@@ -1,11 +1,12 @@
 const express = require('express');
 const app = express();
-const sequelize = require('./sequelize');
+// const sequelize = require('./sequelize');
 const errorHandler = require('./middleware/errorHandler');
 const cors = require('cors')
 const helmet = require('helmet');
 const xss = require ('xss-clean');
 const rateLimiter = require ('express-rate-limit');
+const { sequelize } = require('./models');  // Adjust the path to your models directory
 
 require('dotenv').config({ path: './backend/.env' });
 
@@ -33,10 +34,19 @@ app.use(rateLimiter({
 	legacyHeaders: false, // Disable the `X-RateLimit-*` headers
 }))
 app.use(cors({
-	origin: 'http://51.77.210.141:3000'
+  origin: 'http://localhost:3000' // Allow requests from this origin
 }));
 
 
+// sequelize.sync({ force: false })
+//   .then(() => {
+//     console.log('Database & tables created!');
+//   })
+//   .catch(err => {
+//     console.error('Unable to create tables, shutting down...', err);
+//     process.exit(1);
+//   });
+  
 app.use(errorHandler.errorHandler);
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
@@ -53,8 +63,19 @@ app.use('/api/cart', cartRoutes);
 app.use('/api/search', searchRoutes);
 
 // Start the server
-app.listen(port, () => {
-  console.log(`Server is running on port ${port}`);
-});
 
+sequelize.authenticate()
+  .then(() => {
+    console.log('Database connected...');
+    return sequelize.sync(); // Synchronize models with the database
+  })
+  .then(() => {
+    console.log('Models synchronized...');
+    app.listen(port, () => {
+      console.log(`Server running on port ${port}`);
+    });
+  })
+  .catch(err => {
+    console.error('Error connecting to the database:', err);
+  });
 module.exports = app;

@@ -75,6 +75,7 @@ class UserService {
       await user.save();
       return user;
     } catch (error) {
+      console.log(error);
       throw new Error('Failed to create user');
     }
   }

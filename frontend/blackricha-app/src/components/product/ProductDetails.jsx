@@ -22,7 +22,7 @@
 
 import React, { useState, useContext } from 'react'
 import { useEffect } from 'react';
-import { HeartIcon, ShoppingBagIcon } from '@heroicons/react/24/outline';
+// import { HeartIcon, ShoppingBagIcon } from '@heroicons/react/24/outline';
 import { getProductById } from '../../api/productsApi';
 import { useParams  } from 'react-router-dom';
 import { ShoppingCartContext } from '../../context/CartContext';
@@ -30,9 +30,7 @@ import { ShoppingCartContext } from '../../context/CartContext';
 
 
 const ProductDetails = ({id}) => {
-// const   { id } = useParams();
   const [product, setProduct] = useState([]);
-  // const [mainPicture, setMainPicture] = useState(0)
   const [quantity, setQuantity] = useState(1);
 
   const { addItemToCart } = useContext(ShoppingCartContext);
@@ -63,42 +61,12 @@ const ProductDetails = ({id}) => {
   if (!product) {
       return <div>Loading...</div>;
   }
-  // const product = {
-  //   name: "Glass Teapot Master",
-  //   price: 199,
-  //   rating: 4.4,
-  //   reviews: 96,
-  //   hrefReviews: "#link",
-  //   description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias, id tenetur consectetur, rem vel repudiandae, obcaecati autem corporis maxime laborum debitis ullam. Similique nisi, porro perspiciatis vel ipsam aliquam repudiandae. Facilis dolorem incidunt nobis quaerat exercitationem quos eaque ducimus aut possimus, aperiam, enim nulla provident! Ad necessitatibus atque pariatur, iste dignissimos ex.",
-  //   features: [
-  //     { name: 'Materials', details:'Bamboo, Glass' },
-  //     { name: 'Teapot', details:'7"L x 4.5"W x 4.5"H' },
-  //     { name: 'Capacity', details:'650 ml.' },
-  //     { name: 'Cleaning', details:'Hand Wash' }
-  //   ],
-  //   colors: [
-  //     { name: 'Black', class: 'bg-black' },
-  //     { name: 'White', class: 'bg-white' },
-  //     { name: 'Blue', class: 'bg-sky-400' },
-  //   ],
-  //   sizes: [
-  //     { name: 'Size 1', inStock: true },
-  //     { name: 'Size 2', inStock: true },
-  //     { name: 'Size 3', inStock: false }
-  //   ],
-  //   pictures: [
-  //     { src: "https://fancytailwind.com/static/teapot1-e0cd61cf4337f086df22de4c2f646db0.webp", alt:"Teapot model"  },
-  //     { src: "https://fancytailwind.com/static/teapot2-9482ecf0cb04a9cbeacd01c7c869c970.webp", alt:"Teapot to pour water"  },
-  //     { src: "https://fancytailwind.com/static/teapot3-0596668cb1f92d4f0463e37d3ee69b36.webp", alt:"Teapot for breakfast"  },
-  //     { src: "https://fancytailwind.com/static/teapot4-73239d591549fa281e07e14a5e9939fb.webp", alt:"Teapot on warming machine"  },
-  //   ]
-  // }
 
-  
+  const rating = 5
 
-  const starsNumber = Math.floor(product.rating)
-  const isHalfStar = !Number.isInteger(product.rating)
-  const emptyStars = 5 - Math.ceil(product.rating)
+  const starsNumber = Math.floor(rating)
+  const isHalfStar = !Number.isInteger(rating)
+  const emptyStars = 5 - Math.ceil(rating)
 
 
   return (
@@ -110,19 +78,18 @@ const ProductDetails = ({id}) => {
           {/* ::Like Button */}
           <span className="self-start ml-10">
             <button className="text-gray-300 hover:text-red-500">
-              <HeartIcon className="w-10 h-10" />
+              {/* <HeartIcon className="w-10 h-10" /> */}
             </button>
           </span>
-          {/* ::Main Picture */}
-          <div className="w-auto h-56 sm:h-72 lg:h-full max-h-96 overflow-hidden">
-            {/* <img src = {product.picture_path}></img> */}
-            <img src="C:/Users/ambalitaiem/Desktop/blackRicha/shared/IMG2" alt="" />
-            {/* <img src={product.pictures[mainPicture].src} alt={product.pictures[mainPicture].alt} className="object-contain w-full h-full" /> */}
+          <div className='w-auto h-96 overflow-y-auto'>
+          <div className="">
+            <img src={product.picture_path} alt="" />
+          </div>
           </div>
           {/* ::Gallery */}
           <div className="mt-6 mx-auto">
-            <ul className="grid grid-flow-col auto-cols-fr gap-4">
-              {/* {product.pictures
+            {/* <ul className="grid grid-flow-col auto-cols-fr gap-4">
+              {product.pictures
                 .slice(0,4) // Here you can manage the number of pictures displayed
                 .map((picture, index) => (
                 <li key={picture.alt} className={`col-span-1 p-1 w-16 rounded border-2 ${index === mainPicture ? "border-yellow-600" : "border-transparent"}`}>
@@ -131,68 +98,64 @@ const ProductDetails = ({id}) => {
                   </button>
                 </li>
               ))
-              } */}
-            </ul>
+              }
+            </ul> */}
           </div>
         </div>
 
 
 
-        {/* :PRODUCT DETAILS */}
         <div className="lg:py-8 w-full lg:w-1/2 flex flex-col lg:border-l-2 border-gray-200">
 
-          {/* ::Description Container */}
           <div className="order-3 lg:order-1 pb-5 sm:px-6 lg:border-b-2 border-gray-200">
-            {/* :::Name */}
             <h1 className=" lg:block text-4xl text-gray-700 font-light tracking-wide">{product.name}</h1>
-            {/* :::Description */}
             <p className="mt-10 text-base text-gray-500">{product.description}</p>
-            {/* :::Features */}
-            <ul className="my-5 flex flex-col space-y-2">
-              {/* {product.features.map(feature => (
+            {/* <ul className="my-5 flex flex-col space-y-2">
+              {product.features.map(feature => (
                 <li key={feature.name} className="inline-flex items-center space-x-2 text-gray-500">
                   <span className="w-1.5 h-1.5 rounded-full bg-yellow-600" />
                   <span className="text-sm font-semibold">{feature.name}:</span>
                   <span className="text-sm font-normal">{feature.details}</span>
                 </li>
               ))
-              } */}
+              }
               <span className="w-1.5 h-1.5 rounded-full bg-yellow-600" />
                   <span className="text-sm font-semibold">meow</span>
                   <span className="text-sm font-normal">Kess</span>
-            </ul>
+            </ul> */}
           </div>
 
-          {/* ::Customization Container */}
           <div className="order-1 lg:order-2 py-8 sm:px-6 border-b-2 border-gray-200">
-              {/* :::Name */}
-            <h1 className="mb-5 block lg:hidden text-3xl sm:text-4xl text-gray-700 font-light tracking-wide">{product.name}</h1>
             <div className="flex flex-col sm:flex-row items-center space-y-4 sm:space-y-0 sm:space-x-6">
-              {/* :::Quantity */}
               <label htmlFor="quantity" className="sr-only">Select the quantity</label>
-              <input type="number" 
-              value={quantity}
-              min="1"
-              onChange={(e) => setQuantity(e.target.value)}
-              className="form-input py-1 pl-2 w-20 rounded border-2 border-gray-300 bg-gray-100 focus:border-yellow-600 focus:ring-0" />
-              {/* :::Color */}
+              <input type="number"
+                value={quantity}
+                min="1"
+                onChange={(e) => setQuantity(e.target.value)}
+                className="form-input py-1 pl-2 w-20 rounded border-2 border-gray-300 bg-gray-100 focus:border-yellow-600 focus:ring-0" />
+
               <label htmlFor="color" className="sr-only">Select your color</label>
               <select name="color" id="color" className="form-select py-1 pl-2 w-full max-w-xs rounded border-2 border-gray-300 bg-gray-100 text-gray-500 focus:border-yellow-600 focus:ring-0">
                 <option value="">Color</option>
-                {/* {product.colors.map(color => ( */}
-                  {/* <option value={color.name}>{color.name}</option> */}
-                {/* ))} */}
-                <option >hhhhhhhh</option>                
+                
+                <option >red</option>
+                <option >black</option>
+
+                <option >blue</option>
+
+                <option >white</option>
+
               </select>
               {/* :::Size */}
               <label htmlFor="size" className="sr-only">Select your size</label>
               <select name="size" id="size" className="form-select py-1 pl-2 w-full max-w-xs rounded border-2 border-gray-300 bg-gray-100 text-gray-500 focus:border-yellow-600 focus:ring-0">
                 <option value="">Size</option>
-                {/* {product.sizes.map(size => (
-                  <option value={size.name}>{size.name}</option>
-                ))
-                } */}
-                <option> 16 </option>
+                
+                <option> XS </option>
+                <option> S </option>
+                <option> M </option>
+                <option> L </option>
+
               </select>
             </div>
           </div>
@@ -212,20 +175,20 @@ const ProductDetails = ({id}) => {
               quantity: quantity })} 
               
               className="m-2.5 py-1.5 px-5 inline-flex items-center rounded-md bg-yellow-500 text-base text-white font-semibold uppercase whitespace-nowrap hover:bg-yellow-600">
-              <ShoppingBagIcon className="mr-3 w-6 h-6" />
+              {/* <ShoppingBagIcon className="mr-3 w-6 h-6" /> */}
               Add to cart
             </button>
             {/* :::Reviews */}
-            <div className="m-2.5 flex items-center">
-              {/* ::::rating stars */}
               <div className="flex items-center space-x-1">
                 {/* full stars */}
-                {/* {[...Array(starsNumber)].map((star, index) =>(
+                {[...Array(starsNumber)].map((star, index) =>(
                   <span key={index} className="flex-shrink-0">
                     <svg className="w-4 h-4 text-yellow-500 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 .587l3.668 7.568 8.332 1.151-6.064 5.828 1.48 8.279-7.416-3.967-7.417 3.967 1.481-8.279-6.064-5.828 8.332-1.151z"/></svg>
                   </span>
                 ))
-                } */}
+               
+                }
+                 
                 {/* half star */}
                 {/* {isHalfStar &&
                   <span className="flex-shrink-0">
@@ -243,9 +206,8 @@ const ProductDetails = ({id}) => {
                 } */}
               </div>
               {/* ::::all reviews */}
-              <a href={product.hrefReviews} className="ml-2 text-sm text-sky-400 font-medium tracking-wide hover:text-sky-500 hover:underline">{`${product.reviews} reviews`}</a>
+              {/* <a href={product.hrefReviews} className="ml-2 text-sm text-sky-400 font-medium tracking-wide hover:text-sky-500 hover:underline">{`${product.reviews} reviews`}</a> */}
             </div>
-          </div>
 
         </div>
 

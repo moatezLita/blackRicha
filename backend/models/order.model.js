@@ -1,8 +1,7 @@
-// models/order.js
 const { DataTypes } = require('sequelize');
 const sequelize = require('../sequelize');
-const User = require('./user.model');
-const Product = require('./product.model');
+// const User = require('./user');
+// const Product = require('./product');
 
 const Order = sequelize.define('Order', {
   quantity: {
@@ -19,10 +18,10 @@ const Order = sequelize.define('Order', {
   },
 });
 
-User.hasMany(Order);
-Order.belongsTo(User);
+// User.hasMany(Order, { foreignKey: 'userId' });
+// Order.belongsTo(User, { foreignKey: 'userId' });
 
-Product.hasMany(Order);
-Order.belongsTo(Product);
+// Product.hasMany(Order, { foreignKey: 'productId' });
+// Order.belongsTo(Product, { foreignKey: 'productId' });
 
 module.exports = Order;

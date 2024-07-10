@@ -23,12 +23,12 @@ class CategoryController {
     }
   }
   async getCategoryById(req, res, next) {
-    const { id: categoryId } = req.params;
+    const  categoryId  = req.params.categoryId;
     try {
-      const category = await CategoryService.getCategoryById({ where: { id: categoryId } });
-      if (!category) {
-        return next(new CustomError('Category not found', 404));
-      }
+      const category = await CategoryService.getCategoryById(categoryId);
+      // if (!category) {
+      //   return next(new CustomError('Category not found', 404));
+      // }
       res.json(category);
     } catch (error) {
       next(new CustomError('Failed to get category by ID', 500));
