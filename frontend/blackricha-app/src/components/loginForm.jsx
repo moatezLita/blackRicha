@@ -73,10 +73,10 @@ const LoginForm = ({setIsAuthenticated}) => {
 //         }
 //       };
   return (
-    <div class="mt-20 mb-20 w-full max-w-sm mx-auto overflow-hidden bg-white rounded-lg shadow-md dark:bg-gray-800">
+    <div class="mt-44 mb-20 w-full max-w-sm mx-auto overflow-hidden bg-gray-100 rounded-lg shadow-md dark:bg-gray-800">
     <div class="px-6 py-4">
         <div class="flex justify-center mx-auto">
-            <img class="w-auto h-7 sm:h-8" src="/images/logo/logo.png" alt=""></img>
+            <img class="w-auto h-10 sm:h-16" src="/images/logo/logo.png" alt=""></img>
         </div>
 
         <h3 class="mt-6 text-xl font-medium text-center text-gray-600 dark:text-gray-200">Bienvenue de retour ! </h3>

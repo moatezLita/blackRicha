@@ -34,11 +34,7 @@ const CategoryFilterCategory=()=> {
         Product Collection
       </h2>
 
-      <p className="mt-4 max-w-md text-gray-500">
-        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Itaque
-        praesentium cumque iure dicta incidunt est ipsam, officia dolor fugit
-        natus?
-      </p>
+      {/*  */}
     </header>
 
     <div className="mt-8 block lg:hidden">

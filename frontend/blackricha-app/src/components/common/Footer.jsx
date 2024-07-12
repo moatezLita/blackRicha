@@ -13,7 +13,7 @@ const Footer1 = () => {
         {/* :SITE NAME & SOCIAL NETWORKS */}
         <div className="relative mt-14 sm:mt-0 px-5 flex flex-col justify-center items-center text-gray-500">
           {/* ::Site name */}
-          <h1 className="font-title text-4xl text-center font-semibold mt-auto">Black Richa</h1>
+          <h1 className="font-title text-4xl text-center font-semibold mt-auto">Bazar </h1>
           {/* ::Social & copyright */}
           <div className="mt-auto flex flex-col items-center">
             {/* :::Social */}
@@ -32,7 +32,7 @@ const Footer1 = () => {
                   </svg>
                          </a>
               {/* Instagram */}
-              <a href="https://www.instagram.com/black.richa/?igshid=OGQ5ZDc2ODk2ZA==&fbclid=IwAR21Zlpfq82BqeYcbs60PW8eJ6a-a677KVvGTVtbN9OyMMNaZgZrGVi0fXw" className="ml-3 text-gray-200">
+              <a href="" className="ml-3 text-gray-200">
                 <span className="sr-only">Instagram</span>
                 <svg fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" className="w-6 h-6" viewBox="0 0 24 24">
                   <rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect>
@@ -49,7 +49,7 @@ const Footer1 = () => {
               </a> */}
             </span>
             {/* :::Copyright */}
-            <span className="py-4 text-xs">&copy;2024, Black Richa All Rights Reserved.</span>
+            <span className="py-4 text-xs">&copy;2024, Bazar All Rights Reserved.</span>
           </div>
           {/* ::Mobile separator line */}
           <span className="sm:hidden absolute -top-4 left-1/2 w-1/4 h-px bg-gray-400 transform -translate-x-1/2" aria-hidden="true"/>
@@ -75,7 +75,7 @@ const Footer1 = () => {
           </div>
           {/* ::Email */}
           <div className="col-span-2 md:col-span-1 pb-0 md:py-3 px-4 flex flex-col items-center sm:items-start">
-            <h3 className="py-1.5 md:py-4 text-xl text-gray-500 font-bold tracking-wide">Black Richa</h3>
+            <h3 className="py-1.5 md:py-4 text-xl text-gray-500 font-bold tracking-wide">Bazar</h3>
             <p className="inline-flex justify-center sm:justify-start text-sm text-gray-400 font-medium">
               <svg xmlns="http://www.w3.org/2000/svg" className="mr-1 h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                 <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
