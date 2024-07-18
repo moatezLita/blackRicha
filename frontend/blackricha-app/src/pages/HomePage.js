@@ -2,12 +2,12 @@ import React, { useState } from 'react';
 // import Header from '../components/common/Header';
 import ProductListing from '../components/home/productListing';
 import HeroSection from '../components/home/heroSection';
-import Carousel from '../components/home/carousel';
+// import Carousel from '../components/home/carousel';
 import CategotyPreview from '../components/home/categoryPreview';
 import PromoSection from '../components/home/promoSection';
 import BottomBanner from '../components/home/bottomBanner';
 import ProductCollection from '../components/home/productCollection';
-import CarouselEx from '../components/home/carousel';
+// import CarouselEx from '../components/home/carousel';
 import ProductCollectionByCategory from '../components/product/productCollectionByCategory';
 import Album from '../components/home/album';
 

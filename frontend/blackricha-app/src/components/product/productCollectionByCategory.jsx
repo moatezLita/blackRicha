@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { getProducts, getProductsByCategoryId } from '../../api/productsApi';
 import React, { useState, useEffect } from 'react';
-import { Button } from '@mui/material';
+// import { Button } from '@mui/material';
 import ModalCart from '../modalCart';
 import Skeleton from './skeleton';
 

@@ -10,182 +10,150 @@ import { useContext } from 'react';
 import { AuthContext } from "../../context/authContext";
 import DropdownMenu from "./dropdownMenu";
 
-
+import {
+  Menu,
+  MenuHandler,
+  MenuList,
+  MenuItem,
+  Button,
+} from "@material-tailwind/react";
+import CategoryMenu from "./categoryMenu";
 
 const Navbar = ({ getProducts }) => {
 
-    const match = useMatch('/category/:id');
-    const showButton = !!match;
-    //logout, and isAuth features 
-    const { isAuthenticated, logout } = useContext(AuthContext);
-    // const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const match = useMatch('/category/:id');
+  const showButton = !!match;
+  //logout, and isAuth features 
+  const { isAuthenticated, logout } = useContext(AuthContext);
+  // const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
-    const [showCart, setShowCart] = useState(false);
-    const [isOpen, setIsOpen] = useState(false);
-    const showHeader = useScrollHeader();
-
-
-    const categories = [
-        { id: 1, name: 'Acceuil', path: '/' },
-        { id: 2, name: 'Men', path: '/category/2' },
-        { id: 3, name: 'Women', path: '/category/3' },
-        {
-            id: 4, name: 'Sports', subcategories: [
-                { id: 7, name: 'Running', path: '/category/7' },
-                { id: 8, name: 'Gym', path: '/category/8' },
-                { id: 9, name: 'Cycling', path: '/category/9' },
-            ]
-        },
-        { id: 5, name: 'Kids', path: '/category/5' },
-        { id: 6, name: 'Accessories', path: '/category/6' },
-    ];
-
-    const toggleMenu = () => {
-        setIsOpen(!isOpen);
-    };
-
-    const handleCartClick = () => {
-        setShowCart(!showCart);
-    };
-    // const products = [
-    //     { id: 1, name: 'DJI Phantom' },
-    //     { id: 2, name: 'GoPro Hero8 Black' },
-    //     { id: 3, name: 'Canon EOS R5' }
-    //    ];
-    return (
-        // <!-- component -->
-        <div className="bg-white " >
-            <div className={`bg-white  header ${showHeader ? '' : 'hidden'}`} >
+  const [showCart, setShowCart] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const showHeader = useScrollHeader();
 
 
-                <div className="border py-2 px-6">
-                    <div className="flex justify-between">
-                        <div className="flex items-center">
-                            <img className="h-16 w-16 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"
-                                src="/images/logo/logo.png" alt="logo" />
-                            {/* <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z" />
-                        </svg> */}
-                            {/* <span className="ml-2 font-semibold text-[#252C32]">What a Market</span> */}
-                        </div>
+  const categories = [
+    { id: 1, name: 'Acceuil', path: '/' },
+    { id: 2, name: 'Men', path: '/category/2' },
+    { id: 3, name: 'Women', path: '/category/3' },
+    {
+      id: 4, name: 'Sports', subcategories: [
+        { id: 7, name: 'Running', path: '/category/7' },
+        { id: 8, name: 'Gym', path: '/category/8' },
+        { id: 9, name: 'Cycling', path: '/category/9' },
+      ]
+    },
+    { id: 5, name: 'Kids', path: '/category/5' },
+    { id: 6, name: 'Accessories', path: '/category/6' },
+  ];
 
-                        <div className="justify-center ml-6 flex flex-1 gap-x-3">
-                            {/* <div className="flex cursor-pointer select-none items-center gap-x-2 rounded-md border bg-[#4094F7] py-2 px-4 text-white hover:bg-blue-500">
-                            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
-                            </svg>
-                            <span className="text-sm font-medium">Categories</span>
-                        </div> */}
+  const toggleMenu = () => {
+    setIsOpen(!isOpen);
+  };
 
-                            {/* <input type="text" className="w-full rounded-md border border-[#DDE2E4] px-3 py-2 text-sm" value="DJI phantom" /> */}
-                            <SearchBar getProducts={getProducts} />
-                        </div>
+  const handleCartClick = () => {
+    setShowCart(!showCart);
+  };
+  // const products = [
+  //     { id: 1, name: 'DJI Phantom' },
+  //     { id: 2, name: 'GoPro Hero8 Black' },
+  //     { id: 3, name: 'Canon EOS R5' }
+  //    ];
+  return (
+    // <!-- component -->
+    <div className="sticky top-0 z-50  bg-white shadow-md py-2 px-6" >
+      <div className="container px-4 py-3 mx-auto">
 
-                        <div className="ml-2 flex">
-                            <div className="flex cursor-pointer items-center gap-x-1 rounded-md py-2 px-4 hover:bg-gray-100">
-                                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-gray-500" viewBox="0 0 20 20" fill="currentColor">
-                                    <path d="M4 3a2 2 0 100 4h12a2 2 0 100-4H4z" />
-                                    <path fill-rule="evenodd" d="M3 8h14v7a2 2 0 01-2 2H5a2 2 0 01-2-2V8zm5 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z" clip-rule="evenodd" />
-                                </svg>
-                                <span className="text-sm font-medium">Commandes</span>
-                            </div>
 
-                            {/* <div className="flex cursor-pointer items-center gap-x-1 rounded-md py-2 px-4 hover:bg-gray-100">
-                            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-gray-500" viewBox="0 0 20 20" fill="currentColor">
-                                <path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd" />
-                            </svg>
-                            <span className="text-sm font-medium">Favorites</span>
-                        </div> */}
-                            {/* handle cart click */}
-                            <div onClick={handleCartClick} className="flex cursor-pointer items-center gap-x-1 rounded-md py-2 px-4 hover:bg-gray-100" >
 
-                                <div className="relative">
-                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-gray-500" viewBox="0 0 20 20" fill="currentColor">
-                                        <path d="M3 1a1 1 0 000 2h1.22l.305 1.222a.997.997 0 00.01.042l1.358 5.43-.893.892C3.74 11.846 4.632 14 6.414 14H15a1 1 0 000-2H6.414l1-1H14a1 1 0 00.894-.553l3-6A1 1 0 0017 3H6.28l-.31-1.243A1 1 0 005 1H3zM16 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM6.5 18a1.5 1.5 0 100-3 1.5 1.5 0 000 3z" />
-                                    </svg>
-                                    {/* <span className="absolute -top-2 -right-2 flex h-4 w-4 items-center justify-center rounded-full bg-red-500 p-2 text-xs text-white"></span> */}
-                                </div>
-                                <span className="text-sm font-medium">Panier {showCart && <ShoppingCart />}</span>
-                            </div>
+        {/* <div className="border py-2 px-6"> */}
+        <div className="flex items-center justify-between">
+          <div className="flex items-center">
+            <img className="h-16 w-16 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"
+              src="/images/logo/logo.png" alt="logo" />
+          </div>
+          
+          <div className="justify-center  flex-1 items-center  ">
 
-                            {isAuthenticated() ? (
+            <SearchBar getProducts={getProducts} />
+          </div>
 
-                                <DropdownMenu />
-                                //   <div className="dropdown">
-                                //     <button onClick={toggleDropdown} className="dropdown-toggle">
-                                //      <span>eds</span>
-                                //     </button>
-                                //     {isDropdownOpen  && (
-                                //       <ul className="dropdown-menu">
-                                //         <li>
-                                //           <Link to="/profile">Profile</Link>
-                                //         </li>
-                                //         <li>
-                                //           <button onClick={handleLogout}>
+          <div className="flex">
 
-                                //             Logout
-                                //           </button>
-                                //         </li>
-                                //       </ul>
-                                //     )}
-                                //   </div>
-                            ) : (
-                                <div className="ml-2 flex  cursor-pointer items-center gap-x-1 rounded-md border py-0 px-4 hover:bg-gray-100">
-                                    <Link to="/login">
-                                        <span className="text-sm font-medium">Connexion</span>
-                                    </Link>
-                                </div>
-                            )}
-                        </div>
-                    </div>
+            <div onClick={handleCartClick} className="flex cursor-pointer items-center gap-x-1 rounded-md py-2 px-4 hover:bg-gray-100" >
 
-                    <div className="mt-0 flex items-center justify-between mx-auto ">
-                        <div className="flex gap-x-2 py-1 px-2">
-                            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-gray-500" viewBox="0 0 20 20" fill="currentColor">
-                                <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd" />
-                            </svg>
-                            <span className="text-sm font-medium">Tunisie</span>
-                        </div>
-
-                        <div className="flex flex-wrap gap-x-8 items-center justify-center flex-grow">
-                            {categories.map(category => (
-                                category.subcategories ? (
-                                    <div className="relative inline-block" key={category.id}>
-                                        <span
-                                            className="cursor-pointer rounded-sm py-1 px-2 text-sm font-medium hover:bg-gray-100"
-                                            onClick={toggleMenu}
-                                        >
-                                            {category.name}
-                                        </span>
-                                        {isOpen && (
-                                            <div className="absolute z-10 mt-2 bg-white rounded-md shadow-lg w-40" style={{ padding: '10px' }}>
-                                                <ul className="py-2">
-                                                    {category.subcategories.map(sub => (
-                                                        <Link to={sub.path} key={sub.id}>
-                                                            <li className="px-4 py-2 hover:bg-gray-100" style={{ cursor: 'pointer' }}>
-                                                                {sub.name}
-                                                            </li>
-                                                        </Link>
-                                                    ))}
-                                                </ul>
-                                            </div>
-                                        )}
-                                    </div>
-                                ) : (
-                                    <Link to={category.path} key={category.id}>
-                                        <span className="cursor-pointer rounded-sm py-1 px-2 text-sm font-medium hover:bg-gray-100">
-                                            {category.name}
-                                        </span>
-                                    </Link>
-                                )
-                            ))}
-                        </div>
-
-                        {/* <span className="cursor-pointer rounded-sm py-1 px-2 text-sm font-medium hover:bg-gray-100">frf</span> */}
-                    </div>
-                </div>
+              <div className="relative">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-gray-500" viewBox="0 0 20 20" fill="currentColor">
+                  <path d="M3 1a1 1 0 000 2h1.22l.305 1.222a.997.997 0 00.01.042l1.358 5.43-.893.892C3.74 11.846 4.632 14 6.414 14H15a1 1 0 000-2H6.414l1-1H14a1 1 0 00.894-.553l3-6A1 1 0 0017 3H6.28l-.31-1.243A1 1 0 005 1H3zM16 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM6.5 18a1.5 1.5 0 100-3 1.5 1.5 0 000 3z" />
+                </svg>
+              </div>
+              <span className="text-sm font-medium  hidden md:bloc">Panier {showCart && <ShoppingCart />}</span>
             </div>
+
+            {isAuthenticated() ? (
+
+              <DropdownMenu />
+            ) : (
+              <div className="ml-2 flex  cursor-pointer items-center gap-x-1 rounded-md border py-0 px-4 hover:bg-gray-100">
+                <Link to="/login">
+                  <span className="text-sm font-medium">Connexion</span>
+                </Link>
+              </div>
+            )}
+          </div>
         </div>
-    )
+
+        <div className="mt-0 flex items-center justify-between mx-auto ">
+          <div className="flex gap-x-2 py-1 px-2">
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-gray-500" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd" />
+            </svg>
+            <span className="text-sm font-medium">Tunisie</span>
+          </div>
+
+
+          <div className="hidden lg:flex  gap-x-8 items-center justify-center flex-grow">
+            {categories.map(category => (
+        category.subcategories ? (
+          <div className="lg:relative inline-block" key={category.id}>
+            <Menu>
+              <MenuHandler>
+                <Button variant="text" className="cursor-pointer rounded-sm py-1 px-2 text-sm font-medium hover:bg-gray-100">
+                  {category.name}
+                </Button>
+              </MenuHandler>
+              <MenuList className="z-10 mt-2 bg-white rounded-md shadow-lg w-40">
+                {category.subcategories.map(sub => (
+                  <Link to={sub.path} key={sub.id}>
+                    <MenuItem>
+                      <li className="px-4 py-2 hover:bg-gray-100" style={{ cursor: 'pointer' }}>
+                        {sub.name}
+                      </li>
+                    </MenuItem>
+                  </Link>
+                ))}
+              </MenuList>
+            </Menu>
+          </div>
+        ) : (
+          <Link to={category.path} key={category.id}>
+            <Button variant="text" className=" cursor-pointer rounded-sm py-1 px-2 text-sm font-medium hover:bg-gray-100">
+                
+              {category.name}
+            </Button>
+          </Link>
+        )
+      ))}
+          </div>
+          </div>
+          <div className="flex lg:hidden items-center">
+            <CategoryMenu categories={categories} />
+          </div>
+          {/* <span className="cursor-pointer rounded-sm py-1 px-2 text-sm font-medium hover:bg-gray-100">frf</span> */}
+        
+        {/* </div> */}
+      </div>
+    </div>
+  )
 }
 export default Navbar;

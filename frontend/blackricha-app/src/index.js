@@ -18,9 +18,7 @@ root.render(
   <ShoppingCartProvider>
     <UserProvider>
       <AuthProvider>
-        <Router>
           <App />
-        </Router>
       </AuthProvider>
     </UserProvider>
   </ShoppingCartProvider>

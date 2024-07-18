@@ -23,10 +23,9 @@ const SearchBar = ({ getProducts }) => {
     }
    };
    return (
-       <div className='relative'> 
-           <input type="text" className="w-full rounded-md border border-gray-300 px-3 py-2 text-sm"
+       <div className=' '> 
+           <input type="text" className="w-full rounded-md border border-gray-300 px-3 py-2 text-sm  "
               placeholder="Search for a product..." value={searchTerm} onChange={handleSearchChange}
-              style={{ width: '100%', maxWidth: '500px' }} // modify this line to adjust the width
             />
              {/* display filtered results */}
              {filteredProducts.length >0 && (
